@@ -35,6 +35,11 @@ img{
     margin: 1.25rem 0 0.9375rem;
 }
 
+/*top margin*/
+.top-margin{
+    margin-top: 5rem;
+}
+
 .section-content {
     padding: 5rem 0;
 }
