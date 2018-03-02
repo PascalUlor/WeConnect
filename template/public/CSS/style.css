@@ -29,9 +29,26 @@ img{
 #cover-caption {
     width: 100%;
 }
+.cover-form {
+    background: rgba(0,0,0,0.6);
+    padding: 0.875rem 1.875rem 0.875rem 0.9375rem;
+    margin: 1.25rem 0 0.9375rem;
+}
 
 .section-content {
     padding: 5rem 0;
+}
+/*signin/up*/
+.sign-cover {
+    background: #222 url('../images/background.jpg') center center no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100%;
+    padding: 1.4rem;
+    background-attachment: fixed;
+}
+#inputfield {
+    background-color:transparent;
 }
 
 /*foooter*/
