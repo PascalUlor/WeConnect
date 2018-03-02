@@ -12,3 +12,20 @@ img{
 .wrapper {
     height: 100%;
 }
+#nav-main{
+    background-color: white;
+}
+#cover {
+    background: #222 url('../images/background.jpg') center center no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 1.4rem;
+    background-attachment: fixed;
+}
+#cover-caption {
+    width: 100%;
+}
