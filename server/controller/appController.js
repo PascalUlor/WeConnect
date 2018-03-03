@@ -1,0 +1,1 @@
+import clientData from '../dataModel/data';
