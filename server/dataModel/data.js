@@ -2,7 +2,7 @@ const clientData = [
     {
         id: 1,
         userName: 'Pascal',
-        password: '',
+        password: '123',
         businessName: 'SlimTrader',
         email: 'slimtrader@gmail.com',
         category: 'IT',
@@ -13,7 +13,7 @@ const clientData = [
     {
         id: 2,
         userName: 'Emeka',
-        password: '',
+        password: '453',
         businessName: 'interswitch',
         email: 'interswitch@gmail.com',
         category: 'finance',
