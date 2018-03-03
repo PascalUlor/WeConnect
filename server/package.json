@@ -4,7 +4,8 @@
   "description": "This is an Andela Bootcamp 30 project. WeConnect is a business listing and out sourcing web application.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon --watch server --exec babel-node -- app.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,11 @@
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "eslint": "^4.18.2"
+    "eslint": "^4.18.2",
+    "nodemon": "^1.17.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
   }
 }
