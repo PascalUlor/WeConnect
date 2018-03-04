@@ -1,9 +1,28 @@
-const clientData = [
+const signupData = [
     {
         id: 1,
         userName: 'Pascal',
-        password: '123',
-        businessName: 'SlimTrader',
+        password: '123'
+    },
+    {
+        id: 2,
+        userName: 'Emeka',
+        password: '453'
+    }
+];
+
+const loginData = [
+    {
+        id: 1,
+        userName: 'Joe',
+        password: 'west'
+    }
+];
+
+const businessData = [
+    {
+        id: 1,
+        userName: 'Pascal',
         email: 'slimtrader@gmail.com',
         category: 'IT',
         Address: '123 V.I Lagos',
@@ -12,8 +31,6 @@ const clientData = [
     },
     {
         id: 2,
-        userName: 'Emeka',
-        password: '453',
         businessName: 'interswitch',
         email: 'interswitch@gmail.com',
         category: 'finance',
@@ -22,4 +39,4 @@ const clientData = [
         city: 'Island'
     }
 ];
-export default clientData;
+export { signupData, loginData, businessData};

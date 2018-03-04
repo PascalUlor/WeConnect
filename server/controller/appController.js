@@ -1,17 +1,20 @@
-import clientData from '../dataModel/data';
+import { signupData, loginData, businessData } from '../dataModel/testData';
+
+/*API route class*/
 
 export default class appControll {
+    /*Method to register a business*/
     static regBusiness(req, res) {
         let newUserId;
 
-        if (clientData.length === 0) {
+        if (businessData.length === 0) {
             newUserId = 1;
         } else {
-            newUserId = (clientData[clientData.length - 1].id) + 1;
+            newUserId = (businessData[businessData.length - 1].id) + 1;
         }
 
         try {
-            clientData.push({
+            businessData.push({
                 id: newUserId,
                 userName: req.body.userName,
                 password: req.body.password,
@@ -26,14 +29,14 @@ export default class appControll {
             res.json({
                 status: 'Success',
                 message: 'Business created successfully',
-                clientData
+                businessData
             });
         } catch (e) {
             res.status(500);
             res.json({
-                status: 'failed',
+                status: 'Failed',
                 message: 'Error. Could not created'
             });
         }
     }
-}
+}// End of Class
