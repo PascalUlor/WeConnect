@@ -6,4 +6,8 @@ const router = express.Router();
 router.route('/businesses')
     .post(appControll.regBusiness);
 
+router.route('/businesses/:id')
+    .put(appControll.updateBusiness)
+    .delete(appControll.deleteBusiness);
+
 export default router;

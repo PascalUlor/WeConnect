@@ -22,7 +22,7 @@ const loginData = [
 const businessData = [
     {
         id: 1,
-        userName: 'Pascal',
+        businessName: 'SlimTrader',
         email: 'slimtrader@gmail.com',
         category: 'IT',
         Address: '123 V.I Lagos',
