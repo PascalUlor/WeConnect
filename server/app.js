@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import logger from 'morgan';
 import appRoutes from '../server/routes/approutes';
 
 const app = express();
@@ -8,6 +9,7 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(logger('dev'));
 
 // Home page route
 app.get('/', (req, res) => {

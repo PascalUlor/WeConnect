@@ -4,7 +4,8 @@ import appControll from '../controller/appController';
 const router = express.Router();
 
 router.route('/businesses')
-    .post(appControll.regBusiness);
+    .post(appControll.regBusiness)
+    .get(appControll.getBusiness);
 
 router.route('/businesses/:id')
     .put(appControll.updateBusiness)

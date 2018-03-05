@@ -1,4 +1,4 @@
-import { signupData, loginData, businessData } from '../dataModel/testData';
+import { signupData, loginData, businessData, reviewsData } from '../dataModel/testData';
 
 /**
  * Class for /api/ routes
@@ -108,4 +108,43 @@ export default class appControll {
             });
         }
     }// Method to delete business ends
+    /**
+     * API method GET all businesses from businessData
+     * @param {obj} req
+     * @param {obj} res
+     * @returns {obj} success message
+     */
+    static getBusiness(req, res) {
+        if (businessData.length !== 0) {
+            if (!req.query.sort) {
+                res.status(200);
+                res.json({
+                status: 'succesful',
+                message: 'successfully all businesses',
+                businessData
+            });
+            }
+        } else {
+            res.status(400);
+            res.json({
+                status: 'failed',
+                message: 'No business availabel'
+            });
+        }
+    }
+    /**
+     * API method POST reviews for businesses
+     * @param {obj} req
+     * @param {obj} res
+     * @returns {obj} success message
+     */
+    static postReview(req, res) {
+        let newRviewId;
+
+        if (businessData.length ===0) {
+            newRviewId = 1;
+        } else {
+            newReviewId = (reviewsData[reviewsData.length - 1].id) + 1;
+        }
+    }
 }// End of Class

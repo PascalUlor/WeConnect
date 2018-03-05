@@ -39,4 +39,19 @@ const businessData = [
         city: 'Island'
     }
 ];
-export { signupData, loginData, businessData };
+
+const reviewsData = [
+    {
+        id: 1,
+        reviewSubject: 'Impressive',
+        userId: 3,
+        businessId: 1
+    },
+    {
+        id: 2,
+        reviewSubject: 'Great',
+        userId: 1,
+        businessId: 2
+    }
+]
+export { signupData, loginData, businessData, reviews };
