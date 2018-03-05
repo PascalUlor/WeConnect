@@ -39,4 +39,4 @@ const businessData = [
         city: 'Island'
     }
 ];
-export { signupData, loginData, businessData};
+export { signupData, loginData, businessData };

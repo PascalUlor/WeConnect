@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Home page route
 app.get('/', (req, res) => {
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/api/', appRoutes)
+app.use('/api/', appRoutes);
 
 app.listen(3000, () => console.log(`Application started on port ${port}`));
 export default app;

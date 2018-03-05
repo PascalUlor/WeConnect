@@ -1,9 +1,16 @@
 import { signupData, loginData, businessData } from '../dataModel/testData';
 
-/*API route class*/
-
+/**
+ * Class for /api/ routes
+ * @class appControll
+ */
 export default class appControll {
-    /*Method to (POST) register a business*/
+    /**
+     * API method to (POST) register a business
+     * @param {obj} req
+     * @param {obj} res
+     * @returns {obj} insertion error messages or success messages
+     */
     static regBusiness(req, res) {
         let newBusId;
 
@@ -37,13 +44,19 @@ export default class appControll {
             });
         }
     }// Method to Register Business ends
-
-    /*Method to (PUT) update a Business Profile*/
+    /**
+     * API method to (PUT) update a Business Profile
+     * @param {obj} req
+     * @param {obj} res
+     * @returns {obj} with success or error message
+     */
     static updateBusiness(req, res) {
-        const {businessName, email, category, Address, state, city} = req.body;
+        const {
+ businessName, email, category, Address, state, city
+} = req.body;
         for (let i = 0; i < businessData.length; i += 1) {
             if (businessData[i].id === parseInt(req.params.id, 10)) {
-                if ( businessName || email || category || Address || state || city) {
+                if (businessName || email || category || Address || state || city) {
                     businessData[i].businessName = (businessName) || businessData[i].businessName;
                     businessData[i].email = (email) || businessData[i].email;
                     businessData[i].category = (category) || businessData[i].category;
@@ -69,10 +82,15 @@ export default class appControll {
         res.status(400);
         res.json({
             status: 'Failed',
-            message: `Business with id ${i} does not exist`
+            message: 'Business with id does not exist'
         });
     } // Method to Updat business ends
-
+    /**
+     * API method DELETE a particular business from businessData
+     * @param {obj} req
+     * @param {obj} res
+     * @returns {obj} insert success message
+     */
     static deleteBusiness(req, res) {
         if (parseInt(req.params.id, 10) in businessData.map(business => business.id)) {
             const newBusinessList = businessData.filter(business => business.id !== parseInt(req.params.id, 10));
