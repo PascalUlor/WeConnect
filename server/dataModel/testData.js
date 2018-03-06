@@ -53,5 +53,5 @@ const reviewsData = [
         userId: 1,
         businessId: 2
     }
-]
-export { signupData, loginData, businessData, reviews };
+];
+export { signupData, loginData, businessData, reviewsData };
