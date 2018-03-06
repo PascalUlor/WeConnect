@@ -114,7 +114,7 @@ export default class appControll {
      * @param {obj} res
      * @returns {obj} success message
      */
-    static getBusiness(req, res) {
+    static getAllBusiness(req, res) {
         if (businessData.length !== 0) {
             if (!req.query.sort) {
                 res.status(200);
@@ -139,12 +139,86 @@ export default class appControll {
      * @returns {obj} success message
      */
     static postReview(req, res) {
-        let newRviewId;
+        let newReviewId;
 
-        if (businessData.length ===0) {
-            newRviewId = 1;
+        if (businessData.length === 0) {
+            newReviewId = 1;
         } else {
             newReviewId = (reviewsData[reviewsData.length - 1].id) + 1;
         }
+        try {
+            if (parseInt(req.params.id, 10) in businessData.map(business => business.id)) {
+                reviewsData.push({
+                    id: newReviewId,
+                    reviewDetail: req.body.reviewDetail,
+                    userId: 3,
+                    businessId: req.body.businessId
+                });
+                res.status(201);
+                res.json({
+                    status: 'sucessful',
+                    meassage: 'succesful',
+                    reviewsData
+                });
+            } else {
+                res.status(400);
+                res.json({
+                    status: 'failed',
+                    message: 'No reviews available'
+                });
+            }
+        } catch (e) {
+            res.status(500);
+            res.json({
+                status: 'Failed',
+                meassage: 'error adding reviews'
+            });
+        }
     }
-}// End of Class
+    /**
+     * API method to GET a particular businesses
+     * @param {obj} req
+     * @param {obj} res
+     * @returns {obj} success message
+     */
+    static getSingleBusiness(req, res) {
+        for (let i = 0; i < businessData.length; i += 1) {
+            if (businessData[i].id === parseInt(req.params.id, 10)) {
+                res.status(200);
+                res.json({
+                    status: 'successful',
+                    message: 'Retrieve Business',
+                    data: businessData[i]
+                });
+            } else {
+                res.status(400);
+                res.json({
+                    status: 'Failed',
+                    message: 'Business does not exist'
+                });
+            }
+        }
+    }// getSingleBusiness ends
+    /**
+     * API method to GET reviews for a particular business
+     * @param {obj} req
+     * @param {obj} res
+     * @returns {obj} success message
+     */
+    static getReviews(req, res) {
+      if (parseInt(req.params.id, 10) in reviewsData.map(reviews => reviews.businessId)) {
+        const businessReview = reviewsData.filter(reviews => reviews.businessId === parseInt(req.params.id, 10));
+          res.status(200);
+          res.json({
+              status: 'succesfull',
+              message: 'retrieved reviews',
+              businessReview
+});
+            } else {
+            res.json({
+              status: 'failed',
+              message: 'failed to retrieved reviews'
+});
+ }
+}
+}// class End
