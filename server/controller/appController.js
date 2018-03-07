@@ -214,11 +214,11 @@ export default class appControll {
               message: 'retrieved reviews',
               businessReview
 });
-            } else {
+              } else {
             res.json({
               status: 'failed',
               message: 'failed to retrieved reviews'
 });
- }
-}
+         }
+  }
 }// class End
