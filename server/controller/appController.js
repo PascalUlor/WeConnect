@@ -188,14 +188,13 @@ export default class appControll {
                     message: 'Retrieve Business',
                     data: businessData[i]
                 });
-            } else {
+            }
+          }
                 res.status(400);
                 res.json({
                     status: 'Failed',
                     message: 'Business does not exist'
                 });
-            }
-        }
     }// getSingleBusiness ends
     /**
      * API method to GET reviews for a particular business
