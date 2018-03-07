@@ -63,20 +63,18 @@ export default class appControll {
                     businessData[i].Address = (Address) || businessData[i].Address;
                     businessData[i].state = (state) || businessData[i].state;
                     businessData[i].city = (city) || businessData[i].city;
-                    res.status(200);
-                    res.json({
+                    return res.status(200).json({
                         status: 'Successfull',
                         message: `Business with id ${i + 1} successfully update`,
                         businessData
                     });
-                } else {
+                }
                     res.status(400);
                     res.json({
                         status: 'Failed',
                         message: 'Data to update not specified',
                         businessData
                     });
-                }
             }
         }
         res.status(400);
