@@ -26,7 +26,7 @@ const businessData = [
         email: 'slimtrader@gmail.com',
         category: 'IT',
         Address: '123 V.I Lagos',
-        state: 'Lagos',
+        location: 'Lagos',
         city: 'Island'
     },
     {
@@ -35,7 +35,7 @@ const businessData = [
         email: 'interswitch@gmail.com',
         category: 'finance',
         Address: '40 V.I Lagos',
-        state: 'Lagos',
+        location: 'Lagos',
         city: 'Island'
     }
 ];

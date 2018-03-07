@@ -90,21 +90,20 @@ export default class appControll {
      * @returns {obj} insert success message
      */
     static deleteBusiness(req, res) {
-        if (parseInt(req.params.id, 10) in businessData.map(business => business.id)) {
-            const newBusinessList = businessData.filter(business => business.id !== parseInt(req.params.id, 10));
-            res.status(200);
-            res.json({
+      for (let i = 0; i < businessData.length; i += 1) {
+        if (businessData[i].id === parseInt(req.params.id, 10)) {
+        businessData.splice(i, 1);
+            return res.status(200).json({
                 status: 'successful',
-                message: 'business successfully deleted',
-                newBusinessList
+                message: 'business successfully deleted'
             });
-        } else {
+       }
+      }
             res.status(400);
             res.json({
                 status: 'Failed',
                 message: 'Business with id does not exist'
             });
-        }
     }// Method to delete business ends
     /**
      * API method GET all businesses from businessData
