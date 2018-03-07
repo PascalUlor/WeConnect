@@ -5,10 +5,15 @@ const router = express.Router();
 
 router.route('/businesses')
     .post(appControll.regBusiness)
-    .get(appControll.getBusiness);
+    .get(appControll.getAllBusiness);
 
 router.route('/businesses/:id')
     .put(appControll.updateBusiness)
-    .delete(appControll.deleteBusiness);
+    .delete(appControll.deleteBusiness)
+    .get(appControll.getSingleBusiness);
+
+router.route('/businesses/:id/reviews')
+    .post(appControll.postReview)
+    .get(appControll.getReviews);
 
 export default router;

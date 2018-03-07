@@ -5,7 +5,7 @@ import appRoutes from '../server/routes/approutes';
 
 const app = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/api/', appRoutes);
+app.use('/api/v1/', appRoutes);
 
-app.listen(3000, () => console.log(`Application started on port ${port}`));
+app.listen(3001, () => console.log(`Application started on port ${port}`));
 export default app;

@@ -43,13 +43,43 @@ const businessData = [
 const reviewsData = [
     {
         id: 1,
-        reviewSubject: 'Impressive',
+        reviewDetail: 'Quality',
         userId: 3,
         businessId: 1
     },
     {
         id: 2,
-        reviewSubject: 'Great',
+        reviewDetail: 'Impressive',
+        userId: 3,
+        businessId: 1
+    },
+    {
+        id: 3,
+        reviewDetail: 'Nice',
+        userId: 3,
+        businessId: 3
+    },
+    {
+        id: 4,
+        reviewDetail: 'Bad',
+        userId: 1,
+        businessId: 2
+    },
+    {
+        id: 5,
+        reviewDetail: 'Favourable',
+        userId: 1,
+        businessId: 2
+    },
+    {
+        id: 6,
+        reviewDetail: 'excellent',
+        userId: 1,
+        businessId: 2
+    },
+    {
+        id: 7,
+        reviewDetail: 'Great',
         userId: 1,
         businessId: 2
     }
