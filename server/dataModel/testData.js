@@ -1,4 +1,4 @@
-const signupData = [
+const userDb = [
     {
         id: 1,
         userName: 'Pascal',
@@ -8,14 +8,6 @@ const signupData = [
         id: 2,
         userName: 'Emeka',
         password: '453'
-    }
-];
-
-const loginData = [
-    {
-        id: 1,
-        userName: 'Joe',
-        password: 'west'
     }
 ];
 
@@ -84,4 +76,4 @@ const reviewsData = [
         businessId: 2
     }
 ];
-export { signupData, loginData, businessData, reviewsData };
+export { userDb, businessData, reviewsData };

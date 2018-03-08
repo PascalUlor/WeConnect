@@ -20,5 +20,7 @@ router.route('/businesses/:id/reviews')
 
 router.route('/auth/signup')
     .post(appControll.userSignup);
+router.route('/auth/login')
+    .post(appControll.userLogin);
 
 export default router;
