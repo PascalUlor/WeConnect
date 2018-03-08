@@ -1,11 +1,13 @@
 import express from 'express';
 import appControll from '../controller/appController';
+import searchClass from '../middleware/search';
+import validation from '../middleware/validation';
 
 const router = express.Router();
 
 router.route('/businesses')
-    .post(appControll.regBusiness)
-    .get(appControll.getAllBusiness);
+    .post(validation.regBusinessValidation, appControll.regBusiness)
+    .get(searchClass.getSearch, appControll.getAllBusiness);
 
 router.route('/businesses/:id')
     .put(appControll.updateBusiness)

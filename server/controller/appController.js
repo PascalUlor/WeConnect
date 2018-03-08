@@ -27,7 +27,7 @@ export default class appControll {
                 email: req.body.email,
                 category: req.body.category,
                 Address: req.body.Address,
-                state: req.body.state,
+                location: req.body.location,
                 city: req.body.city
             });
             res.status(201);
@@ -52,16 +52,16 @@ export default class appControll {
      */
     static updateBusiness(req, res) {
         const {
- businessName, email, category, Address, state, city
+ businessName, email, category, Address, location, city
 } = req.body;
         for (let i = 0; i < businessData.length; i += 1) {
             if (businessData[i].id === parseInt(req.params.id, 10)) {
-                if (businessName || email || category || Address || state || city) {
+                if (businessName || email || category || Address || location || city) {
                     businessData[i].businessName = (businessName) || businessData[i].businessName;
                     businessData[i].email = (email) || businessData[i].email;
                     businessData[i].category = (category) || businessData[i].category;
                     businessData[i].Address = (Address) || businessData[i].Address;
-                    businessData[i].state = (state) || businessData[i].state;
+                    businessData[i].location = (location) || businessData[i].location;
                     businessData[i].city = (city) || businessData[i].city;
                     return res.status(200).json({
                         status: 'Successfull',
