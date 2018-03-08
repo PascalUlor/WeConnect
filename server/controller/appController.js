@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import { signupData, loginData, businessData, reviewsData } from '../dataModel/testData';
 
 /**
@@ -216,5 +217,28 @@ export default class appControll {
               message: 'failed to retrieved reviews'
 });
          }
-  }
+  }// getReviews end
+    /**
+     * API method to signup user
+     * @param {obj} req
+     * @param {obj} res
+     * @returns {obj} success message
+     */
+    static userSignup(req, res) {
+      const { userName } = req.body;
+      const password = bcrypt.hashSync(req.body.password, 10);
+      if (!userName || !password) {
+      return res.status(400).json({
+        status: 'failed',
+          message: 'Some or all fields have not been filled',
+          error: true
+        });
+      }
+      signupData.push(req.body);
+      return res.status(200).json({
+        status: 'successfull',
+        message: 'Signup successfull. You may proceed',
+        error: false
+      });
+    }
 }// class End
