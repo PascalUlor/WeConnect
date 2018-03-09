@@ -20,6 +20,13 @@ app.get('/', (req, res) => {
     });
 });
 
+// Trivial Route
+app.get('*', (req, res) => {
+    res.status(404).json({
+        message: 'Invalid routes'
+    });
+});
+
 app.use('/api/v1/', appRoutes);
 
 app.listen(3001, () => console.log(`Application started on port ${port}`));
