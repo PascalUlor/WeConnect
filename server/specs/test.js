@@ -3,6 +3,7 @@
  */
 import supertest from 'supertest';
 import chai from 'chai';
+import chaiHttp from 'chai;';
 import app from '../app';
 
 const { expect } = chai,
@@ -24,7 +25,7 @@ describe('All test cases for application', () => {
                 });
         });
     });
-
+     // test invalid routes
     describe('Test Case For Invalid Routes', () => {
         it('Should return a message when an invalid route is accessed', (done) => {
             request
@@ -55,7 +56,7 @@ describe('All test cases for application', () => {
         });
 
         it('should return `404` page for all invalid routes', (done) => {
-            request.get('/more-recipes/recipes')
+            request.get('/weconnect/recipes')
                 .set('Content-Type', 'application/json')
                 .expect(404)
                 .end((err, res) => {
@@ -67,4 +68,57 @@ describe('All test cases for application', () => {
                 });
         });
     });
-});
+    // test case for POSTing (regBusiness) a business
+    describe('All test cases for POSTing a new business', () => {
+      describe('Negative test cases for adding a business', () => {
+        it('should return `400` status code with res.body error message', (done) => {
+          request.post('/api/v1/businesses')
+              .set('Content-Type', 'application/json')
+              .send({}) // request body not defined
+              .expect(400)
+              .end((err, res) => {
+                expect(res.body).deep.equal({
+                  status: 'Failed',
+                  message: 'Some or all fields are undefined'
+                });
+                if (err) done(err);
+                done();
+              });
+         });
+
+         it('should return `400` status code with `res.body.errors` messages', (done) => {
+          request.post('/api/v1/businesses')
+              .set('Content-Type', 'application/json')
+              .send({
+                  businessName: '',
+                  email: '',
+                  category: '',
+                  location: ''
+              }) // empty body request
+              .expect(400)
+              .end((err, res) => {
+                  expect('Business name is required').to.equal(res.body.errors.businessName);
+                  expect('email is required').to.equal(res.body.errors.email);
+                  expect('category is required').to.equal(res.body.errors.category);
+                  expect('location is required').to.equal(res.body.errors.location);
+                  if (err) done(err);
+                  done();
+              });
+         });
+
+         it('should return `400` status code with `res.body.error` messages', (done) => {
+          request.post('/api/v1/businesses')
+              .set('Content-Type', 'application/json')
+              .send({
+                businessName: 'a',
+              })
+              .expect(400)
+              .end((err, res) => {
+                  expect('Business name must be between 3 to 50 characters').to.equal(res.body.errors.businessName);
+                  if (err) done(err);
+                  done();
+              });
+         });
+      });
+    });// End of Add Business test
+});// End of All test cases
