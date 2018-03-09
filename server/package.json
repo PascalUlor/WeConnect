@@ -4,7 +4,7 @@
   "description": "This is an Andela Bootcamp 30 project. WeConnect is a business listing and out sourcing web application.",
   "main": "app.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --timeout 500000 --compilers js:babel-core/register server/specs/",
+    "test": "nyc --reporter=html --reporter=text mocha --timeout 500000 --compilers js:babel-core/register server/specs/ || true",
     "start:dev": "nodemon --watch server --exec babel-node -- app.js",
     "build": "babel server -d server/dist --copy-files --ignore server/dist",
     "postinstall": "npm run build",
@@ -38,11 +38,15 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
     "coveralls": "^3.0.0",
     "express": "^4.16.2",
+    "mocha": "^5.0.4",
     "mocha-lcov-reporter": "^1.3.0",
     "morgan": "^1.9.0",
     "nyc": "^11.4.1",
+    "supertest": "^3.0.0",
     "validator": "^9.4.1"
   }
 }
