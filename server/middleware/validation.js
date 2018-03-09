@@ -27,7 +27,7 @@ export default class Validation {
         } else {
             // validate businessName
         if (!(validator.isEmpty(businessName))) {
-           if (!validator.isLength(businessName, { min: 3, max: 50 })) {
+           if (!(validator.isLength(businessName, { min: 3, max: 50 }))) {
                errors.businessName = 'Business name must be between 3 to 50 characters';
            }
         } else {

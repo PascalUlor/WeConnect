@@ -3,9 +3,10 @@
  */
 import supertest from 'supertest';
 import chai from 'chai';
-import chaiHttp from 'chai;';
+import chaiHttp from 'chai-http';
 import app from '../app';
 
+chai.use(chaiHttp);
 const { expect } = chai,
     request = supertest(app);
 
@@ -87,38 +88,54 @@ describe('All test cases for application', () => {
          });
 
          it('should return `400` status code with `res.body.errors` messages', (done) => {
-          request.post('/api/v1/businesses')
-              .set('Content-Type', 'application/json')
-              .send({
-                  businessName: '',
-                  email: '',
-                  category: '',
-                  location: ''
-              }) // empty body request
-              .expect(400)
-              .end((err, res) => {
-                  expect('Business name is required').to.equal(res.body.errors.businessName);
-                  expect('email is required').to.equal(res.body.errors.email);
-                  expect('category is required').to.equal(res.body.errors.category);
-                  expect('location is required').to.equal(res.body.errors.location);
-                  if (err) done(err);
-                  done();
-              });
-         });
+            request.post('/api/v1/businesses')
+                .set('Content-Type', 'application/json')
+                .send({}) // empty body request
+                .expect(400)
+                .end((err, res) => {
+                    expect(res.body).to.have.property('message').to.equal('Some or all fields are undefined');
+                    expect(res.status).to.equal(400);
+                    if (err) done(err);
+                    done();
+                });
+           });
 
          it('should return `400` status code with `res.body.error` messages', (done) => {
           request.post('/api/v1/businesses')
               .set('Content-Type', 'application/json')
               .send({
                 businessName: 'a',
+                email: 'fgxdfhgv',
+                category: 'fhfcvgfv',
+                location: 'hgfcjgvh'
               })
               .expect(400)
               .end((err, res) => {
-                  expect('Business name must be between 3 to 50 characters').to.equal(res.body.errors.businessName);
-                  if (err) done(err);
+                  expect(res.body).to.have.property('businessName').eql('Business name must be between 3 to 50 characters');
                   done();
               });
          });
       });
+
+      describe('Positive test case for adding a business', () => {
+        it('should return `201` status code with `res.body.error` messages', (done) => {
+            request.post('/api/v1/businesses')
+                .set('Content-Type', 'application/json')
+                .send({
+                    businessName: 'SlimTrader',
+                    email: 'slimtrader@gmail.com',
+                    category: 'IT',
+                    Address: '123 V.I Lagos',
+                    location: 'Lagos',
+                    city: 'Island'
+                })
+                .expect(201)
+                .end((err, res) => {
+                    expect(res.body.status).to.equal('Success');
+                    expect(res.body.message).to.equal('Business created successfully');
+                    done();
+                });
+        });
+    });
     });// End of Add Business test
 });// End of All test cases
