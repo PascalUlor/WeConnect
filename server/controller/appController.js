@@ -66,7 +66,7 @@ export default class appControll {
                     businessData[i].city = (city) || businessData[i].city;
                     return res.status(200).json({
                         status: 'Successfull',
-                        message: `Business with id ${i + 1} successfully update`,
+                        message: 'Business with id successfully update',
                         businessData
                     });
                 }

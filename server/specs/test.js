@@ -8,7 +8,8 @@ import app from '../app';
 
 chai.use(chaiHttp);
 const { expect } = chai,
-    request = supertest(app);
+    request = supertest(app),
+    invalidID = 5;
 
 describe('All test cases for application', () => {
     describe('Test case for loading application home page', () => {
@@ -135,7 +136,78 @@ describe('All test cases for application', () => {
                     expect(res.body.message).to.equal('Business created successfully');
                     done();
                 });
-        });
-    });
+           });
+          });
     });// End of Add Business test
+
+    describe('All test cases for updating a business profile', () => {
+      describe('All negative test cases for updating a business', () => {
+          it('should return `400` status code with error messages', (done) => {
+              request.put(`/api/v1/businesses/${invalidID}`)
+                  .set('Content-Type', 'application/json')
+                  .send({
+                    businessName: 'SlimTrader',
+                    email: 'slimtrader@gmail.com',
+                    category: 'IT',
+                    Address: '123 V.I Lagos',
+                    location: 'Lagos',
+                    city: 'Island'
+                  })
+                  .expect(400)
+                  .end((err, res) => {
+                      expect(res.body).deep.equal({
+                          status: 'Failed',
+                          message: 'Business with id does not exist'
+                      });
+                      if (err) done(err);
+                      done();
+                  });
+              });
+
+          it('should return `400` status code with `res.body` error messages', (done) => {
+              request.put('/api/v1/businesses/1')
+                  .set('Content-Type', 'application/json')
+                  .send({
+                    businessName: '',
+                    email: '',
+                    category: '',
+                    Address: '',
+                    location: '',
+                    city: ''
+                  })
+                  .expect(400)
+                  .end((err, res) => {
+                      expect(res.body.status).deep.equal({
+                          status: 'Failed',
+                          message: 'Data to update not specified'
+                      });
+                      if (err) done(err);
+                      done();
+                  });
+              });
+      });
+
+      describe('Positive test case for updating a businesses', () => {
+          it('should return `200` status code with `res.body` success messages', (done) => {
+              request.put('/api/v1/businesses/3')
+                  .set('Content-Type', 'application/json')
+                  .send({
+                    id: 1,
+                    businessName: 'SlimTrader',
+                    email: 'slimtrader@gmail.com',
+                    category: 'IT',
+                    Address: '123 V.I Lagos',
+                    location: 'Lagos',
+                    city: 'Island'
+                  })
+                  .expect(200)
+                  .end((err, res) => {
+                      expect(res.body.status).to.equal('Successfull');
+                      expect(res.body.message).to.equal('Business with id successfully update');
+                      if (err) done(err);
+                      done();
+                  });
+          });
+      });
+  });// Update Test end
 });// End of All test cases
