@@ -70,8 +70,7 @@ export default class appControll {
                         businessData
                     });
                 }
-                    res.status(400);
-                    res.json({
+                    return res.status(400).json({
                         status: 'Failed',
                         message: 'Data to update not specified'
                     });
