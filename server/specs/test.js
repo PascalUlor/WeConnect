@@ -177,7 +177,7 @@ describe('All test cases for application', () => {
                   })
                   .expect(400)
                   .end((err, res) => {
-                      expect(res.body.status).deep.equal({
+                      expect(res.body).deep.equal({
                           status: 'Failed',
                           message: 'Data to update not specified'
                       });
