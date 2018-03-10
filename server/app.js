@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
-import appRoutes from '../server/routes/appRoutes';
+import appRoutes from './routes/appRoutes';
 
 const app = express();
 
@@ -20,6 +20,8 @@ app.get('/', (req, res) => {
     });
 });
 
+app.use('/api/v1/', appRoutes);
+
 // Trivial Route
 app.get('*', (req, res) => {
     res.status(404).json({
@@ -27,7 +29,6 @@ app.get('*', (req, res) => {
     });
 });
 
-app.use('/api/v1/', appRoutes);
 
 app.listen(3001, () => console.log(`Application started on port ${port}`));
 export default app;
