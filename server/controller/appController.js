@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { userDb, businessData, reviewsData } from '../dataModel/testData';
+import db from '../dataModel/testData';
 
 /**
  * Class for /api/ routes
@@ -15,14 +15,14 @@ export default class appControll {
     static regBusiness(req, res) {
         let newBusId;
 
-        if (businessData.length === 0) {
+        if (db.businessData.length === 0) {
             newBusId = 1;
         } else {
-            newBusId = (businessData[businessData.length - 1].id) + 1;
+            newBusId = (db.businessData[db.businessData.length - 1].id) + 1;
         }
 
         try {
-            businessData.push({
+            db.businessData.push({
                 id: newBusId,
                 businessName: req.body.businessName,
                 email: req.body.email,
@@ -35,7 +35,7 @@ export default class appControll {
             res.json({
                 status: 'Success',
                 message: 'Business created successfully',
-                businessData
+                data: db.businessData
             });
         } catch (e) {
             res.status(500);
@@ -55,19 +55,19 @@ export default class appControll {
         const {
  businessName, email, category, Address, location, Details
 } = req.body;
-        for (let i = 0; i < businessData.length; i += 1) {
-            if (businessData[i].id === parseInt(req.params.id, 10)) {
+        for (let i = 0; i < db.businessData.length; i += 1) {
+            if (db.businessData[i].id === parseInt(req.params.id, 10)) {
                 if (businessName || email || category || Address || location || Details) {
-                    businessData[i].businessName = (businessName) || businessData[i].businessName;
-                    businessData[i].email = (email) || businessData[i].email;
-                    businessData[i].category = (category) || businessData[i].category;
-                    businessData[i].Address = (Address) || businessData[i].Address;
-                    businessData[i].location = (location) || businessData[i].location;
-                    businessData[i].Details = (Details) || businessData[i].Details;
+                    db.businessData[i].businessName = (businessName) || db.businessData[i].businessName;
+                    db.businessData[i].email = (email) || db.businessData[i].email;
+                    db.businessData[i].category = (category) || db.businessData[i].category;
+                    db.businessData[i].Address = (Address) || db.businessData[i].Address;
+                    db.businessData[i].location = (location) || db.businessData[i].location;
+                    db.businessData[i].Details = (Details) || db.businessData[i].Details;
                     return res.status(200).json({
                         status: 'Successfull',
                         message: 'Business with id successfully update',
-                        businessData
+                        data: db.businessData
                     });
                 }
                     return res.status(400).json({
@@ -89,9 +89,9 @@ export default class appControll {
      * @returns {obj} insert success message
      */
     static deleteBusiness(req, res) {
-      for (let i = 0; i < businessData.length; i += 1) {
-        if (businessData[i].id === parseInt(req.params.id, 10)) {
-        businessData.splice(i, 1);
+      for (let i = 0; i < db.businessData.length; i += 1) {
+        if (db.businessData[i].id === parseInt(req.params.id, 10)) {
+        db.businessData.splice(i, 1);
             return res.status(200).json({
                 status: 'Successfull',
                 message: 'Business successfully deleted'
@@ -111,13 +111,13 @@ export default class appControll {
      * @returns {obj} success message
      */
     static getAllBusiness(req, res) {
-        if (businessData.length !== 0) {
+        if (db.businessData.length !== 0) {
             if (!req.query.sort) {
                 res.status(200);
                 res.json({
                 status: 'Successfull',
                 message: 'Successfully Retrieved all businesses',
-                businessData
+                data: db.businessData
             });
             }
         } else {
@@ -137,14 +137,14 @@ export default class appControll {
     static postReview(req, res) {
         let newReviewId;
 
-        if (businessData.length === 0) {
+        if (db.businessData.length === 0) {
             newReviewId = 1;
         } else {
-            newReviewId = (reviewsData[reviewsData.length - 1].id) + 1;
+            newReviewId = (db.reviewsData[db.reviewsData.length - 1].id) + 1;
         }
         try {
-            if (parseInt(req.params.id, 10) in businessData.map(business => business.id)) {
-                reviewsData.push({
+            if (parseInt(req.params.id, 10) in db.businessData.map(business => business.id)) {
+                db.reviewsData.push({
                     id: newReviewId,
                     reviewDetail: req.body.reviewDetail,
                     userId: req.body.userId,
@@ -154,7 +154,7 @@ export default class appControll {
                 res.json({
                     status: 'Successfull',
                     message: 'Successfull',
-                    reviewsData
+                    data: db.reviewsData
                 });
             } else {
                 res.status(400);
@@ -164,8 +164,7 @@ export default class appControll {
                 });
             }
         } catch (e) {
-            res.status(500);
-            res.json({
+            res.status(500).json({
                 status: 'Failed',
                 message: 'Error adding reviews'
             });
@@ -178,12 +177,12 @@ export default class appControll {
      * @returns {obj} success message
      */
     static getSingleBusiness(req, res) {
-        for (let i = 0; i < businessData.length; i += 1) {
-            if (businessData[i].id === parseInt(req.params.id, 10)) {
+        for (let i = 0; i < db.businessData.length; i += 1) {
+            if (db.businessData[i].id === parseInt(req.params.id, 10)) {
                 return res.status(200).json({
                     status: 'Successfull',
                     message: 'Successfully Retrieved Business',
-                    data: businessData[i]
+                    data: db.businessData[i]
                 });
             }
           }
@@ -199,8 +198,8 @@ export default class appControll {
      * @returns {obj} success message
      */
     static getReviews(req, res) {
-      if (parseInt(req.params.id, 10) in reviewsData.map(reviews => reviews.businessId)) {
-        const businessReview = reviewsData.filter(reviews => reviews.businessId === parseInt(req.params.id, 10));
+      if (parseInt(req.params.id, 10) in db.reviewsData.map(reviews => reviews.businessId)) {
+        const businessReview = db.reviewsData.filter(reviews => reviews.businessId === parseInt(req.params.id, 10));
           res.status(200);
           res.json({
               status: 'succesfull',
@@ -236,8 +235,8 @@ export default class appControll {
           error: true
         });
       }
-      for (let i = 0; i < userDb.length; i += 1) {
-      if (userName === userDb[i].userName) {
+      for (let i = 0; i < db.userDb.length; i += 1) {
+      if (userName === db.userDb[i].userName) {
         return res.status(400).json({
           status: 'failed',
           message: 'Username already exist',
@@ -245,7 +244,7 @@ export default class appControll {
         });
       }
       }
-      userDb.push(req.body);
+      db.userDb.push(req.body);
       return res.status(200).json({
         status: 'successfull',
         message: 'Signup successfull. You may proceed',
@@ -261,8 +260,8 @@ export default class appControll {
      */
     static userLogin(req, res) {
     const { userName, password } = req.body;
-      for (let i = 0; i < userDb.length; i += 1) {
-      if (userName === userDb[i].userName && password === userDb[i].password) {
+      for (let i = 0; i < db.userDb.length; i += 1) {
+      if (userName === db.userDb[i].userName && password === db.userDb[i].password) {
           return res.status(200).json({
           status: 'succesfull',
           message: 'Login Successfull, You may proceed',

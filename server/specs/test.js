@@ -74,7 +74,7 @@ describe('All test cases for application', () => {
     // test case for POSTing (regBusiness) a business
     describe('All test cases for POSTing a new business', () => {
       describe('Negative test cases for adding a business', () => {
-        it('should return `400` status code with res.body error message', (done) => {
+        it('should return `400` status code with error message for undefined requests', (done) => {
           request.post('/api/v1/businesses')
               .set('Content-Type', 'application/json')
               .send({}) // request body not defined
@@ -89,20 +89,30 @@ describe('All test cases for application', () => {
               });
          });
 
-         it('should return `400` status code with `res.body.errors` messages', (done) => {
+         it('should return `400` status code with errors message for empty request', (done) => {
             request.post('/api/v1/businesses')
                 .set('Content-Type', 'application/json')
-                .send({}) // empty body request
+                .send({
+                  businessName: '',
+                  email: '',
+                  category: '',
+                  location: '',
+                  Details: ''
+                }) // empty body request
                 .expect(400)
                 .end((err, res) => {
-                    expect(res.body).to.have.property('message').to.equal('Some or all fields are undefined');
+                    expect(res.body.businessName).to.eql('Business name is required');
+                    expect(res.body.Details).to.eql('Business Details is required');
+                    expect(res.body.email).to.eql('email is required');
+                    expect(res.body.category).to.eql('category is required');
+                    expect(res.body.location).to.eql('location is required');
                     expect(res.status).to.equal(400);
                     if (err) done(err);
                     done();
                 });
            });
 
-         it('should return `400` status code with `res.body.error` messages', (done) => {
+         it('should return `400` status code with error messages for validation error', (done) => {
           request.post('/api/v1/businesses')
               .set('Content-Type', 'application/json')
               .send({
@@ -110,18 +120,19 @@ describe('All test cases for application', () => {
                 email: 'fgxdfhgv',
                 category: 'fhfcvgfv',
                 location: 'hgfcjgvh',
-                Details: 'abcd efgh ijkl mnop qrst uvw xyz'
+                Details: 'abcd'
               })
               .expect(400)
               .end((err, res) => {
                   expect(res.body).to.have.property('businessName').eql('Business name must be between 3 to 50 characters');
+                  expect(res.body).to.have.property('Details').eql('Business Details must be between 20 to 1000 characters');
                   done();
               });
          });
       });
 
       describe('Positive test case for adding a business', () => {
-        it('should return `201` status code with `res.body.error` messages', (done) => {
+        it('should return `201` status code with success messages for successfull post', (done) => {
             request.post('/api/v1/businesses')
                 .set('Content-Type', 'application/json')
                 .send({
@@ -144,7 +155,7 @@ describe('All test cases for application', () => {
 
     describe('All test cases for updating a business profile', () => {
       describe('All negative test cases for updating a business', () => {
-          it('should return `400` status code with error messages', (done) => {
+          it('should return `400` status code with error messages for invalid id', (done) => {
               request.put(`/api/v1/businesses/${invalidID}`)
                   .set('Content-Type', 'application/json')
                   .send({
@@ -166,7 +177,7 @@ describe('All test cases for application', () => {
                   });
               });
 
-          it('should return `400` status code with `res.body` error messages', (done) => {
+          it('should return `400` status code with error messages for undefined', (done) => {
               request.put('/api/v1/businesses/1')
                   .set('Content-Type', 'application/json')
                   .send({
@@ -190,7 +201,7 @@ describe('All test cases for application', () => {
       });
 
       describe('Positive test case for updating a businesses', () => {
-          it('should return `200` status code with `res.body` success messages', (done) => {
+          it('should return `200` status code with success messages successfull update', (done) => {
               request.put('/api/v1/businesses/2')
                   .set('Content-Type', 'application/json')
                   .send({
@@ -215,7 +226,7 @@ describe('All test cases for application', () => {
 
   describe('Test cases for deleting business', () => {
     describe('All negative delete test cases', () => {
-      it('should return `400` status code with `res.body` error message', (done) => {
+      it('should return `400` status code with error message for failed invalid Id', (done) => {
           request.delete(`/api/v1/businesses/${invalidID}`)
             .set('Content-Type', 'application/json')
             .send({})
@@ -230,7 +241,7 @@ describe('All test cases for application', () => {
     });
 
     describe('Positive delete test cases', () => {
-      it('should return `200` status code with `res.body` success message', (done) => {
+      it('should return `200` status code with success message', (done) => {
           request.delete('/api/v1/businesses/1')
             .set('Content-Type', 'application/json')
             .send({})
@@ -299,7 +310,6 @@ describe('All test cases for application', () => {
               expect(res.body.status).to.equal('Successfull');
               expect(res.body.message).to.equal('Successfull');
               expect(reviewsData);
-              if (err) done(err);
               done();
             });
         });
@@ -316,7 +326,6 @@ describe('All test cases for application', () => {
           .end((err, res) => {
               expect(res.body.status).to.equal('Failed');
               expect(res.body.message).to.equal('Business does not exist');
-              if (err) done(err);
               done();
           });
       });
@@ -331,7 +340,6 @@ describe('All test cases for application', () => {
           .end((err, res) => {
               expect(res.body.status).to.equal('Successfull');
               expect(res.body.message).to.equal('Successfully Retrieved Business');
-              if (err) done(err);
               done();
           });
       });
@@ -391,6 +399,7 @@ describe('All test cases for application', () => {
           .set('Content-Type', 'application/json')
           .send({
             fullname: 'Dara',
+            email: '',
             userName: '',
             password: 'password'
             })
@@ -404,13 +413,16 @@ describe('All test cases for application', () => {
           .set('Content-Type', 'application/json')
           .send({
             fullname: 'Mike',
-            userName: 'Pasacal',
+            email: 'mk@yahoo.com',
+            userName: 'Pascal',
             password: '123'
             })
-          .end((err, res) => {
-            expect(res).to.have.status(400);
-            done();
-         });
+            .expect(400)
+            .end((err, res) => {
+              expect(res.body.status).to.equal('failed');
+              expect(res.body.message).to.equal('Username already exist');
+                done();
+            });
       });
     });
     describe('Positive Test case for user signup', () => {
@@ -419,13 +431,16 @@ describe('All test cases for application', () => {
           .set('Content-Type', 'application/json')
           .send({
             fullname: 'Barry Allen',
+            email: 'barry@yahoo.com',
             userName: 'The Flash',
             password: 'Allen'
           })
-          .end((err, res) => {
-              expect(res).to.have.status(200);
-              done();
-            });
+          .expect(200)
+              .end((err, res) => {
+                expect(res.body.status).to.equal('successfull');
+                expect(res.body.message).to.equal('Signup successfull. You may proceed');
+                  done();
+              });
         });
     });
   });

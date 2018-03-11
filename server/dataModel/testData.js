@@ -2,12 +2,14 @@ const userDb = [
     {
         id: 1,
         fullname: 'Don Pascal',
+        email: 'pc@yahoo.com',
         userName: 'Pascal',
         password: '123'
     },
     {
         id: 2,
         fullname: 'Clark Kent',
+        email: 'clark@gmail.com',
         userName: 'Emeka',
         password: '453'
     }
@@ -78,4 +80,7 @@ const reviewsData = [
         businessId: 2
     }
 ];
-export { userDb, businessData, reviewsData };
+
+const db = { userDb, businessData, reviewsData };
+
+export default db;
