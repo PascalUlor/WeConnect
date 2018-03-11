@@ -1,11 +1,13 @@
 const userDb = [
     {
         id: 1,
+        fullname: 'Don Pascal',
         userName: 'Pascal',
         password: '123'
     },
     {
         id: 2,
+        fullname: 'Clark Kent',
         userName: 'Emeka',
         password: '453'
     }
@@ -17,18 +19,18 @@ const businessData = [
         businessName: 'SlimTrader',
         email: 'slimtrader@gmail.com',
         category: 'IT',
-        Address: '123 V.I Lagos',
         location: 'Lagos',
-        city: 'Island'
+        Address: '123 V.I Lagos',
+        Details: 'Business Details must be between 20 to 1000 characters'
     },
     {
         id: 2,
         businessName: 'interswitch',
         email: 'interswitch@gmail.com',
         category: 'finance',
-        Address: '40 V.I Lagos',
         location: 'Lagos',
-        city: 'Island'
+        Address: '40 V.I Lagos',
+        Details: 'Business Details must be between 20 to 1000 characters'
     }
 ];
 

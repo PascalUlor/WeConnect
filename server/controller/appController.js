@@ -27,9 +27,9 @@ export default class appControll {
                 businessName: req.body.businessName,
                 email: req.body.email,
                 category: req.body.category,
-                Address: req.body.Address,
                 location: req.body.location,
-                city: req.body.city
+                Address: req.body.Address,
+                Details: req.body.Details
             });
             res.status(201);
             res.json({
@@ -53,17 +53,17 @@ export default class appControll {
      */
     static updateBusiness(req, res) {
         const {
- businessName, email, category, Address, location, city
+ businessName, email, category, Address, location, Details
 } = req.body;
         for (let i = 0; i < businessData.length; i += 1) {
             if (businessData[i].id === parseInt(req.params.id, 10)) {
-                if (businessName || email || category || Address || location || city) {
+                if (businessName || email || category || Address || location || Details) {
                     businessData[i].businessName = (businessName) || businessData[i].businessName;
                     businessData[i].email = (email) || businessData[i].email;
                     businessData[i].category = (category) || businessData[i].category;
                     businessData[i].Address = (Address) || businessData[i].Address;
                     businessData[i].location = (location) || businessData[i].location;
-                    businessData[i].city = (city) || businessData[i].city;
+                    businessData[i].Details = (Details) || businessData[i].Details;
                     return res.status(200).json({
                         status: 'Successfull',
                         message: 'Business with id successfully update',
@@ -93,8 +93,8 @@ export default class appControll {
         if (businessData[i].id === parseInt(req.params.id, 10)) {
         businessData.splice(i, 1);
             return res.status(200).json({
-                status: 'successful',
-                message: 'business successfully deleted'
+                status: 'Successfull',
+                message: 'Business successfully deleted'
             });
        }
       }
@@ -115,16 +115,16 @@ export default class appControll {
             if (!req.query.sort) {
                 res.status(200);
                 res.json({
-                status: 'succesful',
-                message: 'successfully all businesses',
+                status: 'Successfull',
+                message: 'Successfully Retrieved all businesses',
                 businessData
             });
             }
         } else {
             res.status(400);
             res.json({
-                status: 'failed',
-                message: 'No business availabel'
+                status: 'Failed',
+                message: 'No business available'
             });
         }
     }
@@ -147,19 +147,19 @@ export default class appControll {
                 reviewsData.push({
                     id: newReviewId,
                     reviewDetail: req.body.reviewDetail,
-                    userId: 3,
+                    userId: req.body.userId,
                     businessId: req.body.businessId
                 });
                 res.status(201);
                 res.json({
-                    status: 'sucessful',
-                    meassage: 'succesful',
+                    status: 'Successfull',
+                    message: 'Successfull',
                     reviewsData
                 });
             } else {
                 res.status(400);
                 res.json({
-                    status: 'failed',
+                    status: 'Failed',
                     message: 'No reviews available'
                 });
             }
@@ -167,7 +167,7 @@ export default class appControll {
             res.status(500);
             res.json({
                 status: 'Failed',
-                message: 'error adding reviews'
+                message: 'Error adding reviews'
             });
         }
     }
@@ -180,16 +180,14 @@ export default class appControll {
     static getSingleBusiness(req, res) {
         for (let i = 0; i < businessData.length; i += 1) {
             if (businessData[i].id === parseInt(req.params.id, 10)) {
-                res.status(200);
-                res.json({
-                    status: 'successful',
-                    message: 'Retrieve Business',
+                return res.status(200).json({
+                    status: 'Successfull',
+                    message: 'Successfully Retrieved Business',
                     data: businessData[i]
                 });
             }
           }
-                res.status(400);
-                res.json({
+                return res.status(400).json({
                     status: 'Failed',
                     message: 'Business does not exist'
                 });
@@ -210,7 +208,7 @@ export default class appControll {
               businessReview
 });
               } else {
-            res.json({
+            return res.status(404).json({
               status: 'failed',
               message: 'failed to retrieved reviews'
 });
@@ -229,9 +227,9 @@ export default class appControll {
             error: err
           });
         }
-        const { userName } = req.body;
+        const { fullname, userName, email } = req.body;
         const password = hash;
-      if (!userName || !password) {
+      if (!userName || !password || !fullname || !email) {
       return res.status(400).json({
           status: 'failed',
           message: 'Some or all fields have not been filled',

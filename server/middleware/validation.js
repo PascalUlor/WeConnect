@@ -14,11 +14,11 @@ export default class Validation {
      */
     static regBusinessValidation(req, res, next) {
         const {
- businessName, email, category, location
+ businessName, email, category, location, Details
 } = req.body,
         errors = {};
         // check for undefined inputs
-        if (businessName === undefined || email === undefined || category === undefined || location === undefined) {
+        if (businessName === undefined || email === undefined || category === undefined || location === undefined || Details === undefined) {
             res.status(400);
             res.json({
                 status: 'Failed',
@@ -33,6 +33,15 @@ export default class Validation {
         } else {
             errors.businessName = 'Business name is required';
         }
+
+        // validate business Details
+        if (!(validator.isEmpty(Details))) {
+            if (!(validator.isLength(Details, { min: 20, max: 1000 }))) {
+                errors.Details = 'Business Details must be between 20 to 1000 characters';
+            }
+         } else {
+             errors.Details = 'Business Details is required';
+         }
 
         // Validate email
         if (!(validator.isEmail(email))) {
