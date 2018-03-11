@@ -22,59 +22,107 @@
     <div class="wrapper">
             <header>
                 <!--Nav bar Start -->
-                <nav class="navbar navbar-toggleable-md navbar-light fixed-top" id="nav-main">
-                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarItems" aria-controls="navbarItems"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <nav class="navbar navbar-toggleable-md navbar-light">
+                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <a class="navbar-brand" href="./index.html">
-                        <img src="./public/images/logo.jpg" width="50" height="40" class="d-inline-block align-center" alt="WeConnect Logo">
-                        <span id="site-name">WeConnect</span>
-                    </a>
-        
-                    <div class="collapse navbar-collapse" id="navbarItems">
-                        <ul class="navbar-nav mr-auto text-center">
-                            <li class="nav-item active">
-                                <a class="nav-link" id="homenav" style="color: #66BB6A" href="./index.html">Home
-                                    <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./signin.html" >Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./signup.html">Signup</a>
-                            </li>
-                        </ul>
-                        <form class="form-inline form-group my-2 my-lg-0">
-                            <div class="input-group">
-                                <input class="form-control form-control-sm" type="text" placeholder="search for a business">
-                                <span class="input-group-btn">
-                                    <button type="submit" class=" btn btn-md btn-outline-info">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
-                </nav>
+                        </button>
+                        <a class="navbar-brand" href="./index.html">
+                            <img src="./public/images/logo.jpg" width="45" height="32" class="d-inline-block align-center" alt=" WeConnect Logo"> <span id="site-name">WeConnect</span>
+                        </a>
+            
+                        <div class="collapse navbar-collapse" id="navbarItems">
+                            <form class="form-inline form-group my-2 my-lg-0 ml-auto">
+                                <div class="input-group">
+                                    <input class="form-control form-control-sm" type="text" placeholder="Search by Location">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class=" btn btn-md btn-outline-info">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: #66BB6A" href="./index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" href="./signin.html" >Login</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" href="./signup.html">signup</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link btn btn-primary btn-sm" href="./business-reg.html">Register Business</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
                 <!--Nav bar End-->
             </header>
 
         <!--Catalog Div Start-->
         <main id="main-wrapper">
                 <div class="col">
-                    <section class="cover text-center mb-3 top-margin">
+                    <section class="cover text-center mb-3 cathead">
                         <h3 class="text-info">Business Catalog</h3>
                         <hr id="line">
                     </section>
                     <!--Section For Main Div End-->
-                    <div class="row">
-                        <div class="col-sm-7 col-md-8 col-lg-8">
+                    <div class="row"><!-- row for joblist and category start-->
+                                                <!--Category div start-->
+                                                <div class="col-sm-5 col-md-3 col-lg-3">
+                                                    <h4 class="card-title text-info mt-2">Category</h4>
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <ul class="list-group list-group-flush mb-2">
+                                                                <li class="list-group-item mt-0">
+                                                                    <h5 class="text-muted text-center w-100 p-1">IT</h5>
+                                                                    <div class="text-center w-100">
+                                                                        <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                    <h5 class="text-muted text-center w-100 p-1">Hospitality</h5>
+                                                                    
+                                                                    <div class="text-center w-100">
+                                                                        <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                    <h5 class="text-muted text-center w-100 p-1">Engineering</h5>
+                                                                    <div class="text-center w-100">
+                                                                        <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a> 
+                                                                    </div>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                    <h5 class="text-muted text-center w-100 p-1">Finance</h5>
+                                                                    <div class="text-center w-100">
+                                                                        <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                        <h5 class="text-muted text-center w-100 p-1">Education</h5>
+                                                                        <div class="text-center w-100">
+                                                                            <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a>
+                                                                        </div>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                        <h5 class="text-muted text-center w-100 p-1">Construction</h5>
+                                                                        <div class="text-center w-100">
+                                                                            <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a>
+                                                                        </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--Category div end-->
+
+                        <div class="col-sm-7 col-md-8 col-lg-8"><!-- job list/pagination column start -->
                             <div class="card-deck mb-3 mt-3">
                                 <div class="col-md-6 col-lg-4">
                                     <div class="card mb-4">
-                                        <img class="card-img-top img-fluid" src="./public/images/IT.jpg" alt="Info Tech">
+                                        <img class="card-img-top img-fluid" src="./public/images/IT.jpg" alt="Card image cap">
                                         <div class="card-body pt-1 pb-2">
                                             <h5 class="card-title text-muted mt-2">IT</h5>
                                             <p class="text-muted w-100 text-center"><i class="fa fa-hand-o-right text-info" aria-hidden="true"></i> Pascal Ulor</p>
@@ -86,7 +134,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="card mb-4">
-                                        <img class="card-img-top img-fluid" src="./public/images/hos.jpg" alt="Hospitality">
+                                        <img class="card-img-top img-fluid" src="./public/images/hos.jpg" alt="Card image cap">
                                         <div class="card-body pt-1 pb-2">
                                             <h5 class="card-title text-muted mt-2">Hospitality</h5>
                                             <p class="text-muted w-100 text-center"><i class="fa fa-hand-o-right text-info" aria-hidden="true"></i> Rotimi Daramola</p>
@@ -98,10 +146,10 @@
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="card mb-4">
-                                        <img class="card-img-top img-fluid" src="./public/images/fintech.jpg" alt="Finance">
+                                        <img class="card-img-top img-fluid" src="./public/images/fintech.jpg" alt="Card image cap">
                                         <div class="card-body pt-1 pb-2">
                                             <h5 class="card-title text-muted mt-2">Finance</h5>
-                                            <p class="text-muted w-100 text-center"><i class="fa fa-hand-o-right text-info" aria-hidden="true"></i> AnnMary Clinton</p>
+                                            <p class="text-muted w-100 text-center"><i class="fa fa-hand-o-right text-info" aria-hidden="true"></i> Maryann Clinton</p>
                                             <div class="card-text">
                                                 <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a>
                                             </div>
@@ -110,7 +158,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="card mb-4">
-                                        <img class="card-img-top img-fluid" src="./public/images/construction.jpg" alt="Construction">
+                                        <img class="card-img-top img-fluid" src="./public/images/construction.jpg" alt="Card image cap">
                                         <div class="card-body pt-1 pb-2">
                                             <h5 class="card-title text-muted mt-2">Construction</h5>
                                             <p class="text-muted w-100 text-center"><i class="fa fa-hand-o-right text-info" aria-hidden="true"></i> Longe Daniel</p>
@@ -122,7 +170,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="card mb-4">
-                                        <img class="card-img-top img-fluid" src="./public/images/education.jpg" alt="Education">
+                                        <img class="card-img-top img-fluid" src="./public/images/education.jpg" alt="Card image cap">
                                         <div class="card-body pt-1 pb-2">
                                             <h5 class="card-title text-muted mt-2">Education</h5>
                                             <p class="text-muted w-100 text-center"><i class="fa fa-hand-o-right text-info" aria-hidden="true"></i> David Clinton</p>
@@ -134,7 +182,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="card mb-4">
-                                        <img class="card-img-top img-fluid" src="./public/images/engineering.jpg" alt="Engineering">
+                                        <img class="card-img-top img-fluid" src="./public/images/engineering.jpg" alt="Card image cap">
                                         <div class="card-body pt-1 pb-2">
                                             <h5 class="card-title text-muted mt-2">Engineering</h5>
                                             <p class="text-muted w-100 text-center"><i class="fa fa-hand-o-right text-info" aria-hidden="true"></i>Seun Douglas</p>
@@ -147,7 +195,7 @@
                             </div>
     
                             <!--Pagination Start-->
-                            <nav aria-label="Page navigation" style="margin-top: -1rem">
+                            <nav aria-label="Page navigation" style="margin-top: -1rem" id="pagination">
                                 <ul class="pagination mb-2 ml-3">
                                     <li class="page-item disabled">
                                         <a class="page-link" href="#" aria-label="Previous">
@@ -176,57 +224,10 @@
                                 </ul>
                             </nav>
                             <!--Pagination End-->
-                        </div>
+                        </div><!-- job list/pagination column end -->
 
-                        <!--Sectors div start-->
-                        <div class="col-sm-5 col-md-3 col-lg-3">
-                            <h4 class="card-title text-info mt-2">Category</h4>
-                            <div class="card">
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush mb-2">
-                                        <li class="list-group-item mt-0">
-                                            <h5 class="text-muted text-center w-100 p-1">IT</h5>
-                                            <div class="text-center w-100">
-                                                <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <h5 class="text-muted text-center w-100 p-1">Hospitality</h5>
-                                            
-                                            <div class="text-center w-100">
-                                                <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <h5 class="text-muted text-center w-100 p-1">Engineering</h5>
-                                            <div class="text-center w-100">
-                                                <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a> 
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <h5 class="text-muted text-center w-100 p-1">Finance</h5>
-                                            <div class="text-center w-100">
-                                                <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                                <h5 class="text-muted text-center w-100 p-1">Education</h5>
-                                                <div class="text-center w-100">
-                                                    <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a>
-                                                </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                                <h5 class="text-muted text-center w-100 p-1">Construction</h5>
-                                                <div class="text-center w-100">
-                                                    <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm"><small><i class="fa fa-eye"></i> View</small></a>
-                                                </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Sectors div end-->
-                    </div>
+
+                    </div><!-- row for joblist and category end-->
                 </div>
             </main>
             <!--Catalog Div End-->
