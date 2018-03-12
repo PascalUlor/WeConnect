@@ -30,5 +30,5 @@ app.get('*', (req, res) => {
 });
 
 
-app.listen(process.env.PORT || 8000);
+app.listen(port, () => console.log(`Application started on port ${port}`));
 export default app;
