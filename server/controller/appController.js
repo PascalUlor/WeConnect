@@ -147,8 +147,8 @@ export default class appControll {
                 db.reviewsData.push({
                     id: newReviewId,
                     reviewDetail: req.body.reviewDetail,
-                    userId: req.body.userId,
-                    businessId: req.body.businessId
+                    userId: parseInt(req.body.userId, 10),
+                    businessId: parseInt(req.body.businessId, 10)
                 });
                 res.status(201);
                 res.json({
