@@ -150,19 +150,16 @@ export default class appControll {
                     userId: parseInt(req.body.userId, 10),
                     businessId: parseInt(req.body.businessId, 10)
                 });
-                res.status(201);
-                res.json({
+                return res.status(201).json({
                     status: 'Successfull',
                     message: 'Successfull',
                     data: db.reviewsData
                 });
-            } else {
-                res.status(400);
-                res.json({
+            }
+                return res.status(400).json({
                     status: 'Failed',
                     message: 'No reviews available'
                 });
-            }
         } catch (e) {
             res.status(500).json({
                 status: 'Failed',
