@@ -5,7 +5,7 @@ import supertest from 'supertest';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
-import { businessData, reviewsData } from '../dataModel/testData';
+import db from '../dataModel/testData';
 
 chai.use(chaiHttp);
 const { expect } = chai,
@@ -266,7 +266,7 @@ describe('All test cases for application', () => {
             .end((err, res) => {
               expect(res.body.status).to.equal('Successfull');
               expect(res.body.message).to.equal('Successfully Retrieved all businesses');
-              expect(businessData);
+              expect(db.businessData);
               if (err) done(err);
               done();
             });
@@ -279,16 +279,11 @@ describe('All test cases for application', () => {
       it('should return `400` status code with `res.body` error message', (done) => {
           request.post(`/api/v1/businesses/${invalidID}/reviews`)
             .set('Content-Type', 'application/json')
-            .send({
-            id: 1,
-              reviewDetail: 'Quality',
-              userId: 3,
-              businessId: 1
-            })
+            .send({})
             .expect(400)
             .end((err, res) => {
               expect(res.body.status).to.equal('Failed');
-              expect(res.body.message).to.equal('No reviews available');
+              expect(res.body.message).to.equal('Business with id does not exist');
               if (err) done(err);
               done();
             });
@@ -296,8 +291,8 @@ describe('All test cases for application', () => {
     });
 
     describe('Positive test case for posting reviews', () => {
-      it('should return `201` status code with `res.body` success message', (done) => {
-          request.post('/api/v1/businesses/1/reviews')
+      it('should return `201` status code for successfull review posts', (done) => {
+          request.post('/api/v1/businesses/2/reviews')
             .set('Content-Type', 'application/json')
             .send({
               id: 1,
@@ -309,7 +304,8 @@ describe('All test cases for application', () => {
             .end((err, res) => {
               expect(res.body.status).to.equal('Successfull');
               expect(res.body.message).to.equal('Successfull');
-              expect(reviewsData);
+              expect(db.reviewsData);
+              if (err) done(err);
               done();
             });
         });

@@ -142,30 +142,25 @@ export default class appControll {
         } else {
             newReviewId = (db.reviewsData[db.reviewsData.length - 1].id) + 1;
         }
-        try {
-            if (parseInt(req.params.id, 10) in db.businessData.map(business => business.id)) {
-                db.reviewsData.push({
-                    id: newReviewId,
-                    reviewDetail: req.body.reviewDetail,
-                    userId: parseInt(req.body.userId, 10),
-                    businessId: parseInt(req.body.businessId, 10)
-                });
-                return res.status(201).json({
-                    status: 'Successfull',
-                    message: 'Successfull',
-                    data: db.reviewsData
-                });
+        const bId = parseInt(req.params.id, 10);
+        const found = db.businessData.find(bItem => bItem.id === bId);
+        if (found) {
+          db.reviewsData.push({
+              id: newReviewId,
+              reviewDetail: req.body.reviewDetail,
+              userId: parseInt(req.body.userId, 10),
+              businessId: bId
+              });
+              return res.status(201).json({
+              status: 'Successfull',
+              message: 'Successfull',
+              data: db.reviewsData
+              });
             }
-                return res.status(400).json({
-                    status: 'Failed',
-                    message: 'No reviews available'
-                });
-        } catch (e) {
-            res.status(500).json({
-                status: 'Failed',
-                message: 'Error adding reviews'
+              return res.status(400).json({
+              status: 'Failed',
+              message: 'Business with id does not exist'
             });
-        }
     }
     /**
      * API method to GET a particular businesses
