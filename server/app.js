@@ -1,9 +1,19 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
+
+import swaggerUi from 'swagger-ui-express';
+import cors from 'cors';
+import YAML from 'yamljs';
+
 import appRoutes from './routes/appRoutes';
 
 const app = express();
+
+const swaggerDocument = YAML.load(`${process.cwd()}/swagger.yaml`);
+
+app.use(cors({ credentials: true, origin: true }));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const port = process.env.PORT || 8000;
 
