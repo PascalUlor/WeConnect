@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
     });
 });
 
+// API ROUTES
 app.use('/api/v1/', appRoutes);
 
 // Trivial Route
