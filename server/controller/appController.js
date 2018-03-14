@@ -13,17 +13,8 @@ export default class appControll {
      * @returns {obj} insertion error messages or success messages
      */
     static regBusiness(req, res) {
-        let newBusId;
-
-        if (db.businessData.length === 0) {
-            newBusId = 1;
-        } else {
-            newBusId = (db.businessData[db.businessData.length - 1].id) + 1;
-        }
-
-        try {
             db.businessData.push({
-                id: newBusId,
+                id: db.businessData.length + 1,
                 businessName: req.body.businessName,
                 email: req.body.email,
                 category: req.body.category,
@@ -37,13 +28,6 @@ export default class appControll {
                 message: 'Business created successfully',
                 data: db.businessData
             });
-        } catch (e) {
-            res.status(500);
-            res.json({
-                status: 'Failed',
-                message: 'Error. Could not created'
-            });
-        }
     }// Method to Register Business ends
     /**
      * API method to (PUT) update a Business Profile
@@ -121,7 +105,7 @@ export default class appControll {
             });
             }
         } else {
-            res.status(400);
+            res.status(404);
             res.json({
                 status: 'Failed',
                 message: 'No business available'
@@ -135,18 +119,18 @@ export default class appControll {
      * @returns {obj} success message
      */
     static postReview(req, res) {
-        let newReviewId;
+        // let newReviewId;
 
-        if (db.businessData.length === 0) {
-            newReviewId = 1;
-        } else {
-            newReviewId = (db.reviewsData[db.reviewsData.length - 1].id) + 1;
-        }
+        // if (db.businessData.length === 0) {
+        //     newReviewId = 1;
+        // } else {
+        //     newReviewId = (db.reviewsData[db.reviewsData.length - 1].id) + 1;
+        // }
         const bId = parseInt(req.params.id, 10);
         const found = db.businessData.find(bItem => bItem.id === bId);
         if (found) {
           db.reviewsData.push({
-              id: newReviewId,
+              id: db.reviewsData.length + 1,
               reviewDetail: req.body.reviewDetail,
               userId: parseInt(req.body.userId, 10),
               businessId: bId

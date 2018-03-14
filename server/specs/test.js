@@ -12,7 +12,7 @@ const { expect } = chai,
     request = supertest(app),
     invalidID = 50;
 
-describe('All test cases for application', () => {
+describe('All test cases for application without empty database', () => {
     describe('Test case for loading application home page', () => {
         it('should load application home page', (done) => {
             request.get('/')
@@ -23,7 +23,6 @@ describe('All test cases for application', () => {
                         name: 'Don Ulor',
                         message: 'Welcome to WeConnect'
                     });
-                    if (err) done(err);
                     done();
                 });
         });
@@ -40,7 +39,6 @@ describe('All test cases for application', () => {
                     expect(res.body).deep.equal({
                         message: 'Invalid routes'
                     });
-                    if (err) done(err);
                     done();
                 });
         });
@@ -53,7 +51,6 @@ describe('All test cases for application', () => {
                     expect(res.body).deep.equal({
                         message: 'Invalid routes'
                     });
-                    if (err) done(err);
                     done();
                 });
         });
@@ -66,7 +63,6 @@ describe('All test cases for application', () => {
                     expect(res.body).deep.equal({
                         message: 'Invalid routes'
                     });
-                    if (err) done(err);
                     done();
                 });
         });
@@ -84,7 +80,6 @@ describe('All test cases for application', () => {
                   status: 'Failed',
                   message: 'Some or all fields are undefined'
                 });
-                if (err) done(err);
                 done();
               });
          });
@@ -107,7 +102,6 @@ describe('All test cases for application', () => {
                     expect(res.body.category).to.eql('category is required');
                     expect(res.body.location).to.eql('location is required');
                     expect(res.status).to.equal(400);
-                    if (err) done(err);
                     done();
                 });
            });
@@ -172,7 +166,6 @@ describe('All test cases for application', () => {
                           status: 'Failed',
                           message: 'Business with id does not exist'
                       });
-                      if (err) done(err);
                       done();
                   });
               });
@@ -194,7 +187,6 @@ describe('All test cases for application', () => {
                           status: 'Failed',
                           message: 'Data to update not specified'
                       });
-                      if (err) done(err);
                       done();
                   });
               });
@@ -217,7 +209,6 @@ describe('All test cases for application', () => {
                   .end((err, res) => {
                       expect(res.body.status).to.equal('Successfull');
                       expect(res.body.message).to.equal('Business with id successfully update');
-                      if (err) done(err);
                       done();
                   });
           });
@@ -234,7 +225,6 @@ describe('All test cases for application', () => {
             .end((err, res) => {
               expect(res.body.status).to.equal('Failed');
               expect(res.body.message).to.equal('Business with id does not exist');
-              if (err) done(err);
               done();
             });
         });
@@ -249,7 +239,6 @@ describe('All test cases for application', () => {
             .end((err, res) => {
               expect(res.body.status).to.equal('Successfull');
               expect(res.body.message).to.equal('Business successfully deleted');
-              if (err) done(err);
               done();
             });
         });
@@ -267,7 +256,6 @@ describe('All test cases for application', () => {
               expect(res.body.status).to.equal('Successfull');
               expect(res.body.message).to.equal('Successfully Retrieved all businesses');
               expect(db.businessData);
-              if (err) done(err);
               done();
             });
         });
@@ -284,7 +272,6 @@ describe('All test cases for application', () => {
             .end((err, res) => {
               expect(res.body.status).to.equal('Failed');
               expect(res.body.message).to.equal('Business with id does not exist');
-              if (err) done(err);
               done();
             });
         });
@@ -305,7 +292,6 @@ describe('All test cases for application', () => {
               expect(res.body.status).to.equal('Successfull');
               expect(res.body.message).to.equal('Successfull');
               expect(db.reviewsData);
-              if (err) done(err);
               done();
             });
         });
@@ -355,10 +341,13 @@ describe('All test cases for application', () => {
     });
     describe('Negative case for GET Reviews', () => {
       it('Should return 404 for reviews that does not exist', (done) => {
-        request.get(`/api/v1/businesses/${invalidID}/review`)
+        request.get(`/api/v1/businesses/${invalidID}/reviews`)
           .set('Content-Type', 'application/json')
+          .send({})
           .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.body.status).to.equal('failed');
+          expect(res.body.message).to.equal('failed to retrieved reviews');
           done();
         });
       });
@@ -420,6 +409,16 @@ describe('All test cases for application', () => {
                 done();
             });
       });
+      it('Should return `500` if password is not hashed', (done) => {
+        request.post('/api/v1/auth/signup')
+          .set('Content-Type', 'application/json')
+          .send({})
+            .expect(500)
+            .end((err, res) => {
+              expect(res.status).to.equal(500);
+                done();
+            });
+      });
     });
     describe('Positive Test case for user signup', () => {
       it('Should return `200` for unique username signups', (done) => {
@@ -471,4 +470,27 @@ describe('All test cases for application', () => {
       });
     });
   });
-});// End of All test cases
+});// End of test cases without empty database
+
+// Test for cases with empty database
+describe('Test for Bad Get request', () => {
+  describe('Test empty business data', () => {
+    beforeEach((done) => {
+      db.businessData.length = 0;
+      done();
+    });
+    describe('Negative test cases for Get All Business', () => {
+      it('should return `404` status code with `res.body`failure message', (done) => {
+          request.get('/api/v1/businesses')
+            .set('Content-Type', 'application/json')
+            .send({})
+            .expect(404)
+            .end((err, res) => {
+              expect(res.body.status).to.equal('Failed');
+              expect(res.body.message).to.equal('No business available');
+              done();
+            });
+        });
+    });
+  });
+});
