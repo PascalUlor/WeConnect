@@ -6,7 +6,7 @@ import swaggerUi from 'swagger-ui-express';
 import cors from 'cors';
 import YAML from 'yamljs';
 
-import appRoutes from './routes/appRoutes';
+import dbRoutes from './routes/dbRoutes';
 
 const app = express();
 
@@ -15,7 +15,7 @@ const swaggerDocument = YAML.load(`${process.cwd()}/swagger.yaml`);
 app.use(cors({ credentials: true, origin: true }));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 });
 
 // API ROUTES
-app.use('/api/v1/', appRoutes);
+app.use('/api/v1/', dbRoutes);
 
 // Trivial Route
 app.get('*', (req, res) => {

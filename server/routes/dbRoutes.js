@@ -1,12 +1,10 @@
-// import express from 'express';
-// import appControll from '../controller/appController';
-// import searchClass from '../middleware/search';
-// import validation from '../middleware/validation';
+import express from 'express';
+import business from '../controller/businessControll';
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.route('/businesses')
-//     .post(validation.regBusinessValidation, appControll.regBusiness)
+router.route('/businesses')
+    .post(business.regBusiness)
 //     .get(searchClass.getSearch, appControll.getAllBusiness);
 
 // router.route('/businesses/:id')
@@ -23,4 +21,4 @@
 // router.route('/auth/login')
 //     .post(appControll.userLogin);
 
-// export default router;
+export default router;
