@@ -11,7 +11,9 @@
     "postinstall": "npm run build",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
-    "showcoverage": "start coverage/lcov-report/index.html"
+    "showcoverage": "start coverage/lcov-report/index.html",
+    "migrate": "node ./node_modules/sequelize-cli/lib/sequelize db:migrate",
+    "demigrate": "node ./node_modules/sequelize-cli/lib/sequelize db:migrate:undo:all"
   },
   "repository": {
     "type": "git",

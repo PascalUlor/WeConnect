@@ -32,7 +32,7 @@ module.exports = {
         allowNull: false
       },
       aboutUs: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
         allowNull: false
       },
       userId: {
