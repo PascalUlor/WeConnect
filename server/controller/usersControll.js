@@ -81,19 +81,4 @@ export default class userController {
       message: error.message
     }));
   }
-
-/**
-   * @description Users details entered into the database
-   * @memberof userController
-   * @static
-   *
-   * @param   {object} req the server/http(s) request object
-   * @param   {object} res the server/http(s) response object
-   *
-   * @returns {object} failure or success message
-   * object with the persisted database data
-   */
-  static userLogin(req, res) {
-
-  }
 }
