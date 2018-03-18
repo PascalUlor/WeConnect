@@ -19,7 +19,7 @@ const router = express.Router();
 
 router.route('/auth/signup')
     .post(userController.userSignUp);
-// router.route('/auth/login')
-//     .post(userController.userLogin);
+router.route('/auth/login')
+    .post(userController.userLogin);
 
 export default router;
