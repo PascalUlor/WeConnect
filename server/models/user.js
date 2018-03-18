@@ -14,6 +14,7 @@ export default (sequelize, DataTypes) => {
         },
         is: {
           args: /^[a-z]+$/i,
+          msg: 'Full name must only contain letters'
         }
       }
     },

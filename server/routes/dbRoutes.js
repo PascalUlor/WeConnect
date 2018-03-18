@@ -1,11 +1,11 @@
 import express from 'express';
-import businessController from '../controller/businessControll';
+// import businessController from '../controller/businessControll';
 import userController from '../controller/usersControll';
 
 const router = express.Router();
 
-router.route('/businesses')
-    .post(businessController.regBusiness);
+// router.route('/businesses')
+//     .post(businessController.regBusiness);
 //     .get(searchClass.getSearch, appControll.getAllBusiness);
 
 // router.route('/businesses/:id')
@@ -19,7 +19,7 @@ router.route('/businesses')
 
 router.route('/auth/signup')
     .post(userController.userSignUp);
-router.route('/auth/login')
-    .post(userController.userLogin);
+// router.route('/auth/login')
+//     .post(userController.userLogin);
 
 export default router;
