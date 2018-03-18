@@ -1,7 +1,9 @@
+import jwt from 'jsonwebtoken';
+import env from 'dotenv';
 import bcrypt from 'bcrypt';
 import { User } from '../models';
-import reqHelper from '../helpers/reqHelper';
-import createToken from '../helpers/userHelper';
+
+env.config();
 
 
 /**
@@ -23,7 +25,6 @@ export default class userController {
     const {
  fullName, userName, email, profileImage, location, aboutMe
 } = req.body;
-
     return User.findOne({
       where: {
         $or: [
@@ -54,11 +55,45 @@ export default class userController {
             location,
             aboutMe,
             password: hash
-          }).then(user => (createToken(
-            req, res, 201,
-            'Successfully created account', user
-          )));
+          }).then((user) => {
+            const payload = { userName: user.userName, userId: user.id };
+            const token = jwt.sign(payload, process.env.SECRET_KEY, {
+              expiresIn: 60 * 60
+            });
+            req.token = token;
+            const logInfo = {
+              user: {
+                id: user.id,
+                userName: user.userName,
+                email: user.email
+              },
+              token
+            };
+            res.status(201)
+            .json(Object.assign({
+              status: 'Success',
+              message: 'succesfully signed up'
+}, logInfo));
+          });
         });
-    }).catch(error => reqHelper.error(res, 500, error.message));
+    }).catch(error => res.status(500).json({
+      status: 'Failed',
+      message: error.message
+    }));
+  }
+
+/**
+   * @description Users details entered into the database
+   * @memberof userController
+   * @static
+   *
+   * @param   {object} req the server/http(s) request object
+   * @param   {object} res the server/http(s) response object
+   *
+   * @returns {object} failure or success message
+   * object with the persisted database data
+   */
+  static userLogin(req, res) {
+
   }
 }
