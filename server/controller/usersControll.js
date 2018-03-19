@@ -103,12 +103,18 @@ export default class userController {
       if (user && user.userName.toLowerCase === userName.toLowerCase) {
         const check = bcrypt.compareSync(password, user.password);
         if (check) {
+          const payload = { userName: user.userName, userId: user.id };
+          const token = jwt.sign(payload, process.env.SECRET_KEY, {
+              expiresIn: 60 * 60
+            });
+            req.token = token;
             const logInfo = {
               user: {
                 id: user.id,
                 userName: user.userName,
                 email: user.email
               },
+              token
             };
             return res.status(200)
             .json(Object.assign({

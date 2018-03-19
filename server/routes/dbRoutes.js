@@ -1,11 +1,12 @@
 import express from 'express';
-// import businessController from '../controller/businessControll';
+import businessController from '../controller/businessControll';
 import userController from '../controller/usersControll';
+import authToken from '../middleware/jwtVerify';
 
 const router = express.Router();
 
-// router.route('/businesses')
-//     .post(businessController.regBusiness);
+router.route('/businesses')
+    .post(authToken, businessController.regBusiness);
 //     .get(searchClass.getSearch, appControll.getAllBusiness);
 
 // router.route('/businesses/:id')

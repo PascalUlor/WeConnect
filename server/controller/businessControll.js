@@ -1,8 +1,7 @@
 import models from '../models';
+import reqHelper from '../helpers/reqHelper';
 
-const {
- User, Business, Reviews,
-} = models;
+const { User, Business } = models;
 
 /**
  * Class implementation for /api/v1/business routes
@@ -21,26 +20,37 @@ export default class BusinessController {
      * success message object
      */
   static regBusiness(req, res) {
-    // const {
-    //   businessName,
-    //   email,
-    //   address,
-    //   category,
-    //   location,
-    //   aboutUs,
-    //   businessImage
-    // } = req.body;
+    const {
+      businessName,
+      email,
+      address,
+      category,
+      location,
+      businessImage,
+      aboutUs
+    } = req.body, { userId } = req.decoded;
+  Business.findOne({ where: { businessName, userId } }).then((found) => {
+    if (found && found.businessName === businessName) {
+      return reqHelper.error(
+        res, 409,
+        `Business with name:${businessName}, already exist in your catalog`
+      );
+    }
 
-      Business.create({
-        businessName: req.body.businessName,
-        email: req.body.email,
-        address: req.body.address,
-        category: req.body.category,
-        location: req.body.location,
-        aboutUs: req.body.aboutUs,
-        businessImage: req.body.businessImage,
-        userId: req.decoded.id
-      }).then(business => res.status(201).send(business))
-        .catch(error => res.status(400).send(error));
+    return Business.create({
+      businessName,
+      email,
+      address,
+      category,
+      location,
+      businessImage,
+      aboutUs,
+      userId
+    }).then(business => reqHelper.success(
+      res, 201,
+      'Successfully registered new business', { business }
+    ))
+      .catch(error => reqHelper.error(res, 500, error.message));
+  }).catch(error => reqHelper.error(res, 500, error.message));
   }
 }
