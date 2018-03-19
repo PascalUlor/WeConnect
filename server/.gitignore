@@ -1,9 +1,12 @@
 /node_modules/
 
-/coverage/
 
-/.nyc_output/
+coverage/
 
-/dist/
+.nyc_output
+
+server/dist/
+
+config
 
 .env
