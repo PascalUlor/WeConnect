@@ -28,7 +28,7 @@ const authToken = (req, res, next) => {
         next();
     });
   } else {
-    return res.status(403).json({ message: 'Access denied. You are not logged in'});
+    return res.status(403).json({ message: 'Access denied. You are not logged in' });
   }
 };
 

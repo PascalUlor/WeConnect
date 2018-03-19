@@ -42,11 +42,11 @@ export default class BusinessController {
       businessImage,
       aboutUs,
       userId
-    }).then(business => res.status(201).json({
+    }).then(business => res.status(201).json(Object.assign({
       status: 'Success',
       message: 'Successfully Registered Business'
-    }, { business }))
+    }), { business }))
       .catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
-  }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
+  }).catch(error => res.status(500).json({ status: 'Server error', message: error.message }));
   }
 }
