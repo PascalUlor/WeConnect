@@ -12,8 +12,8 @@ export default class BusinessController {
      * @memberof BusinessController
      * @static
      *
-     * @param   {object} req   the server/http(s) request object
-     * @param   {object} res  the server/http(s) response object
+     * @param   {object} req   the server/http(s) req object
+     * @param   {object} res  the server/http(s) res object
      *
      * @returns {object} insertion error messages object or
      * success message object
@@ -45,8 +45,8 @@ export default class BusinessController {
     }).then(business => res.status(201).json(Object.assign({
       status: 'Success',
       message: 'Successfully Registered Business'
-    }), { business }))
-      .catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
-  }).catch(error => res.status(500).json({ status: 'Server error', message: error.message }));
+    }, { business })))
+      .catch(error => res.status(500).json({ status: 'Server Error', message: error.message }));
+  }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
   }
 }
