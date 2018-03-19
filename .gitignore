@@ -7,6 +7,6 @@ coverage/
 
 server/dist/
 
-config
+config/
 
 .env
