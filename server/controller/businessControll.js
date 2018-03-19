@@ -1,5 +1,4 @@
 import models from '../models';
-import reqHelper from '../helpers/reqHelper';
 
 const { User, Business } = models;
 
@@ -23,7 +22,7 @@ export default class BusinessController {
     const {
       businessName,
       email,
-      address,
+      Address,
       category,
       location,
       businessImage,
@@ -31,26 +30,23 @@ export default class BusinessController {
     } = req.body, { userId } = req.decoded;
   Business.findOne({ where: { businessName, userId } }).then((found) => {
     if (found && found.businessName === businessName) {
-      return reqHelper.error(
-        res, 409,
-        `Business with name:${businessName}, already exist in your catalog`
-      );
+      return res.status(409).send({ message: `Business with business name: ${businessName}, already exist in your catatlog` });
     }
 
     return Business.create({
       businessName,
       email,
-      address,
+      Address,
       category,
       location,
       businessImage,
       aboutUs,
       userId
-    }).then(business => reqHelper.success(
-      res, 201,
-      'Successfully registered new business', { business }
-    ))
-      .catch(error => reqHelper.error(res, 500, error.message));
-  }).catch(error => reqHelper.error(res, 500, error.message));
+    }).then(business => res.status(201).json({
+      status: 'Success',
+      message: 'Successfully Registered Business'
+    }, { business }))
+      .catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
+  }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
   }
 }

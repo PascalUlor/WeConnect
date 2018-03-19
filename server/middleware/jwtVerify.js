@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import env from 'dotenv';
-import reqHelper from '../helpers/reqHelper';
 
 env.config();
 
@@ -22,15 +21,14 @@ const authToken = (req, res, next) => {
     // verifies token and checks if expired or invalid
     jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
       if (err) {
-        reqHelper.error(res, 401, 'Authentication failed. Token is invalid or expired');
-      } else {
+        return res.status(401).json({ message: 'Authentication failed. Token is invalid or expired' });
+      }
         // if everything is authentication is valid, save to requestuest for use in other routes
         req.decoded = decoded;
         next();
-      }
     });
   } else {
-    reqHelper.error(res, 403, 'Access denied. You are not logged in');
+    return res.status(403).json({ message: 'Access denied. You are not logged in'});
   }
 };
 
