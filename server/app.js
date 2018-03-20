@@ -6,8 +6,8 @@ import swaggerUi from 'swagger-ui-express';
 import cors from 'cors';
 import YAML from 'yamljs';
 
-import dbRoutes from './routes/dbRoutes';
-// import appRoutes from './routes/appRoutes';
+// import dbRoutes from './routes/dbRoutes';
+import appRoutes from './routes/appRoutes';
 
 const app = express();
 
@@ -32,8 +32,8 @@ app.get('/', (req, res) => {
 });
 
 // API ROUTES
-app.use('/api/v2/', dbRoutes);
-// app.use('/api/v1/', appRoutes);
+// app.use('/api/v2/', dbRoutes);
+app.use('/api/v1/', appRoutes);
 
 // Trivial Route
 app.get('*', (req, res) => {

@@ -39,32 +39,33 @@ export default class appControll {
         const {
  businessName, email, category, Address, location, Details
 } = req.body;
-        for (let i = 0; i < db.businessData.length; i += 1) {
-            if (db.businessData[i].id === parseInt(req.params.id, 10)) {
-                if (businessName || email || category || Address || location || Details) {
-                    db.businessData[i].businessName = (businessName) || db.businessData[i].businessName;
-                    db.businessData[i].email = (email) || db.businessData[i].email;
-                    db.businessData[i].category = (category) || db.businessData[i].category;
-                    db.businessData[i].Address = (Address) || db.businessData[i].Address;
-                    db.businessData[i].location = (location) || db.businessData[i].location;
-                    db.businessData[i].Details = (Details) || db.businessData[i].Details;
-                    return res.status(200).json({
-                        status: 'Successfull',
-                        message: 'Business with id successfully update',
-                        data: db.businessData
-                    });
-                }
-                    return res.status(400).json({
-                        status: 'Failed',
-                        message: 'Data to update not specified'
-                    });
-            }
-        }
-        res.status(400);
-        res.json({
-            status: 'Failed',
-            message: 'Business with id does not exist'
+      const edit = {
+      id: parseInt(req.params.id, 10),
+      businessName,
+      email,
+      category,
+      Address,
+      location,
+      Details
+      };
+      let target;
+      db.businessData.forEach((business, index) => {
+        if (business.id === parseInt(req.params.id, 10)) {
+          db.businessData[index] = edit;
+          target = edit;
+         }
+      });
+      if (target) {
+        return res.status(200).json({
+          status: 'Successfull',
+          message: 'Business with id successfully update',
+          data: db.businessData
         });
+      }
+      return res.status(400).json({
+        status: 'Failed',
+        message: 'Business with id does not exist'
+    });
     } // Method to Updat business ends
     /**
      * API method DELETE a particular business from businessData
