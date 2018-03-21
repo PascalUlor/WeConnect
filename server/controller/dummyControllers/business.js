@@ -38,8 +38,9 @@ static updateBusiness(req, res) {
     const {
 businessName, email, category, Address, location, Details
 } = req.body;
+const index = parseInt(req.params.id, 10);
   const edit = {
-  id: parseInt(req.params.id, 10),
+  id: index,
   businessName,
   email,
   category,
@@ -47,10 +48,9 @@ businessName, email, category, Address, location, Details
   location,
   Details
   };
-  const bId = parseInt(req.params.id, 10);
-    const found = db.businessData.find(bItem => bItem.id === bId);
+    const found = db.businessData.find(business => business.id === index);
       if (found) {
-        db.businessData[bId - 1] = edit;
+        db.businessData[index - 1] = edit;
          return res.status(200).json({
           status: 'Successfull',
           message: 'Business with id successfully update',
