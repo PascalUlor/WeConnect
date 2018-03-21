@@ -57,7 +57,7 @@ export default class userController {
           }).then((user) => {
             const payload = { userName: user.userName, userId: user.id };
             const token = jwt.sign(payload, process.env.SECRET_KEY, {
-              expiresIn: 60 * 60
+              expiresIn: 60 * 60 * 1440
             });
             req.token = token;
             const logInfo = {
@@ -105,7 +105,7 @@ export default class userController {
         if (check) {
           const payload = { userName: user.userName, userId: user.id };
           const token = jwt.sign(payload, process.env.SECRET_KEY, {
-              expiresIn: 60 * 60 * 3
+              expiresIn: 60 * 60 * 1440
             });
             req.token = token;
             const logInfo = {

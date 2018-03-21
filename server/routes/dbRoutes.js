@@ -9,8 +9,8 @@ router.route('/businesses')
     .post(authToken, businessController.regBusiness);
 //     .get(searchClass.getSearch, appControll.getAllBusiness);
 
-router.route('/businesses/:id')
-    .put(businessController.updateBusiness);
+router.route('/businesses/:businessId')
+    .put(authToken, businessController.updateBusiness);
 //     .delete(appControll.deleteBusiness)
 //     .get(appControll.getSingleBusiness);
 
