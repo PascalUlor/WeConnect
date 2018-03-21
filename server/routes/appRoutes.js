@@ -13,7 +13,7 @@ router.route('/businesses')
     .get(searchClass.getSearch, businessController.getAllBusiness);
 
 router.route('/businesses/:id')
-    .put(businessController.updateBusiness)
+    .put(validation.regBusinessValidation, businessController.updateBusiness)
     .delete(businessController.deleteBusiness)
     .get(businessController.getSingleBusiness);
 

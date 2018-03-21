@@ -47,25 +47,22 @@ businessName, email, category, Address, location, Details
   location,
   Details
   };
-  let target;
-  db.businessData.forEach((business, index) => {
-    if (business.id === parseInt(req.params.id, 10)) {
-      db.businessData[index] = edit;
-      target = edit;
-     }
-  });
-  if (target) {
-    return res.status(200).json({
-      status: 'Successfull',
-      message: 'Business with id successfully update',
-      data: db.businessData
-    });
-  }
-  return res.status(400).json({
-    status: 'Failed',
-    message: 'Business with id does not exist'
-});
-} // Method to Updat business ends
+  const bId = parseInt(req.params.id, 10);
+    const found = db.businessData.find(bItem => bItem.id === bId);
+      if (found) {
+        db.businessData[bId - 1] = edit;
+         return res.status(200).json({
+          status: 'Successfull',
+          message: 'Business with id successfully update',
+          data: db.businessData
+          });
+      }
+        return res.status(400).json({
+          status: 'Failed',
+          message: 'Business with id does not exist'
+          });
+
+} // Method to Update business ends
 /**
  * API method DELETE a particular business from businessData
  * @param {obj} req
