@@ -61,8 +61,6 @@ export default class BusinessController {
      * success message object
      */
     static updateBusiness(req, res) {
-      console.log(parseInt(req.params.businessId, 10));
-      console.log(req.params.businessId);
       const {
         businessName,
         email,
