@@ -61,7 +61,6 @@ const index = parseInt(req.params.id, 10);
           status: 'Failed',
           message: 'Business with id does not exist'
           });
-
 } // Method to Update business ends
 /**
  * API method DELETE a particular business from businessData

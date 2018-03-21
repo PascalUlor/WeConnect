@@ -100,4 +100,20 @@ export default class BusinessController {
       })
       .catch(error => res.status(400).send(error.toString()));
     }
+    /**
+     * User can delete a registered business to the business catalog
+     * @memberof BusinessController
+     * @static
+     *
+     * @param   {object} req   the server/http(s) req object
+     * @param   {object} res  the server/http(s) res object
+     *
+     * @returns {object} insertion error messages object or
+     * success message object
+     */
+    static deleteBusiness(req, res) {
+      Business.findOne({
+
+      })
+    }
 }
