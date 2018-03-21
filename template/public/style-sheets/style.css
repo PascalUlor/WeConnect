@@ -161,16 +161,29 @@ img{
 margin-top: 30px;
 outline: black;
 background-color: rgba(0, 0, 0, 0.3);
-background-size: 100%, 100%;
+background-size: 50%, 50%;
 }
   .carousel-control-prev-icon, .carousel-control-next-icon {
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     outline: black;
     background-color: rgba(45, 9, 128, 0.3);
     background-size: 100%, 100%;
     border-radius: 50%;
   }
+
+/*contact us*/
+#contact {
+    background: url('../images/banner.jpeg') center center no-repeat;
+    background-size: cover;
+}
+
+.contact-text {
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 1.875rem;
+}
+
 
 
 /*foooter*/
