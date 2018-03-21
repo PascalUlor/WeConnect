@@ -263,6 +263,29 @@ describe('All test cases for application without empty database', () => {
         });
     });
   });
+
+  describe('Test cases for posting business reviews', () => {
+    describe('Positive test case for posting reviews', () => {
+      it('should return `201` status code for successfull review posts', (done) => {
+          request.post('/api/v1/businesses/2/reviews')
+            .set('Content-Type', 'application/json')
+            .send({
+              id: 1,
+              reviewDetail: 'Quality',
+              userId: 3,
+              businessId: 1
+            })
+            .expect(201)
+            .end((err, res) => {
+              expect(res.body.status).to.equal('Successfull');
+              expect(res.body.message).to.equal('Successfull');
+              expect(db.reviewsData);
+              done();
+            });
+        });
+    });
+  });
+
   describe('Test case for retrieving a Single business', () => {
     describe('Negative test case for retriving a single business', () => {
       it('Should return `400` status code with for invalid id', (done) => {
@@ -293,7 +316,6 @@ describe('All test cases for application without empty database', () => {
     });
   });
 
-
   describe('Test case for searching by Location or category', () => {
     describe('Test for search by Location', () => {
       it('Should return 200 for searches by location', (done) => {
@@ -316,7 +338,8 @@ describe('All test cases for application without empty database', () => {
       });
     });
   });
-});// End of test cases without empty database
+
+  });// End of test cases without empty database
 
 // Test for cases with empty database
 describe('Test for Bad Get request', () => {

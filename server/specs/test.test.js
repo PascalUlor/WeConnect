@@ -158,7 +158,7 @@
 //                     category: 'IT',
 //                     Address: '123 V.I Lagos',
 //                     location: 'Lagos',
-//                     Details: 'Island'
+//                     Details: 'Business Details must be between 20 to 1000 characters'
 //                   })
 //                   .expect(400)
 //                   .end((err, res) => {
