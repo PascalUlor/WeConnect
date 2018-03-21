@@ -1,6 +1,6 @@
 import express from 'express';
-import businessController from '../controller/businessControll';
-import userController from '../controller/usersControll';
+import businessController from '../controller/businessController';
+import userController from '../controller/usersController';
 import authToken from '../middleware/jwtVerify';
 
 const router = express.Router();
@@ -9,8 +9,8 @@ router.route('/businesses')
     .post(authToken, businessController.regBusiness);
 //     .get(searchClass.getSearch, appControll.getAllBusiness);
 
-// router.route('/businesses/:id')
-//     .put(appControll.updateBusiness)
+router.route('/businesses/:id')
+    .put(businessController.updateBusiness);
 //     .delete(appControll.deleteBusiness)
 //     .get(appControll.getSingleBusiness);
 
