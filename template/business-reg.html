@@ -43,7 +43,7 @@
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #66BB6A" href="./index.html">Home</a>
+                        <a class="nav-link" style="color: #0288D1" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./mybusiness.html">My Business</a>
@@ -110,14 +110,19 @@
             <textarea class="form-control" aria-label="With textarea"></textarea>
           </div>
         </div>
-        
-        <a href="./mybusiness.html" class="btn btn-danger">Register</a>
+        <a href="./mybusiness.html" class="btn btn-danger mb-2">Register</a>
       </form>
     </div><!-- form container end-->
 
-    <div class="container col-sm-4 col-md-4"><!--card 2-->
-      <img src="./public/images/google map.png">
-      </div><!-- card end2-->
+    <div class="container col-sm-4 col-md-4 mt-5"><!--image upload -->
+      <section class="container" >
+      <div class="card" id="businessimg">
+      <img id="picture" src="#" alt="business image" />
+    </div>
+    <input type='file' onchange="readImage(this);" class="btn" />
+    </section>
+      
+      </div><!-- image upload end-->
   </div><!-- Row begin-->
 </div><!--wrapper end-->
 
@@ -154,6 +159,7 @@
 
     <!--jquery first then bootsrap js -->
     <script src="./public/js/jquery-3.2.1.min.js"></script>
+    <script src="./public/js/img.js"></script>
     <script src="./public/bootstrap4/js/bootstrap.min.js"></script>
     <!-- site body ends-->
 </body>

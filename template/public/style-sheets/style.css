@@ -97,6 +97,20 @@ img{
     -moz-transition: all 0.5s;
     -webkit-transition: all 0.5s;
 }
+#businessimg {
+    width:300px;
+    height:300px;
+    background: url() no-repeat;
+    border:5px solid #0288D1;
+	margin:0 auto;
+    text-align: center;
+    background-size: 100%;
+    margin-bottom:25px;
+    font-size: 150%;
+  }
+  .buttonColor {
+      color: #212121
+  }
 
 /*signin/up*/
 .sign-cover {
