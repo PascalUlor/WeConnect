@@ -69,20 +69,23 @@ const index = parseInt(req.params.id, 10);
  * @returns {obj} insert success message
  */
 static deleteBusiness(req, res) {
-  for (let i = 0; i < db.businessData.length; i += 1) {
-    if (db.businessData[i].id === parseInt(req.params.id, 10)) {
-    db.businessData.splice(i, 1);
-        return res.status(200).json({
-            status: 'Successfull',
-            message: 'Business successfully deleted'
-        });
-   }
-  }
-        res.status(400);
-        res.json({
-            status: 'Failed',
-            message: 'Business with id does not exist'
-        });
+    const index = parseInt(req.params.id, 10);
+    const found = db.businessData.find(business => business.id === index);
+    if (found) {
+ const newBusinessList = db.businessData.filter(business => business.id !== index);
+            res.status(200);
+            res.json({
+                status: 'successful',
+                message: 'business successfully deleted',
+                newBusinessList
+            });
+        } else {
+            res.status(400);
+            res.json({
+                status: 'Failed',
+                message: 'Business with id does not exist'
+            });
+        }
 }// Method to delete business ends
 /**
  * API method GET all businesses from businessData

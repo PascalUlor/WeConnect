@@ -1,7 +1,7 @@
 import db from '../../dataModel/testData';
 /**
  * Class for /api/ routes
- * @class appControll
+ * @class appController
  */
 export default class reviewController {
     /**
@@ -13,6 +13,7 @@ export default class reviewController {
     static postReview(req, res) {
         const bId = parseInt(req.params.id, 10);
         const found = db.businessData.find(bItem => bItem.id === bId);
+        console.log(bId);
         if (found) {
           db.reviewsData.push({
               id: db.reviewsData.length + 1,
@@ -20,9 +21,9 @@ export default class reviewController {
               userId: parseInt(req.body.userId, 10),
               businessId: bId
               });
-              return res.status(201).json({
-              status: 'Successfull',
-              message: 'Successfull',
+              return res.status(200).json({
+              status: 'Success',
+              message: 'Review Post Successfull',
               data: db.reviewsData
               });
             }

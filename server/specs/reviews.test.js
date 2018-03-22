@@ -27,25 +27,25 @@ const { expect } = chai,
           });
       });
 
-      // describe('Positive test case for posting reviews', () => {
-      //   it('should return `201` status code for successfull review posts', (done) => {
-      //       request.post('/api/v1/businesses/2/reviews')
-      //         .set('Content-Type', 'application/json')
-      //         .send({
-      //           id: 1,
-      //           reviewDetail: 'Quality',
-      //           userId: 3,
-      //           businessId: 1
-      //         })
-      //         .expect(201)
-      //         .end((err, res) => {
-      //           expect(res.body.status).to.equal('Successfull');
-      //           expect(res.body.message).to.equal('Successfull');
-      //           expect(db.reviewsData);
-      //           done();
-      //         });
-      //     });
-      // });
+      describe('Positive test case for posting reviews', () => {
+        it('should return `201` status code for successfull review posts', (done) => {
+            request.post('/api/v1/businesses/2/reviews')
+              .set('Content-Type', 'application/json')
+              .send({
+                id: 1,
+                reviewDetail: 'Quality',
+                userId: 3,
+                businessId: 2
+              })
+              .expect(200)
+              .end((err, res) => { 
+                expect(res.body.status).to.equal('Success');
+                expect(res.body.message).to.equal('Review Post Successfull');
+                expect(db.reviewsData);
+                done();
+              });
+          });
+      });
     });
 
 
