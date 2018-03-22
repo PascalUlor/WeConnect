@@ -5,6 +5,7 @@ import reviewController from '../controller/dummyControllers/reviews';
 import businessController from '../controller/dummyControllers/business';
 import searchClass from '../middleware/search';
 import validation from '../middleware/validation';
+import verify from '../middleware/userValidation';
 
 const router = express.Router();
 
@@ -22,7 +23,7 @@ router.route('/businesses/:id/reviews')
     .get(reviewController.getReviews);
 
 router.route('/auth/signup')
-    .post(userController.userSignup);
+    .post(verify.checkUser, userController.userSignup);
 router.route('/auth/login')
     .post(userController.userLogin);
 

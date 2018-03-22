@@ -75,8 +75,8 @@ static deleteBusiness(req, res) {
  const newBusinessList = db.businessData.filter(business => business.id !== index);
             res.status(200);
             res.json({
-                status: 'successful',
-                message: 'business successfully deleted',
+                status: 'Successfull',
+                message: 'Business successfully deleted',
                 newBusinessList
             });
         } else {
@@ -118,18 +118,18 @@ static getAllBusiness(req, res) {
      * @returns {obj} success message
      */
     static getSingleBusiness(req, res) {
-        for (let i = 0; i < db.businessData.length; i += 1) {
-            if (db.businessData[i].id === parseInt(req.params.id, 10)) {
+      const index = parseInt(req.params.id, 10);
+      const found = db.businessData.find(business => business.id === index);
+      if (found) {
                 return res.status(200).json({
                     status: 'Successfull',
                     message: 'Successfully Retrieved Business',
-                    data: db.businessData[i]
+                    data: db.businessData[index - 1]
                 });
             }
-          }
-                return res.status(400).json({
-                    status: 'Failed',
-                    message: 'Business does not exist'
-                });
+            return res.status(400).json({
+              status: 'Failed',
+              message: 'Business does not exist'
+          });
     }// getSingleBusiness ends
 }
