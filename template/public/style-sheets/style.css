@@ -121,17 +121,38 @@ img{
 }
 
 .sme {
-    background: url('../images/banner2.jpg') center center no-repeat;
+    width:300px;
+    height:300px;
+    background: url() no-repeat;
+    margin:0 auto;
+    text-align: center;
+    margin-bottom:auto;
+    /* background: url('../images/banner2.jpg') center center no-repeat;
     background-size: cover;
     color: white;
     height: 50%;
     padding: 0;
     margin: 1.25rem 0 0.9375rem;
-    background-attachment: fixed;
+    background-attachment: fixed; */
 }
 .sign-form {
     border-radius: 2%;
+    background: rgba(0,0,0,0.6);
 }
+
+.butb {
+    border-radius: 30px;
+}
+.fa {
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #888;
+    padding: 0.5em 0.6em;
+  
+  }
+  .fb{
+      color: #B3E5FC;
+  }
 
 /* #inputfield {
     background-color:transparent;
@@ -172,7 +193,7 @@ outline: black;
 background-color: rgba(0, 0, 0, 0.3);
 background-size: 50%, 50%;
 }
-  .carousel-control-prev-icon, .carousel-control-next-icon {
+.carousel-control-prev-icon, .carousel-control-next-icon {
     height: 30px;
     width: 30px;
     outline: black;
