@@ -108,9 +108,7 @@ img{
     margin-bottom:25px;
     font-size: 150%;
   }
-  .buttonColor {
-      color: #212121
-  }
+  
 
 /*signin/up*/
 .sign-cover {
@@ -123,7 +121,7 @@ img{
 }
 
 .sme {
-    background: url('../images/background.jpg') center center no-repeat;
+    background: url('../images/banner2.jpg') center center no-repeat;
     background-size: cover;
     color: white;
     height: 50%;
@@ -131,19 +129,16 @@ img{
     margin: 1.25rem 0 0.9375rem;
     background-attachment: fixed;
 }
-/*.sign-form {
-    background: rgba(0,0,0,0.6);
-    padding: 0.875rem 1.875rem 0.875rem 0.9375rem;
-    margin: 1.25rem 0 0.9375rem;
-    bottom: 30px;
-}*/
+.sign-form {
+    border-radius: 2%;
+}
 
-#inputfield {
+/* #inputfield {
     background-color:transparent;
     padding: 2px 1px;
     border: 1px solid cyan; 
     color:red
-}
+} */
 
 .cover-form {
     background: rgba(0,0,0,0.6);
