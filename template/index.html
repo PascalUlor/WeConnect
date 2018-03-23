@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="./public/bootstrap4/css/bootstrap.min.css">
+
+    <!-- Custom Styles-->
+    <link rel="stylesheet" href="./public/style-sheets/style.css">
+    <!-- Bootstrap Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>WeConnect</title>
+</head>
+
+<body>
+    <!-- site body begins-->
+    <div class="wrapper">
+    <header>
+        <!--Nav bar Start -->
+        <nav class="navbar navbar-toggleable-md navbar-light fixed-top" id="nav-main">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="./index.html">
+                <img src="./public/images/logo.jpg" width="50" height="40" class="d-inline-block align-center" alt="WeConnect Logo">
+                <span id="site-name">WeConnect</span>
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarItems">
+                <ul class="navbar-nav mr-auto text-center">
+                    <li class="nav-item active">
+                        <a class="nav-link" id="homenav" style="color: #0288D1" href="./index.html">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./signin.html" >Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./signup.html">signup</a>
+                    </li>
+                </ul>
+                <div class="nav-item">
+										<a class="nav-link btn btn-primary btn-sm" style="color: white" href="./business-reg.html">Register Business</a>
+								</div>
+            </div>
+        </nav>
+        <!--Nav bar End-->
+    </header>
+                <!--Section For Main Div Start-->
+                <section id="cover">
+                        <div id="cover-caption">
+                                <h1 class="display-3">WeConnect</h1>
+                                <p>Enhance Your Business Reach With Just One Click</p>
+                            <div class="container">
+                                <div class="col-sm-10 offset-sm-2">
+                                       
+                                  <div class="cover-form col-sm-10">
+                                        
+                                        <form action="">
+                                            <div class="input-group input-group-lg">
+                                                <label class="sr-only">Name</label>
+																								<input type="text" class="form-control form-control-lg" placeholder="Search Businesses">
+																								<span class="input-group-btn"><button type="submit" class="btn btn-primary btn-lg">Search</button></span>
+                                            </div>                                        		
+                                    		</form>
+																		<div class="row offset-sm-2">
+																			<div class="offset-sm-2">
+																				<small for="gridCheck">By Location</small>
+																				<input type="checkbox" id="gridCheck">
+																			</div>
+																			<div class="offset-sm-2">
+																				<small for="gridCheck">By Category</small>
+																				<input type="checkbox" id="gridCheck">
+																			</div>		
+																		</div>
+                                  </div>
+                                    
+                                    <br>
+                                    
+                                    <a href="nav-main" class="btn btn-secondary-outline btn-sm" role="button">&darr;</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                </section>
+                <!--Section For Main Div End-->
+
+        
+            <!-- Carousel begin-->
+            <div class="container col-md-12">
+            <section id="carousel" class="section-content">
+
+                <section class="cover text-center mb-3 linehead">
+                    <h3 class="text-info hp-title">Our Businesses</h3>
+                    <!-- <hr id="line"> -->
+                    <small><a href="catalog.html">view full catalog here</a></small>
+                </section>
+                    <div id="carousel-home" class="carousel slide" data-ride="carousel">
+                      <ol class="carousel-indicators">
+                        <li data-target="#carousel-home" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-home" data-slide-to="1"></li>
+                        <li data-target="#carousel-home" data-slide-to="2"></li>
+                      </ol>
+                        <div class="carousel-inner" role="listbox">
+                            <!-- Carousel item1-->
+                        <div class="carousel-item active">
+                          <div class="container col-sm-7 col-md-10 col-lg-10">
+                                <div class="card-deck mb-5">
+                                        <div class="card img-zoom catcard">
+                                                <div class="card-block">
+                                                        <h4 class="card-title">IT Services</h4>
+                                                        <h6 class="card-text">some text here</h6>
+                                                    </div>
+                                            <img class="card-img-top img-fluid" src="./public/images/tech.jpg" alt="me at work">
+                                            <div class="card-block">
+                                                <h4 class="card-title">Card title that wraps to a new line</h4>
+                                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                                                    content. This content is a little bit longer.</p>
+                                            </div>
+                                                    <div class="card-text text-center">
+                                                        <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-lg mb-2"><small><i class="fa fa-eye"></i> View</small></a>
+                                                    </div>
+                                        </div>
+                                        <div class="card img-zoom catcard">
+                                                <div class="card-block">
+                                                        <h4 class="card-title">Finance Service</h4>
+                                                        <h6 class="card-text">some text here</h6>
+                                                    </div>
+                                                <img class="card-img-top img-fluid" src="./public/images/finan.jpg" alt="me at work">
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Card title that wraps to a new line</h4>
+                                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                                                        content. This content is a little bit longer.</p>
+                                                </div>
+                                                <div class="card-text text-center">
+                                                        <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-lg mb-2"><small><i class="fa fa-eye"></i> View</small></a>
+                                                    </div>
+                                            </div>
+                                            <div class="card img-zoom catcard">
+                                                    <div class="card-block">
+                                                            <h4 class="card-title">Hospitality</h4>
+                                                            <h6 class="card-text">some text here</h6>
+                                                        </div>
+                                                    <img class="card-img-top img-fluid" src="./public/images/hosp.jpg" alt="me at work">
+                                                    <div class="card-block">
+                                                        <h4 class="card-title">Card title that wraps to a new line</h4>
+                                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                                                            content. This content is a little bit longer.</p>
+                                                    </div>
+                                                    <div class="card-text text-center">
+                                                            <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-lg mb-2"><small><i class="fa fa-eye"></i> View</small></a>
+                                                        </div>
+                                                </div>
+                                    </div>
+                        </div>
+                        </div>
+                        <!-- Carousel item2-->
+                        <div class="carousel-item">
+                            <div class="container col-sm-7 col-md-10 col-lg-10">
+                                <div class="card-deck mb-5">
+                                        <div class="card img-zoom catcard">
+                                                <div class="card-block">
+                                                        <h4 class="card-title">Engineering</h4>
+                                                        <h6 class="card-text">some text here</h6>
+                                                    </div>
+                                            <img class="card-img-top img-fluid" src="./public/images/engineering.jpg" alt="me at work">
+                                            <div class="card-block">
+                                                <h4 class="card-title">Card title that wraps to a new line</h4>
+                                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                                                    content. This content is a little bit longer.</p>
+                                            </div>
+                                                    <div class="card-text text-center">
+                                                        <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-lg mb-2"><small><i class="fa fa-eye"></i> View</small></a>
+                                                    </div>
+                                        </div>
+                                        <div class="card img-zoom catcard">
+                                                <div class="card-block">
+                                                        <h4 class="card-title">Health Care</h4>
+                                                        <h6 class="card-text">some text here</h6>
+                                                    </div>
+                                                <img class="card-img-top img-fluid" src="./public/images/health.jpg" alt="me at work">
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Card title that wraps to a new line</h4>
+                                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                                                        content. This content is a little bit longer.</p>
+                                                </div>
+                                                <div class="card-text text-center">
+                                                        <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-lg mb-2"><small><i class="fa fa-eye"></i> View</small></a>
+                                                    </div>
+                                            </div>
+                                            <div class="card img-zoom catcard">
+                                                    <div class="card-block">
+                                                            <h4 class="card-title">Education</h4>
+                                                            <h6 class="card-text">some text here</h6>
+                                                        </div>
+                                                    <img class="card-img-top img-fluid" src="./public/images/education.jpg" alt="me at work">
+                                                    <div class="card-block">
+                                                        <h4 class="card-title">Card title that wraps to a new line</h4>
+                                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                                                            content. This content is a little bit longer.</p>
+                                                    </div>
+                                                    <div class="card-text text-center">
+                                                            <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-lg mb-2"><small><i class="fa fa-eye"></i> View</small></a>
+                                                        </div>
+                                                </div>
+                                    </div>
+                              </div>
+                        </div>
+                        <!-- Carousel item3-->
+                        <div class="carousel-item">
+                            <div class="container col-sm-7 col-md-10 col-lg-10">
+                                <div class="card-deck mb-5">
+                                        <div class="card img-zoom catcard">
+                                                <div class="card-block">
+                                                        <h4 class="card-title">Agriculture</h4>
+                                                        <h6 class="card-text">some text here</h6>
+                                                    </div>
+                                            <img class="card-img-top img-fluid" src="./public/images/agric.jpg" alt="me at work">
+                                            <div class="card-block">
+                                                <h4 class="card-title">Card title that wraps to a new line</h4>
+                                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                                                    content. This content is a little bit longer.</p>
+                                            </div>
+                                                    <div class="card-text text-center">
+                                                        <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-lg mb-2"><small><i class="fa fa-eye"></i> View</small></a>
+                                                    </div>
+                                        </div>
+                                        <div class="card img-zoom catcard">
+                                                <div class="card-block">
+                                                        <h4 class="card-title">Contruction</h4>
+                                                        <h6 class="card-text">some text here</h6>
+                                                    </div>
+                                                <img class="card-img-top img-fluid" src="./public/images/construction.jpg" alt="me at work">
+                                                <div class="card-block">
+                                                    <h4 class="card-title">Card title that wraps to a new line</h4>
+                                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                                                        content. This content is a little bit longer.</p>
+                                                </div>
+                                                <div class="card-text text-center">
+                                                        <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-lg mb-2"><small><i class="fa fa-eye"></i> View</small></a>
+                                                    </div>
+                                            </div>
+                                            <div class="card img-zoom catcard">
+                                                    <div class="card-block">
+                                                            <h4 class="card-title">Aviation</h4>
+                                                            <h6 class="card-text">some text here</h6>
+                                                        </div>
+                                                    <img class="card-img-top img-fluid" src="./public/images/aviation.jpg" alt="me at work">
+                                                    <div class="card-block">
+                                                        <h4 class="card-title">Card title that wraps to a new line</h4>
+                                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                                                            content. This content is a little bit longer.</p>
+                                                    </div>
+                                                    <div class="card-text text-center">
+                                                            <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-lg mb-2"><small><i class="fa fa-eye"></i> View</small></a>
+                                                        </div>
+                                                </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <!--carousel item3end-->
+                      </div>
+                      <a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carousel-home" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+                </section>
+            </div>
+            <!--Carousel end-->
+
+            <!-- footer section-->
+            <footer id="footer-main">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>Copywrite Pascal</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <ul class="list-unstyled">
+                                    <li><a href="">home</a></li>
+                                    <li><a href="">about</a></li>
+                                    <li><a href="">contact</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <ul class="list-unstyled">
+                                    <li><a href="">facebook</a></li>
+                                    <li><a href="">twitter</a></li>
+                                    <li><a href="">Instagram</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <h6>WeConnect</h6>
+                                <p>Taking you to the world</p>
+                            </div>
+                        </div>
+                    </div>    
+                </footer>
+</div><!--site end-->
+
+
+    <!--jquery first then bootsrap js -->
+    <script src="./public/js/jquery-3.2.1.min.js"></script>
+    <script src="./public/bootstrap4/js/bootstrap.min.js"></script>
+    <!-- site body ends-->
+</body>
+
+</html>

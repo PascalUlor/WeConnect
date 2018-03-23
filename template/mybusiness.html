@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="./public/bootstrap4/css/bootstrap.min.css">
+
+    <!-- Custom Styles-->
+    <link rel="stylesheet" href="./public/style-sheets/style.css">
+    <!-- Bootstrap Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>WeConnect</title>
+</head>
+
+<body>
+    <!-- site body begins-->
+    <div class="wrapper">
+            <header>
+                    <!--Site Navigation Start -->
+                    <nav class="navbar navbar-toggleable-md navbar-light">
+                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <a class="navbar-brand" href="./index.html">
+                            <img src="./public/images/logo.jpg" width="45" height="32" class="d-inline-block align-center" alt=" WeConnect Logo"> <span id="site-name">WeConnect</span>
+                        </a>
+            
+                        <div class="collapse navbar-collapse" id="navbarItems">
+                            <form class="form-inline form-group my-2 my-lg-0 ml-auto">
+                                <div class="input-group">
+                                    <input class="form-control form-control-sm" type="text" placeholder="search Business by name">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class=" btn btn-md btn-outline-info">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: #0288D1" href="./index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./mybusiness.html">My Business</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./catalog.html">Catalog</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link btn btn-primary btn-sm" style="color: white" href="./business-reg.html">Register Business</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!--Site Navigation End-->
+                </header>
+
+        <!--Catalog Div Start-->
+        <main id="main-wrapper">
+            <div class="col">
+                <section class="cover text-center mb-3 cathead">
+                    <h3 class="text-info">My Business</h3>
+                    <hr id="line">
+                </section>
+                <!--Section For Main Div End-->
+                <div class="row">
+                    <div class="col-sm-7 col-md-8 col-lg-8">
+                        <div class="card-deck mb-3 mt-3">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card mb-4">
+                                    <img class="card-img-top img-fluid" src="./public/images/IT.jpg" alt="Card image cap">
+                                    <div class="card-body pt-1 pb-2">
+                                        <h5 class="card-title text-muted text-center mt-2">IT</h5>
+                                        <p class="text-muted w-100 text-center">
+                                            <i class="fa fa-hand-o-right text-info" aria-hidden="true"></i> Pascal Ulor</p>
+                                        <div class="card-text text-center">
+                                            <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm">
+                                                <small>
+                                                    <i class="fa fa-eye"></i> View</small>
+                                            </a>
+                                            <a href="#" role="button" class="btn btn-outline-danger btn-sm"><small><i class="fa fa-trash"></i> Delete</small></a>
+                                            <a href="./business-reg.html" class="btn btn-outline-success btn-sm"><small><i class="fa fa-edit"></i> Edit</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card mb-4">
+                                    <img class="card-img-top img-fluid" src="./public/images/hos.jpg" alt="Card image cap">
+                                    <div class="card-body pt-1 pb-2">
+                                        <h5 class="card-title text-muted text-center mt-2">Hospitality</h5>
+                                        <p class="text-muted w-100 text-center">
+                                            <i class="fa fa-hand-o-right text-info" aria-hidden="true"></i> Rotimi Daramola</p>
+                                        <div class="card-text text-center">
+                                            <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm">
+                                                <small>
+                                                    <i class="fa fa-eye"></i> View</small>
+                                            </a>
+                                            <a href="#" role="button" class="btn btn-outline-danger btn-sm"><small><i class="fa fa-trash"></i> Delete</small></a>
+                                            <a href="./business-reg.html" class="btn btn-outline-success btn-sm"><small><i class="fa fa-edit"></i> Edit</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card mb-4">
+                                    <img class="card-img-top img-fluid" src="./public/images/finan.jpg" alt="Card image cap">
+                                    <div class="card-body pt-1 pb-2">
+                                        <h5 class="card-title text-muted text-center mt-2">Finance</h5>
+                                        <p class="text-muted w-100 text-center">
+                                            <i class="fa fa-hand-o-right text-info" aria-hidden="true"></i> Maryann Clinton</p>
+                                        <div class="card-text text-center">
+                                            <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm">
+                                                <small>
+                                                    <i class="fa fa-eye"></i> View</small>
+                                            </a>
+                                            <a href="#" role="button" class="btn btn-outline-danger btn-sm"><small><i class="fa fa-trash"></i> Delete</small></a>
+                                            <a href="./business-reg.html" class="btn btn-outline-success btn-sm"><small><i class="fa fa-edit"></i> Edit</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card mb-4">
+                                    <img class="card-img-top img-fluid" src="./public/images/construction.jpg" alt="Card image cap">
+                                    <div class="card-body pt-1 pb-2">
+                                        <h5 class="card-title text-muted text-center mt-2">Construction</h5>
+                                        <p class="text-muted w-100 text-center">
+                                            <i class="fa fa-hand-o-right text-info" aria-hidden="true"></i> Longe Daniel</p>
+                                        <div class="card-text text-center">
+                                            <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm">
+                                                <small>
+                                                    <i class="fa fa-eye"></i> View</small>
+                                            </a>
+                                            <a href="#" role="button" class="btn btn-outline-danger btn-sm"><small><i class="fa fa-trash"></i> Delete</small></a>
+                                            <a href="./business-reg.html" class="btn btn-outline-success btn-sm"><small><i class="fa fa-edit"></i> Edit</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card mb-4">
+                                    <img class="card-img-top img-fluid" src="./public/images/education.jpg" alt="Card image cap">
+                                    <div class="card-body pt-1 pb-2">
+                                        <h5 class="card-title text-muted text-center mt-2">Education</h5>
+                                        <p class="text-muted w-100 text-center">
+                                            <i class="fa fa-hand-o-right text-info" aria-hidden="true"></i> David Clinton</p>
+                                        <div class="card-text text-center">
+                                            <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm">
+                                                <small>
+                                                    <i class="fa fa-eye"></i> View</small>
+                                            </a>
+                                            <a href="#" role="button" class="btn btn-outline-danger btn-sm"><small><i class="fa fa-trash"></i> Delete</small></a>
+                                            <a href="./business-reg.html" class="btn btn-outline-success btn-sm"><small><i class="fa fa-edit"></i> Edit</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card mb-4">
+                                    <img class="card-img-top img-fluid" src="./public/images/engineering.jpg" alt="Card image cap">
+                                    <div class="card-body pt-1 pb-2">
+                                        <h5 class="card-title text-muted text-center mt-2">Engineering</h5>
+                                        <p class="text-muted w-100 text-center">
+                                            <i class="fa fa-hand-o-right text-info" aria-hidden="true"></i>Seun Douglas</p>
+                                        <div class="card-text text-center">
+                                            <a href="./business-profile.html" role="button" class="btn btn-outline-info btn-sm">
+                                                <small>
+                                                    <i class="fa fa-eye"></i> View</small>
+                                            </a>
+                                            <a href="#" role="button" class="btn btn-outline-danger btn-sm"><small><i class="fa fa-trash"></i> Delete</small></a>
+                                            <a href="./business-reg.html" class="btn btn-outline-success btn-sm"><small><i class="fa fa-edit"></i> Edit</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Pagination Start-->
+                        <nav aria-label="Page navigation" style="margin-top: -1rem">
+                            <ul class="pagination mb-2 ml-3">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">4</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!--Pagination End-->
+                    </div>
+
+                    <!-- profile div start-->
+                    <div class="col-sm-5 col-md-3 col-lg-3 jumbotron" style="margin: -2rem 0 3em 0">
+                        <h4 class="card-title text-info mt-2">User Profile</h4>
+                        <div class="card class="col-sm-12 col-md-12 col-lg-12"">
+                            <div class="mb-1">
+                                <img src="./public/images/profile.jpg" height="200em" width="100%"/>
+                            </div>
+                            <!--Form Section Start-->
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <form role="form" action="#" method="post">
+                                    <div class="form-group">
+                                        <label for="user"><small>Full name</small></label>
+                                        <div class="card input-group">
+                                            <p>Don Pascal</p>
+                                        </div>
+                                    <div class="form-group">
+                                        <label for="user"><small>Username</small></label>
+                                        <div class="card input-group">
+                                            <p>pascal</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email"><small>Email</small></label>
+                                        <div class="card input-group">
+                                            <p>emex360@gmail.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="location"><small>Location</small></label>
+                                        <div class="card input-group">
+                                            <p>Vatican</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="about"><small>About Me</small></label>
+                                        <textarea rows="3" class="form-control" placeholder="write about yourself"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--Form Section End-->
+                        </div>
+                    </div>
+                </div>
+                <!--profile div end-->
+            </div>
+    </main>
+    <!--Catalog Div End-->
+
+
+    <!-- footer section-->
+    <footer id="footer-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <p>Copywrite Pascal</p>
+                </div>
+                <div class="col-sm-3">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="">home</a>
+                        </li>
+                        <li>
+                            <a href="">about</a>
+                        </li>
+                        <li>
+                            <a href="">contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="">facebook</a>
+                        </li>
+                        <li>
+                            <a href="">twitter</a>
+                        </li>
+                        <li>
+                            <a href="">Instagram</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h6>What We Do</h6>
+                    <p>This is what we do</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div><!--site end-->
+
+
+    <!--jquery first then bootsrap js -->
+    <script src="./public/js/jquery-3.2.1.min.js"></script>
+    <script src="./public/bootstrap4/js/bootstrap.min.js"></script>
+    <!-- site body ends-->
+</body>
+
+</html>
