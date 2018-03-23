@@ -1,0 +1,205 @@
+/* styles.css*/
+
+html,
+body {
+    height: 100%;
+}
+
+img{
+    max-width: 100%;
+}
+
+/* cover */
+
+.wrapper {
+    height: 100%;
+}
+#nav-main{
+    background-color: white;
+   /* background: rgba(63, 151, 151, 0.6);*/
+}
+#homenav{
+    margin-left: 3em;
+}
+
+.hp-title:before {
+    right: 10%;
+}
+.hp-title:after {
+    left: 10%;
+}
+.linehead .hp-title:before, .linehead .hp-title:after {
+    content: "";
+    position: absolute;
+    border-top: 1px solid #404545;
+    width: 6.25rem;
+    top: 50%;
+    margin: 0 15rem;
+}
+.linehead{
+        position: relative;
+}
+.cathead{
+    margin-top: 5rem;
+    position: relative;
+}
+
+/*Pagination center*/
+#pagination{
+    margin-left: 20em;
+}
+
+.bus-form{
+    margin-left: 10em;
+}
+
+#cover {
+    background: #222 url('../images/background.jpg') center center no-repeat;
+    background-size: cover;
+    color: white;
+    height: auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 1.4rem;
+	background-attachment: fixed;
+	margin-top: 5rem;
+}
+#cover-caption {
+    width: 100%;
+}
+
+#site-name {
+    font-family: 'Trebuchet', fantasy;
+    font-size: 1.7rem;
+    vertical-align: middle;
+    color: #0277BD;
+}
+
+
+.section-content {
+    padding: 3rem 0;
+}
+
+/*Image styles*/
+.img-zoom {
+    position: relative;
+    overflow: hidden;
+}
+.img-zoom:hover img {
+    cursor: pointer;
+    transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+}
+.img-zoom img {
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+#businessimg {
+    width:300px;
+    height:300px;
+    background: url() no-repeat;
+    border:5px solid #0288D1;
+	margin:0 auto;
+    text-align: center;
+    background-size: 100%;
+    margin-bottom:25px;
+    font-size: 150%;
+  }
+  
+
+/*signin/up*/
+.sign-cover {
+    background: #222 url('../images/background.jpg') center center no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100%;
+    padding: 1.4rem;
+    background-attachment: fixed;
+}
+
+.sme {
+    background: url('../images/banner2.jpg') center center no-repeat;
+    background-size: cover;
+    color: white;
+    height: 50%;
+    padding: 0;
+    margin: 1.25rem 0 0.9375rem;
+    background-attachment: fixed;
+}
+.sign-form {
+    border-radius: 2%;
+}
+
+/* #inputfield {
+    background-color:transparent;
+    padding: 2px 1px;
+    border: 1px solid cyan; 
+    color:red
+} */
+
+.cover-form {
+    background: rgba(0,0,0,0.6);
+    padding: 0.875rem 1.875rem 0.875rem 0.9375rem;
+    margin: 1.25rem 0 0.9375rem;
+}
+
+/* card hover*/
+.catcard {
+    margin-bottom: 5px;
+}
+.card:hover {
+    box-shadow: 1px 1px 15px 2px #777;
+    -webkit-box-shadow: 1px 1px 15px 2px #777;
+    /* -moz-box-shadow: 10px 10px 6px -6px #777;
+    box-shadow: 10px 10px 6px -6px #777; */
+  }
+  hr#line {
+    max-width: 14rem;
+    min-width: 14rem;
+    margin: 0 auto;
+  }
+  .main-wrapper {
+    margin-top: 5rem;
+    min-height: 79vh;
+  }
+/*Carousel*/
+.carousel-indicators {
+margin-top: 30px;
+outline: black;
+background-color: rgba(0, 0, 0, 0.3);
+background-size: 50%, 50%;
+}
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    height: 30px;
+    width: 30px;
+    outline: black;
+    background-color: rgba(45, 9, 128, 0.3);
+    background-size: 100%, 100%;
+    border-radius: 50%;
+  }
+
+/*contact us*/
+#contact {
+    background: url('../images/banner.jpeg') center center no-repeat;
+    background-size: cover;
+}
+
+.contact-text {
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 1.875rem;
+}
+
+
+
+/*foooter*/
+#footer-main {
+    background: #222;
+    color: white;
+    font-size: 0.8rem;
+    padding: 2.5rem 0;
+    margin-bottom: 0;
+}

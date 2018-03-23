@@ -56,4 +56,3 @@ The user interface is built for easy navigation and use of the application. It i
 
 ## Built With
 **WeConnect** was built with open source web softwares
-
