@@ -158,7 +158,7 @@ describe('All test cases for application without empty database', () => {
                     category: 'IT',
                     Address: '123 V.I Lagos',
                     location: 'Lagos',
-                    Details: 'Island'
+                    Details: 'Business Details must be between 20 to 1000 characters'
                   })
                   .expect(400)
                   .end((err, res) => {
@@ -170,7 +170,7 @@ describe('All test cases for application without empty database', () => {
                   });
               });
 
-          it('should return `400` status code with error messages for undefined', (done) => {
+          it('should return `400` status code with error messages for undefined inputs', (done) => {
               request.put('/api/v1/businesses/1')
                   .set('Content-Type', 'application/json')
                   .send({
@@ -183,11 +183,13 @@ describe('All test cases for application without empty database', () => {
                   })
                   .expect(400)
                   .end((err, res) => {
-                      expect(res.body).deep.equal({
-                          status: 'Failed',
-                          message: 'Data to update not specified'
-                      });
-                      done();
+                    expect(res.body.businessName).to.eql('Business name is required');
+                    expect(res.body.Details).to.eql('Business Details is required');
+                    expect(res.body.email).to.eql('email is required');
+                    expect(res.body.category).to.eql('category is required');
+                    expect(res.body.location).to.eql('location is required');
+                    expect(res.status).to.equal(400);
+                    done();
                   });
               });
       });
@@ -262,43 +264,7 @@ describe('All test cases for application without empty database', () => {
     });
   });
 
-  describe('Test cases for posting business reviews', () => {
-    describe('Negative test case for posting reviews', () => {
-      it('should return `400` status code with `res.body` error message', (done) => {
-          request.post(`/api/v1/businesses/${invalidID}/reviews`)
-            .set('Content-Type', 'application/json')
-            .send({})
-            .expect(400)
-            .end((err, res) => {
-              expect(res.body.status).to.equal('Failed');
-              expect(res.body.message).to.equal('Business with id does not exist');
-              done();
-            });
-        });
-    });
-
-    describe('Positive test case for posting reviews', () => {
-      it('should return `201` status code for successfull review posts', (done) => {
-          request.post('/api/v1/businesses/2/reviews')
-            .set('Content-Type', 'application/json')
-            .send({
-              id: 1,
-              reviewDetail: 'Quality',
-              userId: 3,
-              businessId: 1
-            })
-            .expect(201)
-            .end((err, res) => {
-              expect(res.body.status).to.equal('Successfull');
-              expect(res.body.message).to.equal('Successfull');
-              expect(db.reviewsData);
-              done();
-            });
-        });
-    });
-  });
-
-  describe('Test case for retrieving a Single business', () => {
+ describe('Test case for retrieving a Single business', () => {
     describe('Negative test case for retriving a single business', () => {
       it('Should return `400` status code with for invalid id', (done) => {
         request.get(`/api/v1/businesses/${invalidID}`)
@@ -328,32 +294,6 @@ describe('All test cases for application without empty database', () => {
     });
   });
 
-  describe('Test cases for Retrieving reviews', () => {
-    describe('Positive case for GET Reviews', () => {
-      it('Should return 200 for getting reviews', (done) => {
-        request.get('/api/v1/businesses/1/reviews')
-          .set('Content-Type', 'application/json')
-          .end((err, res) => {
-          expect(res.status).to.equal(200);
-          done();
-      });
-     });
-    });
-    describe('Negative case for GET Reviews', () => {
-      it('Should return 404 for reviews that does not exist', (done) => {
-        request.get(`/api/v1/businesses/${invalidID}/reviews`)
-          .set('Content-Type', 'application/json')
-          .send({})
-          .end((err, res) => {
-          expect(res.status).to.equal(404);
-          expect(res.body.status).to.equal('failed');
-          expect(res.body.message).to.equal('failed to retrieved reviews');
-          done();
-        });
-      });
-    });
-  });
-
   describe('Test case for searching by Location or category', () => {
     describe('Test for search by Location', () => {
       it('Should return 200 for searches by location', (done) => {
@@ -377,120 +317,27 @@ describe('All test cases for application without empty database', () => {
     });
   });
 
-  describe('All Test cases for user Signup', () => {
-    describe('Negative Test case for user signup', () => {
-      it('Should return `400` if some fields are not filled', (done) => {
-        request.post('/api/v1/auth/signup')
-          .set('Content-Type', 'application/json')
-          .send({
-            fullname: 'Dara',
-            email: '',
-            userName: '',
-            password: 'password'
-            })
-          .end((err, res) => {
-            expect(res).to.have.status(400);
-            done();
-         });
-      });
-      it('Should return `400` if username already exists', (done) => {
-        request.post('/api/v1/auth/signup')
-          .set('Content-Type', 'application/json')
-          .send({
-            fullname: 'Mike',
-            email: 'mk@yahoo.com',
-            userName: 'Pascal',
-            password: '123'
-            })
-            .expect(400)
-            .end((err, res) => {
-              expect(res.body.status).to.equal('failed');
-              expect(res.body.message).to.equal('Username already exist');
-                done();
-            });
-      });
-      it('Should return `500` if password is not hashed', (done) => {
-        request.post('/api/v1/auth/signup')
-          .set('Content-Type', 'application/json')
-          .send({})
-            .expect(500)
-            .end((err, res) => {
-              expect(res.status).to.equal(500);
-                done();
-            });
-      });
-    });
-    describe('Positive Test case for user signup', () => {
-      it('Should return `200` for unique username signups', (done) => {
-        request.post('/api/v1/auth/signup')
-          .set('Content-Type', 'application/json')
-          .send({
-            fullname: 'Barry Allen',
-            email: 'barry@yahoo.com',
-            userName: 'The Flash',
-            password: 'Allen'
-          })
-          .expect(200)
-              .end((err, res) => {
-                expect(res.body.status).to.equal('successfull');
-                expect(res.body.message).to.equal('Signup successfull. You may proceed');
-                  done();
-              });
-        });
-    });
-  });
-
-  describe('All Test cases for user login', () => {
-    describe('Negative Test case for user login', () => {
-      it('Should return `400` for wrong user input', (done) => {
-        request.post('/api/v1/auth/login')
-          .set('Content-Type', 'application/json')
-          .send({
-            userName: 'Wally',
-            password: 'west'
-            })
-          .end((err, res) => {
-            expect(res).to.have.status(401);
-            done();
-         });
-      });
-    });
-    describe('Positive Test case for user login', () => {
-      it('Should return `200` for authenticated user details', (done) => {
-        request.post('/api/v1/auth/login')
-          .set('Content-Type', 'application/json')
-          .send({
-            userName: 'Emeka',
-            password: '453'
-            })
-          .end((err, res) => {
-            expect(res).to.have.status(200);
-            done();
-         });
-      });
-    });
-  });
-});// End of test cases without empty database
+  });// End of test cases without empty database
 
 // Test for cases with empty database
-describe('Test for Bad Get request', () => {
-  describe('Test empty business data', () => {
-    beforeEach((done) => {
-      db.businessData.length = 0;
-      done();
-    });
-    describe('Negative test cases for Get All Business', () => {
-      it('should return `404` status code with `res.body`failure message', (done) => {
-          request.get('/api/v1/businesses')
-            .set('Content-Type', 'application/json')
-            .send({})
-            .expect(404)
-            .end((err, res) => {
-              expect(res.body.status).to.equal('Failed');
-              expect(res.body.message).to.equal('No business available');
-              done();
-            });
-        });
-    });
-  });
-});
+// describe('Test for Bad Get request', () => {
+//   describe('Test empty business data', () => {
+//     beforeEach((done) => {
+//       db.businessData.length = 0;
+//       done();
+//     });
+//     describe('Negative test cases for Get All Business', () => {
+//       it('should return `404` status code with `res.body`failure message', (done) => {
+//           request.get('/api/v1/businesses')
+//             .set('Content-Type', 'application/json')
+//             .send({})
+//             .expect(404)
+//             .end((err, res) => {
+//               expect(res.body.status).to.equal('Failed');
+//               expect(res.body.message).to.equal('No business available');
+//               done();
+//             });
+//         });
+//     });
+//   });
+// });
