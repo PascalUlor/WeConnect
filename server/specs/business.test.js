@@ -318,26 +318,3 @@ describe('All test cases for application without empty database', () => {
   });
 
   });// End of test cases without empty database
-
-// Test for cases with empty database
-// describe('Test for Bad Get request', () => {
-//   describe('Test empty business data', () => {
-//     beforeEach((done) => {
-//       db.businessData.length = 0;
-//       done();
-//     });
-//     describe('Negative test cases for Get All Business', () => {
-//       it('should return `404` status code with `res.body`failure message', (done) => {
-//           request.get('/api/v1/businesses')
-//             .set('Content-Type', 'application/json')
-//             .send({})
-//             .expect(404)
-//             .end((err, res) => {
-//               expect(res.body.status).to.equal('Failed');
-//               expect(res.body.message).to.equal('No business available');
-//               done();
-//             });
-//         });
-//     });
-//   });
-// });

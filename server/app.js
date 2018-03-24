@@ -31,9 +31,11 @@ app.get('/', (req, res) => {
     });
 });
 
-// API ROUTES
-// app.use('/api/v2/', dbRoutes);
+// Dummy data ROUTES
 app.use('/api/v1/', appRoutes);
+
+// Postgres ROUTES
+// app.use('/api/v1/', dbRoutes);
 
 // Trivial Route
 app.get('*', (req, res) => {

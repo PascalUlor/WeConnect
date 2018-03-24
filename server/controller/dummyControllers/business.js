@@ -73,11 +73,12 @@ static deleteBusiness(req, res) {
     const found = db.businessData.find(business => business.id === index);
     if (found) {
  const newBusinessList = db.businessData.filter(business => business.id !== index);
+            db.businessData = newBusinessList;
             res.status(200);
             res.json({
                 status: 'Successfull',
                 message: 'Business successfully deleted',
-                newBusinessList
+                data: db.businessData
             });
         } else {
             res.status(400);

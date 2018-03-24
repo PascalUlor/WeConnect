@@ -1,5 +1,4 @@
 import express from 'express';
-// import appControll from '../controller/appController';
 import userController from '../controller/dummyControllers/user';
 import reviewController from '../controller/dummyControllers/reviews';
 import businessController from '../controller/dummyControllers/business';

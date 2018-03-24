@@ -7,16 +7,16 @@ const router = express.Router();
 
 router.route('/businesses')
     .post(authToken, businessController.regBusiness);
-//     .get(searchClass.getSearch, appControll.getAllBusiness);
+    .get(searchClass.getSearch, businessController.getAllBusiness);
 
 router.route('/businesses/:businessId')
     .put(authToken, businessController.updateBusiness);
-//     .delete(appControll.deleteBusiness)
-//     .get(appControll.getSingleBusiness);
+    .delete(businessController.deleteBusiness)
+    .get(businessController.getSingleBusiness);
 
-// router.route('/businesses/:id/reviews')
-//     .post(appControll.postReview)
-//     .get(appControll.getReviews);
+router.route('/businesses/:id/reviews')
+    .post(reviwsController.postReview)
+    .get(reviewsController.getReviews);
 
 router.route('/auth/signup')
     .post(userController.userSignUp);
