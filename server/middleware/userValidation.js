@@ -1,4 +1,5 @@
 import validator from 'validator';
+import bcrypt from 'bcrypt';
 
 /**
  * Validates all routes
@@ -13,12 +14,18 @@ export default class userValidation {
      * @returns {obj} Validation error messages or contents of req.body
      */
     static checkUser(req, res, next) {
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+            if (err) {
+              return res.status(500).json({
+                error: err
+              });
+            }
         const {
- userName, email, fullname, password
+ fullName, userName, email, password = hash
 } = req.body,
         errors = {};
         // check for undefined inputs
-        if (userName === undefined || email === undefined || fullname === undefined) {
+        if (userName === undefined || email === undefined || fullName === undefined || password === undefined) {
             res.status(400);
             res.json({
                 status: 'Failed',
@@ -31,8 +38,8 @@ export default class userValidation {
         }
 
         // validate fullname
-        if (validator.isEmpty(fullname)) {
-             errors.fullname = 'fullname is required';
+        if (validator.isEmpty(fullName)) {
+             errors.fullName = 'fullName is required';
          }
 
         // Validate email
@@ -41,7 +48,7 @@ export default class userValidation {
         }
         // Validate password
         if (validator.isEmpty(password)) {
-            errors.email = 'email is required';
+            errors.password = 'password is required';
         }
 
 
@@ -49,5 +56,6 @@ export default class userValidation {
             return res.status(400).json(errors);
         } next();
         }
+    });// bcrypt end
     }
 }// end of classimport validator from 'validator';

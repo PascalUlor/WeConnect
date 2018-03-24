@@ -9,16 +9,15 @@ import db from '../dataModel/testData';
 
 chai.use(chaiHttp);
 const { expect } = chai,
-    request = supertest(app),
-    invalidID = 50;
-    
+    request = supertest(app);
+
 describe('All Test cases for user Signup', () => {
     describe('Negative Test case for user signup', () => {
       it('Should return `400` if some fields are not filled', (done) => {
         request.post('/api/v1/auth/signup')
           .set('Content-Type', 'application/json')
           .send({
-            fullname: 'Dara',
+            fullName: 'Dara',
             email: '',
             userName: '',
             password: 'password'
@@ -32,7 +31,7 @@ describe('All Test cases for user Signup', () => {
         request.post('/api/v1/auth/signup')
           .set('Content-Type', 'application/json')
           .send({
-            fullname: 'Mike',
+            fullName: 'Mike',
             email: 'mk@yahoo.com',
             userName: 'Pascal',
             password: '123'
@@ -50,17 +49,38 @@ describe('All Test cases for user Signup', () => {
           .send({})
             .expect(500)
             .end((err, res) => {
+              expect(res.body.password).to.equal(undefined);
               expect(res.status).to.equal(500);
                 done();
             });
       });
+
+      it('should return `400` status code with errors message for empty request', (done) => {
+        request.post('/api/v1/auth/signup')
+            .set('Content-Type', 'application/json')
+            .send({
+              userName: '',
+              fullName: '',
+              email: '',
+              password: ''
+            }) // empty body request
+            .expect(400)
+            .end((err, res) => {
+                expect(res.body.userName).to.eql('userName is required');
+                expect(res.body.fullName).to.eql('fullName is required');
+                expect(res.body.email).to.eql('email is required');
+                expect(res.body.password).to.eql('password is required');
+                expect(res.status).to.equal(400);
+                done();
+            });
+       });
     });
     describe('Positive Test case for user signup', () => {
       it('Should return `200` for unique username signups', (done) => {
         request.post('/api/v1/auth/signup')
           .set('Content-Type', 'application/json')
           .send({
-            fullname: 'Barry Allen',
+            fullName: 'Barry Allen',
             email: 'barry@yahoo.com',
             userName: 'The Flash',
             password: 'Allen'

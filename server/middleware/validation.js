@@ -62,5 +62,5 @@ export default class Validation {
             return res.status(400).json(errors);
         } next();
         }
-    }
+    } // business validation end
 }// end of class
