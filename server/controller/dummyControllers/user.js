@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+
 import db from '../../dataModel/testData';
 /**
  * Class for /api/ routes
@@ -12,23 +12,9 @@ export default class userController {
      * @returns {obj} success message
      */
     static userSignup(req, res) {
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
-          if (err) {
-            return res.status(500).json({
-              error: err
-            });
-          }
-          const { fullname, userName, email } = req.body;
-          const password = hash;
-        if (!userName || !password || !fullname || !email) {
-        return res.status(400).json({
-            status: 'failed',
-            message: 'Some or all fields have not been filled',
-            error: true
-          });
-        }
-        const target = userName;
-        const found = db.userDb.find(user => user.userName === target);
+      const { userName } = req.body;
+      const target = userName;
+      const found = db.userDb.find(user => user.userName === target);
         if (found) {
           return res.status(400).json({
                 status: 'failed',
@@ -41,7 +27,6 @@ export default class userController {
           status: 'successfull',
           message: 'Signup successfull. You may proceed',
           error: false,
-        });
         });
       }// signup end
       /**

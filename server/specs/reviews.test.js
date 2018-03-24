@@ -25,7 +25,7 @@ const { expect } = chai,
                 done();
               });
           });
-      });
+          });
 
       describe('Positive test case for posting reviews', () => {
         it('should return `201` status code for successfull review posts', (done) => {
@@ -38,7 +38,7 @@ const { expect } = chai,
                 businessId: 2
               })
               .expect(200)
-              .end((err, res) => { 
+              .end((err, res) => {
                 expect(res.body.status).to.equal('Success');
                 expect(res.body.message).to.equal('Review Post Successfull');
                 expect(db.reviewsData);

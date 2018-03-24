@@ -1,14 +1,14 @@
 const userDb = [
     {
         id: 1,
-        fullname: 'Don Pascal',
+        fullName: 'Don Pascal',
         email: 'pc@yahoo.com',
         userName: 'Pascal',
         password: '123'
     },
     {
         id: 2,
-        fullname: 'Clark Kent',
+        fullName: 'Clark Kent',
         email: 'clark@gmail.com',
         userName: 'Emeka',
         password: '453'
