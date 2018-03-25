@@ -112,8 +112,28 @@ export default class BusinessController {
      * success message object
      */
     static deleteBusiness(req, res) {
-      Business.findOne({
+      const { userId } = req.decoded,
+      businessID = parseInt(req.params.businessId.trim(), 10);
 
-      })
+      Business.findById(businessID).then((business) => {
+        if (business.userId === userId) {
+          return Business.destroy({
+            where: {
+              id: businessID
+            },
+          }).then(() => res.status(200).json(Object.assign({
+            status: 'Succesfull',
+            message: 'Successfully deleted business'
+          }, { business })));
+        }
+        return res.status(401).json({
+          status: 'failed',
+          message: 'You are not authorised to delete this business'
+        });
+      }).catch(() => res.status(404).json({
+        status: 'Failed',
+        message: 'Business does not exist'
+      }));
     }
+
 }

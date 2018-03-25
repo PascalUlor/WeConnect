@@ -6,13 +6,13 @@ import authToken from '../middleware/jwtVerify';
 const router = express.Router();
 
 router.route('/businesses')
-    .post(authToken, businessController.regBusiness)
-    .get(businessController.getAllBusiness);
+    .post(authToken, businessController.regBusiness);
+    // .get(businessController.getAllBusiness);
 
 router.route('/businesses/:businessId')
     .put(authToken, businessController.updateBusiness)
-    .delete(businessController.deleteBusiness)
-    .get(businessController.getSingleBusiness);
+    .delete(authToken, businessController.deleteBusiness);
+    // .get(businessController.getSingleBusiness);
 
 // router.route('/businesses/:id/reviews')
 //     .post(reviwsController.postReview)
