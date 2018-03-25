@@ -135,5 +135,4 @@ export default class BusinessController {
         message: 'Business does not exist'
       }));
     }
-
 }
