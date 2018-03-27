@@ -1,6 +1,8 @@
 import express from 'express';
 import businessController from '../controller/businessController';
 import userController from '../controller/usersController';
+import reviewsController from '../controller/reviewsController';
+import userValidation from '../middleware/validations/user';
 import authToken from '../middleware/jwtVerify';
 
 const router = express.Router();
@@ -14,12 +16,12 @@ router.route('/businesses/:businessId')
     .delete(authToken, businessController.deleteBusiness)
     .get(businessController.getSingleBusiness);
 
-// router.route('/businesses/:id/reviews')
-//     .post(reviwsController.postReview)
+router.route('/businesses/:businessId/reviews')
+    .post(authToken, reviewsController.postReview);
 //     .get(reviewsController.getReviews);
 
 router.route('/auth/signup')
-    .post(userController.userSignUp);
+    .post(userValidation.userSignUp, userController.userSignUp);
 router.route('/auth/login')
     .post(userController.userLogin);
 

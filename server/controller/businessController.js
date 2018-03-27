@@ -113,7 +113,7 @@ export default class BusinessController {
      */
     static deleteBusiness(req, res) {
       const { userId } = req.decoded,
-      businessID = parseInt(req.params.businessId.trim(), 10);
+      businessID = parseInt(req.params.businessId, 10);
 
       Business.findById(businessID).then((business) => {
         if (business.userId === userId) {

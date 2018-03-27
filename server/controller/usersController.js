@@ -10,7 +10,7 @@ env.config();
  */
 export default class userController {
  /**
-   * @description Users details entered into the database
+   * @description Users details are entered into the database to create account
    * @memberof userController
    * @static
    *
@@ -72,7 +72,7 @@ export default class userController {
             .json(Object.assign({
               status: 'Success',
               message: 'succesfully signed up'
-}, logInfo));
+            }, logInfo));
           });
         });
     }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
