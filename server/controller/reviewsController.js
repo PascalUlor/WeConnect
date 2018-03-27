@@ -56,7 +56,7 @@ export default class ReviewsController {
      * @returns {object} insertion error messages object or
      * success message object
      */
-    static getReview(req, res) {
+    static getReviews(req, res) {
         const businessID = parseInt(req.params.businessId, 10);
         Business.findById(businessID).then((foundBusiness) => {
           if (!foundBusiness) {

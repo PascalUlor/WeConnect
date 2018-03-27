@@ -17,8 +17,8 @@ router.route('/businesses/:businessId')
     .get(businessController.getSingleBusiness);
 
 router.route('/businesses/:businessId/reviews')
-    .post(authToken, reviewsController.postReview);
-//     .get(reviewsController.getReviews);
+    .post(authToken, reviewsController.postReview)
+    .get(reviewsController.getReviews);
 
 router.route('/auth/signup')
     .post(userValidation.userSignUp, userController.userSignUp);
