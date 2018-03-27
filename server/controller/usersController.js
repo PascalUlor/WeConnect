@@ -41,7 +41,7 @@ export default class userController {
           errors.email = 'Email already exist';
         }
         return res.status(409).json({
-          status: 'Failed',
+          success: 'False',
           errors
         });
       }

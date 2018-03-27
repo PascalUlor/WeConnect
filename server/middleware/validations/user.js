@@ -21,7 +21,7 @@ export default class userValidation {
  fullName, userName, email, password
 } = req.body,
              errors = {};
-      if (!fullName || !userName ||
+      if (typeof fullName === 'undefined' || typeof userName === 'undefined' ||
       typeof email === 'undefined' || typeof password === 'undefined') {
         return res.status(422).send({ message: 'Some or all fileds are undefined' });
       }
