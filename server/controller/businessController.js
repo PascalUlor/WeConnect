@@ -1,6 +1,6 @@
 import models from '../models';
 
-const { User, Business } = models;
+const { User, Business, Reviews } = models;
 
 /**
  * Class implementation for /api/v1/business routes
@@ -112,8 +112,151 @@ export default class BusinessController {
      * success message object
      */
     static deleteBusiness(req, res) {
-      Business.findOne({
+      const { userId } = req.decoded,
+      businessID = parseInt(req.params.businessId, 10);
 
+      Business.findById(businessID).then((business) => {
+        if (business.userId === userId) {
+          return Business.destroy({
+            where: {
+              id: businessID
+            },
+          }).then(() => res.status(200).json(Object.assign({
+            status: 'Succesfull',
+            message: 'Successfully deleted business'
+          }, { business })));
+        }
+        return res.status(401).json({
+          status: 'failed',
+          message: 'You are not authorised to delete this business'
+        });
+      }).catch(() => res.status(404).json({
+        status: 'Failed',
+        message: 'Business does not exist'
+      }));
+    }
+    /**
+     * User can get a registered business on the business catalog
+     * @memberof BusinessController
+     * @static
+     *
+     * @param   {object} req   the server/http(s) req object
+     * @param   {object} res  the server/http(s) res object
+     *
+     * @returns {object} insertion error messages object or
+     * success message object
+     */
+    static getSingleBusiness(req, res) {
+      const businessID = parseInt(req.params.businessId, 10);
+      Business.findOne({
+        where: {
+          id: businessID
+        }
+      }).then((business) => {
+        if (!business) {
+          return res.status(404).send({ message: 'Business does not exist' });
+        }
+        return res.status(200).send(business);
       })
+      .catch(error => res.status(404).send(error.toString()));
+    }
+    /**
+     * User can get all registered business sorted and unsorted the business catalog
+     * @memberof BusinessController
+     * @static
+     *
+     * @param   {object} req   the server/http(s) req object
+     * @param   {object} res  the server/http(s) res object
+     *
+     * @returns {object} insertion error messages object or
+     * success message object
+     */
+    static getAllBusiness(req, res) {
+      const { location, category } = req.query;
+      if (location) {
+        const businessLocation = location.replace(/ /g, '');
+        return Business.findAll({
+          where: {
+            location: {
+              ilike: `%${businessLocation}%`
+            }
+          }
+        }).then((business) => {
+          if (business.length > 0) {
+            return res.status(200).json(Object.assign({
+              status: 'Successfull',
+              message: 'Search by location Successfull'
+            }, { business }));
+          }
+          res.status(404).json({
+            status: 'Failed',
+              message: 'Search by location Failed'
+          });
+        }).catch(error => res.status(500).json(error.toString()));
+      }
+      if (category) {
+        const businessCategory = category.replace(/ /g, '');
+        return Business.findAll({
+          where: {
+            category: {
+              ilike: `%${businessCategory}%`
+            }
+          }
+        }).then((business) => {
+          if (business.length > 0) {
+            return res.status(200).json(Object.assign({
+              status: 'Successfull',
+              message: 'Search by category Successfull'
+            }, { business }));
+          }
+          res.status(404).json({
+            status: 'Failed',
+              message: 'Search by category Failed'
+          });
+        }).catch(error => res.status(500).json(error.toString()));
+      }
+      if (location && category) {
+        const businessLocation = location.replace(/ /g, '');
+        const businessCategory = category.replace(/ /g, '');
+        return Business.findAll({
+          where: {
+            location: {
+              ilike: `%${businessLocation}%`
+            },
+            category: {
+              ilike: `%${businessCategory}%`
+            }
+          }
+        }).then((business) => {
+          if (business.length > 0) {
+            return res.status(200).json(Object.assign({
+              status: 'Successfull',
+              message: 'SearchSuccessfull'
+            }, { business }));
+          }
+          res.status(404).json({
+            status: 'Failed',
+              message: 'Search Failed'
+          });
+        }).catch(error => res.status(500).json(error.toString()));
+      }
+      if (!location && !category) {
+        return Business.findAll({
+          include: [{
+            model: Reviews,
+            }],
+        }).then((business) => {
+          if (business.length > 0) {
+            return res.status(200).json(Object.assign({
+              status: 'Successfull',
+              message: 'Successfully Retrieved All Businesses'
+            }, { business }));
+          }
+          res.status(404).json({
+            status: 'Failed',
+              message: 'Business does not exist'
+          });
+        }).catch(error => res.status(500).json(error.toString()));
+      }
     }
 }

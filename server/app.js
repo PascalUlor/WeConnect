@@ -25,8 +25,8 @@ app.use(logger('dev'));
 app.get('/', (req, res) => {
     res.status(200);
     res.json({
-        name: 'Don Ulor',
-        message: 'Welcome to WeConnect'
+        name: 'Welcome to WeConnect',
+        message: 'Get Your Business To The World'
     });
 });
 
