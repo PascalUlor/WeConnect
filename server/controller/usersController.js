@@ -10,7 +10,7 @@ env.config();
  */
 export default class userController {
  /**
-   * @description Users details entered into the database
+   * @description Users details are entered into the database to create account
    * @memberof userController
    * @static
    *
@@ -41,7 +41,7 @@ export default class userController {
           errors.email = 'Email already exist';
         }
         return res.status(409).json({
-          status: 'Failed',
+          success: 'False',
           errors
         });
       }
@@ -59,7 +59,7 @@ export default class userController {
             const token = jwt.sign(payload, process.env.SECRET_KEY, {
               expiresIn: 60 * 60 * 1440
             });
-            req.token = token;
+            
             const logInfo = {
               user: {
                 id: user.id,
@@ -72,7 +72,7 @@ export default class userController {
             .json(Object.assign({
               status: 'Success',
               message: 'succesfully signed up'
-}, logInfo));
+            }, logInfo));
           });
         });
     }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
