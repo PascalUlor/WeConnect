@@ -1,7 +1,7 @@
 import express from 'express';
-import businessController from '../controller/businessController';
-import userController from '../controller/usersController';
-import reviewsController from '../controller/reviewsController';
+import businessController from '../controllers/businessController';
+import userController from '../controllers/usersController';
+import reviewsController from '../controllers/reviewsController';
 import userValidation from '../middleware/validations/user';
 import authToken from '../middleware/jwtVerify';
 

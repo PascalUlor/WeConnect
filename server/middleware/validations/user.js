@@ -30,7 +30,7 @@ export default class userValidation {
         if (fullName.search(/[^A-Za-z\s]/) !== -1) {
           errors.fullName = 'Full name can only be alphabetical';
         }
-      } else { errors.fullName = 'Full name is requred'; }
+      } else { errors.fullName = 'Full name is required'; }
 
       if (!validator.isEmpty(userName)) {
         if (!validator.toInt(userName)) {

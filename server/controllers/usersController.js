@@ -46,6 +46,11 @@ export default class userController {
         });
       }
         bcrypt.hash(req.body.password, 10, (err, hash) => {
+          if (err) {
+            return res.status(500).json({
+              error: err
+            });
+          }
           User.create({
             fullName,
             userName,
@@ -59,7 +64,6 @@ export default class userController {
             const token = jwt.sign(payload, process.env.SECRET_KEY, {
               expiresIn: 60 * 60 * 1440
             });
-            
             const logInfo = {
               user: {
                 id: user.id,
@@ -70,11 +74,11 @@ export default class userController {
             };
             res.status(201)
             .json(Object.assign({
-              status: 'Success',
-              message: 'succesfully signed up'
+              success: 'True',
+              message: 'Signup successfull. You may proceed'
             }, logInfo));
           });
-        });
+        });// bcrypt end
     }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
   }
 
@@ -118,17 +122,17 @@ export default class userController {
             };
             return res.status(200)
             .json(Object.assign({
-              status: 'Success',
+              success: 'True',
               message: 'You are Succesfully Logged in'
 }, logInfo));
           }
         return res.status(401).json({
-          status: 'Failed',
+          succes: 'False',
           errors
         });
       }
       return res.status(401).json({
-        status: 'Failed',
+        success: 'False',
         errors
       });
     }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));

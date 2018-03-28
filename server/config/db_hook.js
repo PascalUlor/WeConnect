@@ -11,7 +11,7 @@ module.exports = {
     dialect: process.env.DIALECT
   },
   test: {
-    username: process.env.USERNAME,
+    username: process.env.DB_TEST_USERNAME,
     password: process.env.PASSWORD,
     database: process.env.DATABASE_TEST,
     host: process.env.HOST,
