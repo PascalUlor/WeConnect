@@ -102,40 +102,41 @@ describe('All Test cases for user Signup', () => {
           .expect(201)
               .end((err, res) => {
                 expect(res.body.success).to.equal('True');
+                expect(res.body).to.haveOwnProperty('token');
                 expect(res.body.message).to.equal('Signup successfull. You may proceed');
-                  done();
+                done();
               });
         });
     });
   });
 
-//   describe('All Test cases for user login', () => {
-//     describe('Negative Test case for user login', () => {
-//       it('Should return `400` for wrong user input', (done) => {
-//         request.post('/api/v1/auth/login')
-//           .set('Content-Type', 'application/json')
-//           .send({
-//             userName: 'Wally',
-//             password: 'west'
-//             })
-//           .end((err, res) => {
-//             expect(res).to.have.status(401);
-//             done();
-//          });
-//       });
-//     });
-//     describe('Positive Test case for user login', () => {
-//       it('Should return `200` for authenticated user details', (done) => {
-//         request.post('/api/v1/auth/login')
-//           .set('Content-Type', 'application/json')
-//           .send({
-//             userName: 'Emeka',
-//             password: '453'
-//             })
-//           .end((err, res) => {
-//             expect(res).to.have.status(200);
-//             done();
-//          });
-//       });
-//     });
-//   });
+  describe('All Test cases for user login', () => {
+    describe('Negative Test case for user login', () => {
+      it('Should return `400` for wrong user input', (done) => {
+        request.post('/api/v1/auth/login')
+          .set('Content-Type', 'application/json')
+          .send({
+            userName: 'Wally',
+            password: 'west'
+            })
+          .end((err, res) => {
+            expect(res).to.have.status(401);
+            done();
+         });
+      });
+    });
+    describe('Positive Test case for user login', () => {
+      it('Should return `200` for authenticated user details', (done) => {
+        request.post('/api/v1/auth/login')
+          .set('Content-Type', 'application/json')
+          .send({
+            userName: 'hulk',
+            password: 'bruce banner'
+            })
+          .end((err, res) => {
+            expect(res).to.have.status(200);
+            done();
+         });
+      });
+    });
+  });

@@ -12,6 +12,7 @@
     "showcoverage": "start coverage/lcov-report/index.html",
     "migrate": "node ./node_modules/sequelize-cli/lib/sequelize db:migrate",
     "demigrate": "node ./node_modules/sequelize-cli/lib/sequelize db:migrate:undo:all",
+    "prod-migrate": "sequelize db:migrate:undo:all --env production && sequelize db:migrate --env production",
     "lint": "eslint --fix server/"
   },
   "repository": {

@@ -44,7 +44,7 @@ export default class BusinessController {
       userId
     }).then(business => res.status(201).json(Object.assign({
       status: 'Success',
-      message: 'Successfully Registered Business'
+      message: 'Business created successfully'
     }, { business })))
       .catch(error => res.status(500).json({ success: 'False', message: error.message }));
   }).catch(error => res.status(500).json({ success: 'False', message: error.message }));
@@ -122,8 +122,8 @@ export default class BusinessController {
               id: businessID
             },
           }).then(() => res.status(200).json(Object.assign({
-            success: 'True',
-            message: 'Successfully deleted business'
+            success: true,
+            message: 'Business successfully deleted'
           }, { business })));
         }
         return res.status(401).json({
