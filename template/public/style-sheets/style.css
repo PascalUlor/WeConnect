@@ -16,8 +16,8 @@ img{
 }
 #nav-main{
     background-color: white;
-   /* background: rgba(63, 151, 151, 0.6);*/
 }
+
 #homenav{
     margin-left: 3em;
 }
@@ -128,6 +128,7 @@ img{
     text-align: center;
     margin-bottom:auto;
 }
+
 .sign-form {
     border-radius: 2%;
     background: rgba(0,0,0,0.6);
@@ -141,12 +142,17 @@ img{
     border-radius: 60px;
     box-shadow: 0px 0px 2px #888;
     padding: 0.5em 0.6em;
-  
+    background-color: white;
+  }
+  .fa-facebook{
+      color: cornflowerblue;
+  }
+  .fa-google {
+    color: brown;
   }
   .fb{
       color: #B3E5FC;
   }
-
 
 .cover-form {
     background: rgba(0,0,0,0.6);
@@ -162,7 +168,8 @@ img{
     box-shadow: 1px 1px 15px 2px #777;
     -webkit-box-shadow: 1px 1px 15px 2px #777;
     -moz-box-shadow: 1px 1px 15px 2px #777;
-}
+    box-shadow: 1px 1px 15px 2px #777;
+  }
   hr#line {
     max-width: 14rem;
     min-width: 14rem;
