@@ -111,7 +111,6 @@ export default class userController {
           const token = jwt.sign(payload, process.env.SECRET_KEY, {
               expiresIn: 60 * 60 * 1440
             });
-            req.token = token;
             const logInfo = {
               user: {
                 id: user.id,
@@ -124,7 +123,7 @@ export default class userController {
             .json(Object.assign({
               success: 'True',
               message: 'You are Succesfully Logged in'
-}, logInfo));
+            }, logInfo));
           }
         return res.status(401).json({
           succes: 'False',

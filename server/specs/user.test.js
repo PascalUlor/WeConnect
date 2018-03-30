@@ -134,6 +134,7 @@ describe('All Test cases for user Signup', () => {
             password: 'bruce banner'
             })
           .end((err, res) => {
+            expect(res.body).to.haveOwnProperty('token');
             expect(res).to.have.status(200);
             done();
          });

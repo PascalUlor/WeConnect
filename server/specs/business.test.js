@@ -13,68 +13,26 @@ chai.use(chaiHttp);
 const { expect } = chai,
     request = supertest(app),
     invalidID = 50;
+    let userToken;
 
-describe('All test cases for application without empty database', () => {
-    describe('Test case for loading application home page', () => {
-        it('should load application home page', (done) => {
-            request.get('/')
-                .set('Content-Type', 'application/json')
-                .expect(200)
-                .end((err, res) => {
-                    expect(res.body).deep.equal({
-                        name: 'Don Ulor',
-                        message: 'Welcome to WeConnect'
-                    });
-                    done();
-                });
-        });
-    });
-     // test invalid routes
-    describe('Test Case For Invalid Routes', () => {
-        it('Should return a message when an invalid route is accessed', (done) => {
-            request
-                .get('/api/v1/some-rubbish')
-                .set('Connection', 'keep alive')
-                .set('Content-Type', 'application/json')
-                .expect(404)
-                .end((err, res) => {
-                    expect(res.body).deep.equal({
-                        message: 'Invalid routes'
-                    });
-                    done();
-                });
-        });
-
-        it('should fail to get route', (done) => {
-            request.get('/api/v1')
-                .set('Contet-Type', 'application/json')
-                .expect(404)
-                .end((err, res) => {
-                    expect(res.body).deep.equal({
-                        message: 'Invalid routes'
-                    });
-                    done();
-                });
-        });
-
-        it('should return `404` page for all invalid routes', (done) => {
-            request.get('/weconnect/gibberish')
-                .set('Content-Type', 'application/json')
-                .expect(404)
-                .end((err, res) => {
-                    expect(res.body).deep.equal({
-                        message: 'Invalid routes'
-                    });
-                    done();
-                });
-        });
-    });
+describe('All test cases for Businesses', () => {
     // test case for POSTing (regBusiness) a business
     describe('All test cases for POSTing a new business', () => {
+      before((done) => {
+        request.post('/api/v1/auth/login')
+        .type('form')
+        .send({
+            userName: 'hulk',
+            paswword: 'bruce banner',
+        }).end((err, res) => {
+            userToken = res.body.logInfo.token;
+            done();
+        });
+    });
       describe('Negative test cases for adding a business', () => {
         it('should return `400` status code with error message for undefined requests', (done) => {
           request.post('/api/v1/businesses')
-              .set('Content-Type', 'application/json')
+              .set('x-access-token', 'token')
               .send({}) // request body not defined
               .expect(403)
               .end((err, res) => {
@@ -133,7 +91,7 @@ describe('All test cases for application without empty database', () => {
       describe('Positive test case for adding a business', () => {
         it('should return `201` status code with success messages for successfull post', (done) => {
             request.post('/api/v1/businesses')
-                .set('Content-Type', 'application/json')
+                .set('x-access-token', userToken)
                 .send({
                     businessName: 'SlimTrader',
                     email: 'slimtrader@gmail.com',
@@ -141,8 +99,9 @@ describe('All test cases for application without empty database', () => {
                     location: 'Lagos',
                     Address: '123 V.I Lagos',
                     businessImage: 'business picture',
-                    aboutUs: 'Business Details must be between 20 to 1000 characters'
-                })
+                    aboutUs: 'Business Details must be between 20 to 1000 characters',
+                    
+                    })
                 .expect(201)
                 .end((err, res) => {
                     expect(res.body.status).to.equal('Success');

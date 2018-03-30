@@ -13,7 +13,7 @@ export default (sequelize, DataTypes) => {
           msg: 'Full name is require'
         },
         is: {
-          args: /^[a-z]+$/i,
+          args: /^[a-z ]+$/i,
           msg: 'Full name must only contain letters'
         }
       }
