@@ -17,15 +17,14 @@ export default class userValidation {
    * @returns {object} get error message
    */
     static userSignUp(req, res, next) {
-      const {
- fullName, userName, email, password
-} = req.body,
-             errors = {};
-      if (typeof fullName === 'undefined' || typeof userName === 'undefined' ||
-      typeof email === 'undefined' || typeof password === 'undefined') {
-        return res.status(422).send({ message: 'Some or all fileds are undefined' });
+      if (req.body.fullName === undefined || req.body.userName === undefined || req.body.email === undefined || req.body.password === undefined) {
+        return res.status(422).json({ success: false, message: 'Some or all fileds are undefined' });
       }
-
+      const fullName = req.body.fullName.trim(),
+            userName = req.body.userName.trim(),
+            email = req.body.email.trim(),
+            password = req.body.password.trim(),
+            errors = {};
       if (!validator.isEmpty(fullName)) {
         if (fullName.search(/[^A-Za-z\s]/) !== -1) {
           errors.fullName = 'Full name can only be alphabetical';
@@ -47,8 +46,8 @@ export default class userValidation {
       } else { errors.email = 'Email is required'; }
 
       if (!validator.isEmpty(password)) {
-        if (!validator.isLength(password, { min: 8, max: 30 })) {
-          errors.password = 'password must be between 8 and 30 characters';
+        if (!validator.isLength(password, { min: 8 })) {
+          errors.password = 'password must be at least 8 characters';
         }
       } else { errors.password = 'password is required'; }
 

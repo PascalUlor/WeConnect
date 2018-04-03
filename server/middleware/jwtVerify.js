@@ -23,7 +23,7 @@ const authToken = (req, res, next) => {
       if (err) {
         return res.status(401).json({ message: 'Authentication failed. Token is invalid or expired' });
       }
-        // if everything is authentication is valid, save to requestuest for use in other routes
+        // if authentication is valid, save to request for use in other routes
         req.decoded = decoded;
         next();
     });

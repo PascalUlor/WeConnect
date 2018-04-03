@@ -3,51 +3,91 @@
  */
 import supertest from 'supertest';
 import chai from 'chai';
-import chaiHttp from 'chai-http';
 import app from '../app';
-import models from '../models';
+import inputs from './testData/user.data';
 
-const { User, Business, Reviews } = models;
+export const request = supertest(app);
+export const { expect } = chai;
+export const wrongToken = 'ThisIsAWrongToken';
 
-chai.use(chaiHttp);
-const { expect } = chai,
-    request = supertest(app);
+export const userToken = { token: null };
 
 describe('All Test cases for user Signup', () => {
-    describe('Negative Test case for user signup', () => {
-      it('Should return `400` if some fields are not filled', (done) => {
+  describe('Positive Test case for user signup', () => {
+    it('Should return `201` for unique username signups', (done) => {
+      request.post('/api/v1/auth/signup')
+        .set('Content-Type', 'application/json')
+        .send(inputs.validInput1)
+        .expect(201)
+            .end((err, res) => {
+              expect(res.body.success).to.equal(true);
+              expect(res.body).to.haveOwnProperty('token');
+              expect(res.body.message).to.equal('Signup successfull. You may proceed');
+              expect(res.body.user).to.eql({
+                id: 1,
+                userName: 'hulk',
+                email: 'banner@yahoo.com'
+              });
+              if (err) done(err);
+              done();
+            });
+      });
+      it('Should return `201` when another unique username signups', (done) => {
         request.post('/api/v1/auth/signup')
           .set('Content-Type', 'application/json')
-          .send({
-            fullName: 'Dara',
-            email: '',
-            userName: '',
-            password: 'password',
-            location: '',
-            profileImage: '',
-            aboutMe: ''
-            })
+          .send(inputs.validInput2)
+          .expect(201)
+              .end((err, res) => {
+                expect(res.body).to.have.property('success').equal(true);
+                expect(res.body).to.haveOwnProperty('token');
+                expect(res.body.message).to.equal('Signup successfull. You may proceed');
+                expect(res.body.user).to.eql({
+                  id: 2,
+                  userName: 'Pascal',
+                  email: 'mk@yahoo.com'
+                });
+                if (err) done(err);
+                done();
+              });
+        });
+  });
+
+    describe('Negative Test case for user signup', () => {
+      it('Should return `422` if some fields are undefined or not filled', (done) => {
+        request.post('/api/v1/auth/signup')
+          .set('Content-Type', 'application/json')
+          .send(inputs.incompleteData)
           .end((err, res) => {
-            expect(res).to.have.status(400);
+            expect(res).to.have.status(422);
+            expect(res.body.success).to.equal(false);
+            expect(res.body.message).to.eql('Some or all fileds are undefined');
+            if (err) done(err);
             done();
          });
       });
-      it('Should return `400` if username already exists', (done) => {
+      it('Should return `409` if username already exists and not create account', (done) => {
         request.post('/api/v1/auth/signup')
           .set('Content-Type', 'application/json')
-          .send({
-            fullName: 'Mike',
-            email: 'mk@yahoo.com',
-            userName: 'Pascal',
-            password: '123',
-            location: 'lagos',
-            profileImage: 'mypix',
-            aboutMe: 'I am the CEO of ulorseries. Thanks'
-            })
-            .expect(400)
+          .send(inputs.existingUsername)
+            .expect(409)
             .end((err, res) => {
-              expect(res.body.success).to.equal('False');
-              expect(res.body.message).to.equal('Username already exist');
+              expect(res.status).to.eql(409);
+              expect(res.body.success).to.eql(false);
+              expect(res.body.errors).to.have.property('userName').eql('Username already exist');
+                if (err) done(err);
+                done();
+            });
+      });
+      it('Should return `409` if email already exists and not create account', (done) => {
+        request.post('/api/v1/auth/signup')
+          .set('Content-Type', 'application/json')
+          .send(inputs.existingEmail)
+            .expect(409)
+            .end((err, res) => {
+              expect(res.status).to.eql(409);
+              expect(res.body.success).to.eql(false);
+              expect(res.body.errors).to.have.property('email').eql('Email already exist');
+                if (err) done(err);
                 done();
             });
       });
@@ -66,15 +106,7 @@ describe('All Test cases for user Signup', () => {
       it('should return `400` status code with errors message for empty request', (done) => {
         request.post('/api/v1/auth/signup')
             .set('Content-Type', 'application/json')
-            .send({
-              userName: '',
-              fullName: '',
-              email: '',
-              password: '',
-              location: '',
-              profileImage: '',
-              aboutMe: ''
-            }) // empty body request
+            .send(inputs.emptyData) // empty body request
             .expect(400)
             .end((err, res) => {
                 expect(res.body.userName).to.eql('userName is required');
@@ -86,28 +118,6 @@ describe('All Test cases for user Signup', () => {
             });
        });
     });
-    describe('Positive Test case for user signup', () => {
-      it('Should return `201` for unique username signups', (done) => {
-        request.post('/api/v1/auth/signup')
-          .set('Content-Type', 'application/json')
-          .send({
-            fullName: 'BruceBanner',
-            email: 'banner@yahoo.com',
-            userName: 'hulk',
-            password: 'bruce banner',
-            location: 'newyork',
-            profileImage: 'mypix',
-            aboutMe: 'I am hulk of the Avengers'
-          })
-          .expect(201)
-              .end((err, res) => {
-                expect(res.body.success).to.equal('True');
-                expect(res.body).to.haveOwnProperty('token');
-                expect(res.body.message).to.equal('Signup successfull. You may proceed');
-                done();
-              });
-        });
-    });
   });
 
   describe('All Test cases for user login', () => {
@@ -115,10 +125,7 @@ describe('All Test cases for user Signup', () => {
       it('Should return `400` for wrong user input', (done) => {
         request.post('/api/v1/auth/login')
           .set('Content-Type', 'application/json')
-          .send({
-            userName: 'Wally',
-            password: 'west'
-            })
+          .send(inputs.invalidUserNamePassword)
           .end((err, res) => {
             expect(res).to.have.status(401);
             done();
@@ -129,11 +136,10 @@ describe('All Test cases for user Signup', () => {
       it('Should return `200` for authenticated user details', (done) => {
         request.post('/api/v1/auth/login')
           .set('Content-Type', 'application/json')
-          .send({
-            userName: 'hulk',
-            password: 'bruce banner'
-            })
+          .send(inputs.userOneLogin)
           .end((err, res) => {
+            console.log(res.body.token);
+            userToken.token = res.body.token;
             expect(res.body).to.haveOwnProperty('token');
             expect(res).to.have.status(200);
             done();

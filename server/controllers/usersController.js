@@ -41,7 +41,7 @@ export default class userController {
           errors.email = 'Email already exist';
         }
         return res.status(409).json({
-          success: 'False',
+          success: false,
           errors
         });
       }
@@ -74,7 +74,7 @@ export default class userController {
             };
             res.status(201)
             .json(Object.assign({
-              success: 'True',
+              success: true,
               message: 'Signup successfull. You may proceed'
             }, logInfo));
           });

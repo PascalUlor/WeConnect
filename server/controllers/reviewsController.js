@@ -37,10 +37,10 @@ export default class ReviewsController {
                        res.status(200).send({ message: 'Your review has been posted' });
                     }
                     return res.status(201).json(Object.assign({
-                        success: 'True',
+                        success: true,
                         message: 'Successfully posted new review'
                     }, { newReview }));
-                }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
+                }).catch(error => res.status(500).json({ success: false, message: error.message }));
             });
         });
     }
@@ -69,12 +69,12 @@ export default class ReviewsController {
           }).then((reviews) => {
             if (reviews.length > 0) {
               return res.status(200).json(Object.assign({
-                success: 'True',
+                success: true,
                 message: 'Successfully Retrieved All Reviews For This Business'
               }, { reviews }));
             }
             res.status(404).json({
-              success: 'False',
+              success: false,
                 message: 'No Reviews for this business yet'
             });
           }).catch(error => res.status(500).json(error.toString()));
