@@ -121,17 +121,17 @@ export default class userController {
             };
             return res.status(200)
             .json(Object.assign({
-              success: 'True',
+              success: true,
               message: 'You are Succesfully Logged in'
             }, logInfo));
           }
         return res.status(401).json({
-          succes: 'False',
+          succes: false,
           errors
         });
       }
       return res.status(401).json({
-        success: 'False',
+        success: false,
         errors
       });
     }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));

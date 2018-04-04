@@ -3,6 +3,7 @@
  */
 import { userToken, request, expect, wrongToken } from './user.test';
 import review from './testData/review.data';
+import user2Token from './business.test';
 
 const invalidID = 50;
 
@@ -18,6 +19,16 @@ const invalidID = 50;
                 done();
               });
           });
+          it('should return `400` status code if business owner tries to post review for his business', (done) => {
+            request.post('/api/v1/businesses/2/reviews')
+              .set('x-access-token', user2Token.token)
+              .send(review.validReview)
+              .expect(400)
+              .end((err, res) => {
+                expect(res.body.message).to.equal('You can\'t post a review for your business');
+                done();
+              });
+          });
           });
 
       describe('Positive test case for posting reviews', () => {
@@ -28,7 +39,7 @@ const invalidID = 50;
               .expect(200)
               .end((err, res) => {
                 expect(res.body.success).to.equal(true);
-                expect(res.body.message).to.equal('Successfully posted new review');
+                expect(res.body.message).to.equal('Review Posted Successfully');
                 expect(res.body.newReview);
                 done();
               });
@@ -42,13 +53,13 @@ const invalidID = 50;
         it('Should return 200 for getting reviews', (done) => {
           request.get('/api/v1/businesses/2/reviews')
             .set('Content-Type', 'application/json')
-            .send()
+            .send({})
+            .expect(200)
             .end((err, res) => {
-               expect(res.body.success).to.equal(true);
-               expect(res.body.message).to.equal('Successfully Retrieved All Reviews For This Business');
-               expect(res.body.Review);
-               expect(res.status).to.equal(200);
-               done();
+              expect(res.body.success).to.equal(true);
+              expect(res.body.message).to.equal('Successfully Retrieved All Reviews For This Business');
+              expect(res.body.review);
+              done();
         });
        });
       });
@@ -59,7 +70,7 @@ const invalidID = 50;
             .send()
             .end((err, res) => {
             expect(res.status).to.equal(404);
-            expect(res.body.message).to.equal('Business does not exist');
+            expect(res.body.message).to.equal(`Business does with id ${invalidID} does not exist`);
             done();
           });
         });

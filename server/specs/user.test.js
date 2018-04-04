@@ -91,17 +91,6 @@ describe('All Test cases for user Signup', () => {
                 done();
             });
       });
-      it('Should return `500` if password is not hashed', (done) => {
-        request.post('/api/v1/auth/signup')
-          .set('Content-Type', 'application/json')
-          .send({})
-            .expect(500)
-            .end((err, res) => {
-              expect(res.body.password).to.equal(undefined);
-              expect(res.status).to.equal(500);
-                done();
-            });
-      });
 
       it('should return `400` status code with errors message for empty request', (done) => {
         request.post('/api/v1/auth/signup')

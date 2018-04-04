@@ -6,6 +6,7 @@ import data from './testData/user.data';
 import { userToken, request, expect, wrongToken } from './user.test';
 
 const user2Token = { token: null };
+export default user2Token;
 
 const invalidID = 50;
 
