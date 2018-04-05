@@ -1,9 +1,7 @@
-import jwt from 'jsonwebtoken';
-import env from 'dotenv';
 import bcrypt from 'bcrypt';
+import reqHelper from '../helpers/requestHelper';
+import createToken from '../helpers/userToken';
 import { User } from '../models';
-
-env.config();
 
 /**
  * @class userController
@@ -59,25 +57,10 @@ export default class userController {
             location,
             aboutMe,
             password: hash
-          }).then((user) => {
-            const payload = { userName: user.userName, userId: user.id };
-            const token = jwt.sign(payload, process.env.SECRET_KEY, {
-              expiresIn: 60 * 60 * 1440
-            });
-            const logInfo = {
-              user: {
-                id: user.id,
-                userName: user.userName,
-                email: user.email
-              },
-              token
-            };
-            res.status(201)
-            .json(Object.assign({
-              success: true,
-              message: 'Signup successfull. You may proceed'
-            }, logInfo));
-          });
+          }).then(user => (createToken(
+             req, res, 201,
+            'Signup successfull. You may proceed', user
+          )));
         });// bcrypt end
     }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
   }
@@ -107,23 +90,7 @@ export default class userController {
       if (user && user.userName.toLowerCase === userName.toLowerCase) {
         const check = bcrypt.compareSync(password, user.password);
         if (check) {
-          const payload = { userName: user.userName, userId: user.id };
-          const token = jwt.sign(payload, process.env.SECRET_KEY, {
-              expiresIn: 60 * 60 * 1440
-            });
-            const logInfo = {
-              user: {
-                id: user.id,
-                userName: user.userName,
-                email: user.email
-              },
-              token
-            };
-            return res.status(200)
-            .json(Object.assign({
-              success: true,
-              message: 'You are Succesfully Logged in'
-            }, logInfo));
+          return createToken(req, res, 200, 'You are Succesfully Logged in', user);
           }
         return res.status(401).json({
           succes: false,
