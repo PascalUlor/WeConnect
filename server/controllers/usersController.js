@@ -62,7 +62,7 @@ export default class userController {
             'Signup successfull. You may proceed', user
           )));
         });// bcrypt end
-    }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
+    }).catch(error => reqHelper.error(res, 500, error.message));
   }
 
 /**
@@ -101,6 +101,6 @@ export default class userController {
         success: false,
         errors
       });
-    }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
+    }).catch(error => reqHelper.error(res, 500, error.message));
   }
 }
