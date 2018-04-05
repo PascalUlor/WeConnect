@@ -32,7 +32,7 @@ export default class businessValidation {
             if (businessName.search(/[^A-Za-z\s]/) !== -1) {
                 errors.businessName = 'Business name must be alphabetical';
             }
-        } else { errors.businessName = 'Business name is required' }
+        } else { errors.businessName = 'Business name is required'; }
 
            // validate businessName
            if (!(validator.isEmpty(businessName))) {

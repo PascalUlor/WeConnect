@@ -62,5 +62,5 @@ export default {
       emptyLoginData: { userName: '', password: '' },
       invalidUserName: { userName: 'wally', password: 'bruce banner' },
       invalidPassword: { userName: 'hulk', password: 'west' },
-      invalidUserNamePassword: { userName: 'wally', paaword: 'west'}
+      invalidUserNamePassword: { userName: 'wally', paaword: 'west' }
 };
