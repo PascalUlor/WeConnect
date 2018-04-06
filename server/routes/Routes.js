@@ -22,9 +22,14 @@ router.route('/businesses/:businessId/reviews')
     .post(authToken, reviewsController.postReview)
     .get(reviewsController.getReviews);
 
+// User Sign up and login
 router.route('/auth/signup')
     .post(userValidation.userSignUp, userController.userSignUp);
 router.route('/auth/login')
     .post(userController.userLogin);
+
+// User profile routes
+router.route('/user/profile')
+    .get(authToken, userController.getUser);
 
 export default router;

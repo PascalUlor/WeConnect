@@ -103,4 +103,27 @@ export default class userController {
       });
     }).catch(error => reqHelper.error(res, 500, error.message));
   }
+  /**
+   * @description get Users from the database
+   * @memberof userController
+   * @static
+   *
+   * @param   {object} req the server/http(s) request object
+   * @param   {object} res the server/http(s) response object
+   *
+   * @returns {object} failure or success message
+   * object with the persisted database data
+   */
+  static getUser(req, res) {
+    const { userId } = req.decoded;
+
+    User.findOne({
+      where: { id: userId },
+      attributes: [
+        'id', 'fullName', 'userName', 'email', 'profileImage', 'location', 'aboutMe'
+      ]
+    }).then(user => (reqHelper
+      .success(res, 200, 'Found User', { user })))
+      .catch(() => reqHelper.error(res, 500, 'Internal server error'));
+  }
 }
