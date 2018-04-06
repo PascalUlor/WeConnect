@@ -8,7 +8,6 @@
     "start": "babel-node server/app.js",
     "start:dev": "nodemon --watch server --exec babel-node -- server/app.js",
     "coverage": "NODE_ENV=test nyc report --reporter=text-lcov | coveralls",
-    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "showcoverage": "start coverage/lcov-report/index.html",
     "migrate": "sequelize db:migrate:undo:all && sequelize db:migrate",
     "prod-migrate": "sequelize db:migrate:undo:all --env production && sequelize db:migrate --env production",
