@@ -60,7 +60,7 @@ describe('All Test cases for user Signup', () => {
           .end((err, res) => {
             expect(res).to.have.status(422);
             expect(res.body.success).to.equal(false);
-            expect(res.body.message).to.eql('Some or all fileds are undefined');
+            expect(res.body.errors).to.eql('Some or all fileds are undefined');
             if (err) done(err);
             done();
          });
@@ -111,12 +111,32 @@ describe('All Test cases for user Signup', () => {
 
   describe('All Test cases for user login', () => {
     describe('Negative Test case for user login', () => {
-      it('Should return `400` for wrong user input', (done) => {
+      it('Should return `401` for wrong user input', (done) => {
         request.post('/api/v1/auth/login')
           .set('Content-Type', 'application/json')
           .send(inputs.invalidUserNamePassword)
           .end((err, res) => {
             expect(res).to.have.status(401);
+            done();
+         });
+      });
+      it('Should return `400` and deny access if wrong userName is not entered', (done) => {
+        request.post('/api/v1/auth/login')
+          .set('Content-Type', 'application/json')
+          .send(inputs.noUsername)
+          .end((err, res) => {
+            expect(res).to.have.status(400);
+            expect(res.body.userName).to.eql('userName is required');
+            done();
+         });
+      });
+      it('Should return `400` and deny access if wrong Password is not entered', (done) => {
+        request.post('/api/v1/auth/login')
+          .set('Content-Type', 'application/json')
+          .send(inputs.noPassword)
+          .end((err, res) => {
+            expect(res).to.have.status(400);
+            expect(res.body.password).to.eql('Password is required');
             done();
          });
       });
@@ -136,3 +156,32 @@ describe('All Test cases for user Signup', () => {
       });
     });
   });
+
+  // describe('All Test cases for user profile update', () => {
+  //   describe('Negative Test case for user profile update', () => {
+  //     it('Should return `400` status code for invalid inputs', (done) => {
+  //       request.post('/api/v1/user/profile')
+  //       .set('x-access-token', userToken)
+  //       .send(inputs.emptyUpdate)
+  //       .end((err, res) => {
+  //         expect(res.body.errors).to.eql('Some or all fileds are undefined');
+  //         expect(res.status).to.equal(422);
+  //         done();
+  //       });
+  //     });
+  //   });
+  //   describe('Positive Test case for user login', () => {
+  //     it('Should return `200` for authenticated user details', (done) => {
+  //       request.post('/api/v1/auth/login')
+  //         .set('Content-Type', 'application/json')
+  //         .send(inputs.userOneLogin)
+  //         .end((err, res) => {
+  //           console.log(res.body.token);
+  //           userToken.token = res.body.token;
+  //           expect(res.body).to.haveOwnProperty('token');
+  //           expect(res).to.have.status(200);
+  //           done();
+  //        });
+  //     });
+  //   });
+  // });

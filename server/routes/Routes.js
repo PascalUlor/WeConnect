@@ -26,10 +26,11 @@ router.route('/businesses/:businessId/reviews')
 router.route('/auth/signup')
     .post(userValidation.userSignUp, userController.userSignUp);
 router.route('/auth/login')
-    .post(userController.userLogin);
+    .post(userValidation.userLogin, userController.userLogin);
 
 // User profile routes
 router.route('/user/profile')
-    .get(authToken, userController.getUser);
+    .get(authToken, userController.getUser)
+    .post(authToken, userValidation.updateUser, userController.updateUser);
 
 export default router;

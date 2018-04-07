@@ -57,10 +57,20 @@ export default {
         profileImage: 'mypix',
         aboutMe: 'I am hulk of the Avengers'
       },
+      emptyUpdate: {
+        fullName: '',
+        email: '',
+        userName: '',
+        location: '',
+        profileImage: '',
+        aboutMe: ''
+      },
       userOneLogin: { userName: 'hulk', password: 'bruce banner' },
       userTwoLogin: { userName: 'Pascal', password: 'ulor mike' },
       emptyLoginData: { userName: '', password: '' },
-      invalidUserName: { userName: 'wally', password: 'bruce banner' },
-      invalidPassword: { userName: 'hulk', password: 'west' },
-      invalidUserNamePassword: { userName: 'wally', paaword: 'west' }
+      noUsername: { userName: '', password: 'bruce banner' },
+      noPassword: { userName: 'Pascal', password: '' },
+      invalidUserName: { userName: 'wrongUsername', password: 'bruce banner' },
+      invalidPassword: { userName: 'hulk', password: 'wrongPassword' },
+      invalidUserNamePassword: { userName: 'wrongUsername', password: 'wrongPassword' }
 };

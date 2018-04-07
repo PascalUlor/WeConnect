@@ -12,10 +12,10 @@ const requestHelper = {
             });
         }
     },
-    error(res, statusCode, message) {
+    error(res, statusCode, errors) {
         res.status(statusCode).json({
             success: false,
-            message
+            errors
         });
     }
 };

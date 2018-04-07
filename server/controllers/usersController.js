@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import reqHelper from '../helpers/requestHelper';
 import createToken from '../helpers/userToken';
-import { User } from '../models';
+import { User, Reviews } from '../models';
 
 /**
  * @class userController
@@ -38,10 +38,11 @@ export default class userController {
         if (found.email === email) {
           errors.email = 'Email already exist';
         }
-        return res.status(409).json({
-          success: false,
-          errors
-        });
+        return reqHelper.error(res, 409, errors);
+        // return res.status(409).json({
+        //   success: false,
+        //   errors
+        // });
       }
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           if (err) {
@@ -125,5 +126,62 @@ export default class userController {
     }).then(user => (reqHelper
       .success(res, 200, 'Found User', { user })))
       .catch(() => reqHelper.error(res, 500, 'Internal server error'));
+  }
+
+  /**
+   * @description Update Users in the database
+   * @memberof userController
+   * @static
+   *
+   * @param   {object} req the server/http(s) request object
+   * @param   {object} res the server/http(s) response object
+   *
+   * @returns {object} failure or success message
+   * object with the persisted database data
+   */
+  static updateUser(req, res) {
+    const {
+      fullName,
+      userName,
+      email,
+      profileImage,
+      location,
+      aboutMe
+    } = req.body, { userId } = req.decoded;
+
+    User.findOne({ where: { id: userId } }).then((foundUser) => {
+      if (foundUser) {
+        return foundUser.updateAttributes({
+          fullName: (fullName) || foundUser.fullName,
+          userName: (userName) || foundUser.userName,
+          email: (email) || foundUser.email,
+          location: (location) || foundUser.location,
+          profileImage: (profileImage) || foundUser.profileImage,
+          aboutMe: (aboutMe) || foundUser.aboutMe
+        }).then(() => (
+          User.findOne({
+            where: { id: userId },
+            attributes: [
+              'id', 'fullName', 'userName', 'email',
+              'profileImage', 'location', 'aboutMe'
+            ]
+          }).then(updateUser => (
+            Reviews.findAll({ where: { userId } }).then((review) => {
+              const feedback = reqHelper
+              .success(res, 200, 'Successfully updated profile', { updateUser });
+              if (review.length !== 0) {
+                return Reviews.update({
+                  userName: updateUser.userName,
+                  profileImage: updateUser.profileImage
+                }, {
+                  where: { userId }
+                }).then(() => (feedback));
+              }
+              return feedback;
+            })
+          ))
+        )).catch(() => reqHelper.error(res, 500, 'Internal server error'));
+      }
+    });
   }
 }
