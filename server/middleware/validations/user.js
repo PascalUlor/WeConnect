@@ -19,7 +19,7 @@ export default class userValidation {
    */
     static userSignUp(req, res, next) {
       if (req.body.fullName === undefined || req.body.userName === undefined || req.body.email === undefined || req.body.password === undefined) {
-        return reqHelper.error(res, 422, 'Some or all fileds are undefined');
+        return reqHelper.error(res, 422, 'Some or all fields are undefined');
       }
       const fullName = req.body.fullName.trim(),
             userName = req.body.userName.trim(),
@@ -103,7 +103,7 @@ export default class userValidation {
    */
   static updateUser(req, res, next) {
     if (req.body.fullName === undefined || req.body.userName === undefined || req.body.email === undefined || req.body.location === undefined || req.body.aboutMe === undefined) {
-      return reqHelper.error(res, 422, 'Some or all fileds are undefined');
+      return reqHelper.error(res, 422, 'Some or all fields are undefined');
     }
     const fullName = req.body.fullName.trim(),
           userName = req.body.userName.trim(),

@@ -65,6 +65,26 @@ export default {
         profileImage: '',
         aboutMe: ''
       },
+      validUpdate: {
+        fullName: 'Banner',
+        email: 'brucebanner@yahoo.com',
+        userName: 'hulk',
+        location: 'New York',
+        profileImage: 'the huk',
+        aboutMe: 'Hulk smah'
+      },
+      invalidUpdate: {
+        fullName: '92Peter Parker',
+        email: 'peter@yah',
+        userName: 's',
+        location: '1759 York',
+        profileImage: 'spidey',
+        aboutMe: 'Y'
+      },
+      incompleteUpdate: {
+        fullName: 'Anna Jones',
+        email: 'annie@yahoo.com'
+      },
       userOneLogin: { userName: 'hulk', password: 'bruce banner' },
       userTwoLogin: { userName: 'Pascal', password: 'ulor mike' },
       emptyLoginData: { userName: '', password: '' },

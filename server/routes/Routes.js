@@ -31,6 +31,6 @@ router.route('/auth/login')
 // User profile routes
 router.route('/user/profile')
     .get(authToken, userController.getUser)
-    .post(authToken, userValidation.updateUser, userController.updateUser);
+    .put(authToken, userValidation.updateUser, userController.updateUser);
 
 export default router;

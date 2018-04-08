@@ -3,10 +3,9 @@
  */
 import inputs from './testData/business.data';
 import data from './testData/user.data';
-import { userToken, request, expect, wrongToken } from './user.test';
+import userToken, { request, expect, wrongToken } from './user.test';
 
 const user2Token = { token: null };
-export default user2Token;
 
 const invalidID = 50;
 
@@ -317,3 +316,5 @@ describe('All test cases for Businesses', () => {
     });
   });
   });// End of test cases without empty database
+
+  export default user2Token;

@@ -1,7 +1,7 @@
 /**
  * Test for API endpoints
  */
-import { userToken, request, expect, wrongToken } from './user.test';
+import userToken, { request, expect, wrongToken } from './user.test';
 import review from './testData/review.data';
 import user2Token from './business.test';
 
