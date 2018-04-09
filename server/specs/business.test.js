@@ -89,8 +89,9 @@ describe('All test cases for Businesses', () => {
               .send({}) // request body not defined
               .expect(401)
               .end((err, res) => {
-                expect(res.body).deep.equal({
-                  message: 'Authentication failed. Token is invalid or expired'
+                expect(res.body).to.eql({
+                  success: false,
+                  errors: 'Authentication failed. Token is invalid or expired'
                 });
                 done();
               });
@@ -170,8 +171,9 @@ describe('All test cases for Businesses', () => {
                     .send(inputs.validUpdate1) // request body not defined
                     .expect(401)
                     .end((err, res) => {
-                      expect(res.body).deep.equal({
-                        message: 'Authentication failed. Token is invalid or expired'
+                      expect(res.body).to.eql({
+                        success: false,
+                        errors: 'Authentication failed. Token is invalid or expired'
                       });
                       done();
                     });

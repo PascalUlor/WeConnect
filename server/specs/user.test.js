@@ -159,6 +159,42 @@ describe('test cases for user sign up and sign in operations', () => {
   });
 
   describe('All Test cases for user profile', () => {
+    describe('get user profile details test cases', () => {
+      it('should not be able to access the profile when'+
+      'token is undefined(not set)', (done) => {
+        request.get('/api/v1/user/profile')
+          .end((err, res) => {
+            expect(res.status).to.equal(403);
+            expect(res.body).deep.equal({
+              success: false,
+              errors: 'Access denied. You are not logged in'
+            });
+            if (err) done(err);
+            done();
+          });
+      });
+      it('should not be able to access user\'s profile with a wrong token', (done) => {
+        request.get('/api/v1/user/profile')
+          .set('x-access-token', wrongToken)
+          .end((err, res) => {
+            expect(res.status).to.equal(401);
+            expect(res.body).deep.equal({
+              success: false,
+              errors: 'Authentication failed. Token is invalid or expired'
+            });
+            if (err) done(err);
+            done();
+          });
+      });
+      it('should be able to get all user\'s current information', (done) => {
+        request.get('/api/v1/user/profile')
+          .set('x-access-token', userToken.token)
+          .end((error, response) => {
+            expect(response.status).to.equal(200);
+            done();
+          });
+      });
+    });
     describe('Negative Test case for user profile update', () => {
       it('Should return `422` status code for invalid inputs', (done) => {
         request.put('/api/v1/user/profile')
