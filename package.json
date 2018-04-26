@@ -4,16 +4,11 @@
   "description": "This is an Andela Bootcamp 30 project. WeConnect is a business listing and out sourcing web application.",
   "main": "server/app.js",
   "scripts": {
-<<<<<<< HEAD
-    "test": "nyc --reporter=lcov --reporter=text mocha --timeout 5000 --exit --compilers js:babel-core/register server/specs/*test.js || true",
-    "start": "node server/dist/app.js",
-=======
     "test": "set NODE_ENV=test&&npm run test-migrate && nyc --reporter=lcov --reporter=text mocha --timeout 5000 --compilers js:babel-core/register server/specs/*test.js || true",
     "test-migrate": "sequelize db:migrate:undo:all --env test && sequelize db:migrate --env test",
     "build": "babel server -d server/dist",
     "postinstall": "npm run build",
     "start": "babel-node server/app.js",
->>>>>>> 05cfd784f9947a753007a2c0946c44496f791d41
     "start:dev": "nodemon --watch server --exec babel-node -- server/app.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
