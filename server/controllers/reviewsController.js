@@ -25,22 +25,19 @@ export default class ReviewsController {
             Business.findById(businessID).then((foundBusiness) => {
                 if (!foundBusiness) {
                     return res.status(404).send({ message: 'Business does not exist' });
-                }
+                } else if (userId === foundBusiness.userId) {
+                  return res.status(400).send({ message: 'You can\'t post a review for your business' });
+               }
                 Reviews.create({
                     reviewDetail,
                     userName: foundUser.userName,
                     profileImage: foundUser.profileImage,
                     userId,
                     businessId: businessID
-                }).then((newReview) => {
-                    if (newReview.userId === foundBusiness.userId) {
-                       res.status(200).send({ message: 'Your review has been posted' });
-                    }
-                    return res.status(201).json(Object.assign({
-                        status: 'Successfull',
-                        message: 'Successfully posted new review'
-                    }, { newReview }));
-                }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
+                }).then(newReview => res.status(201).json(Object.assign({
+                        success: true,
+                        message: 'Review Posted Successfully'
+                    }, { newReview }))).catch(error => res.status(500).json({ success: false, message: error.message }));
             });
         });
     }
@@ -60,21 +57,21 @@ export default class ReviewsController {
         const businessID = parseInt(req.params.businessId, 10);
         Business.findById(businessID).then((foundBusiness) => {
           if (!foundBusiness) {
-            return res.status(404).send({ message: 'Business does not exist' });
+            return res.status(404).send({ message: `Business does with id ${businessID} does not exist` });
           }
-          return Reviews.findAll({
+          Reviews.findAll({
               where: {
-                  id: businessID,
-              },
+                  businessId: businessID,
+              }
           }).then((reviews) => {
             if (reviews.length > 0) {
               return res.status(200).json(Object.assign({
-                status: 'Successfull',
+                success: true,
                 message: 'Successfully Retrieved All Reviews For This Business'
               }, { reviews }));
             }
             res.status(404).json({
-              status: 'Failed',
+              success: false,
                 message: 'No Reviews for this business yet'
             });
           }).catch(error => res.status(500).json(error.toString()));

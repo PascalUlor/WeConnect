@@ -18,11 +18,11 @@ export default class BusinessController {
      * @returns {object} insertion error messages object or
      * success message object
      */
-  static regBusiness(req, res) {
+  static createBusiness(req, res) {
     const {
       businessName,
       email,
-      Address,
+      address,
       category,
       location,
       businessImage,
@@ -36,18 +36,18 @@ export default class BusinessController {
     return Business.create({
       businessName,
       email,
-      Address,
+      address,
       category,
       location,
       businessImage,
       aboutUs,
       userId
     }).then(business => res.status(201).json(Object.assign({
-      status: 'Success',
-      message: 'Successfully Registered Business'
+      success: true,
+      message: 'Business created successfully'
     }, { business })))
-      .catch(error => res.status(500).json({ status: 'Server Error', message: error.message }));
-  }).catch(error => res.status(500).json({ status: 'Failed', message: error.message }));
+      .catch(error => res.status(500).json({ success: 'False', message: error.message }));
+  }).catch(error => res.status(500).json({ success: 'False', message: error.message }));
   }
   /**
      * Update a registered business to the business catalog
@@ -66,7 +66,7 @@ export default class BusinessController {
       const {
         businessName,
         email,
-        Address,
+        address,
         category,
         location,
         businessImage,
@@ -79,17 +79,17 @@ export default class BusinessController {
       }).then((business) => {
         if (!business) {
           return res.status(404).send({
-            message: 'Business does not exist',
+            message: 'Business with id does not exist'
           });
         } if (userId !== business.userId) {
-          return res.status(403).send({
-            message: 'Access Denied',
+          return res.status(401).send({
+            message: 'Access Denied. You are not authorized to update this business',
           });
         }
         business.updateAttributes({
           businessName: (businessName) || business.businessName,
           email: (email) || business.email,
-          Address: (Address) || business.Address,
+          address: (address) || business.address,
           category: (category) || business.category,
           location: (location) || business.location,
           businessImage: (businessImage) || business.businessImage,
@@ -122,17 +122,17 @@ export default class BusinessController {
               id: businessID
             },
           }).then(() => res.status(200).json(Object.assign({
-            status: 'Succesfull',
-            message: 'Successfully deleted business'
+            success: true,
+            message: 'Business successfully deleted'
           }, { business })));
         }
         return res.status(401).json({
-          status: 'failed',
+          success: false,
           message: 'You are not authorised to delete this business'
         });
       }).catch(() => res.status(404).json({
-        status: 'Failed',
-        message: 'Business does not exist'
+        success: false,
+        message: `Business with id ${businessID} does not exist`
       }));
     }
     /**
@@ -178,18 +178,18 @@ export default class BusinessController {
         return Business.findAll({
           where: {
             location: {
-              ilike: `%${businessLocation}%`
+              $ilike: `%${businessLocation}%`
             }
           }
         }).then((business) => {
           if (business.length > 0) {
             return res.status(200).json(Object.assign({
-              status: 'Successfull',
+              success: true,
               message: 'Search by location Successfull'
             }, { business }));
           }
           res.status(404).json({
-            status: 'Failed',
+              success: false,
               message: 'Search by location Failed'
           });
         }).catch(error => res.status(500).json(error.toString()));
@@ -199,19 +199,19 @@ export default class BusinessController {
         return Business.findAll({
           where: {
             category: {
-              ilike: `%${businessCategory}%`
+              $ilike: `%${businessCategory}%`
             }
           }
         }).then((business) => {
           if (business.length > 0) {
             return res.status(200).json(Object.assign({
-              status: 'Successfull',
+              success: true,
               message: 'Search by category Successfull'
             }, { business }));
           }
           res.status(404).json({
-            status: 'Failed',
-              message: 'Search by category Failed'
+            success: false,
+            message: 'Search by category Failed'
           });
         }).catch(error => res.status(500).json(error.toString()));
       }
@@ -221,21 +221,21 @@ export default class BusinessController {
         return Business.findAll({
           where: {
             location: {
-              ilike: `%${businessLocation}%`
+              $ilike: `%${businessLocation}%`
             },
             category: {
-              ilike: `%${businessCategory}%`
+              $ilike: `%${businessCategory}%`
             }
           }
         }).then((business) => {
           if (business.length > 0) {
             return res.status(200).json(Object.assign({
-              status: 'Successfull',
-              message: 'SearchSuccessfull'
+              success: true,
+              message: 'Search Successfull'
             }, { business }));
           }
           res.status(404).json({
-            status: 'Failed',
+            success: false,
               message: 'Search Failed'
           });
         }).catch(error => res.status(500).json(error.toString()));
@@ -248,12 +248,12 @@ export default class BusinessController {
         }).then((business) => {
           if (business.length > 0) {
             return res.status(200).json(Object.assign({
-              status: 'Successfull',
+              success: true,
               message: 'Successfully Retrieved All Businesses'
             }, { business }));
           }
           res.status(404).json({
-            status: 'Failed',
+            success: false,
               message: 'Business does not exist'
           });
         }).catch(error => res.status(500).json(error.toString()));
