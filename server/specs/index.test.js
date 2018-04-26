@@ -18,8 +18,8 @@ describe('Test case for loading application home page', () => {
             .expect(200)
             .end((err, res) => {
                 expect(res.body).deep.equal({
-                    name: 'Don Ulor',
-                    message: 'Welcome to WeConnect'
+                    name: 'Welcome to WeConnect',
+                    message: 'Get Your Business To The World'
                 });
                 done();
             });
