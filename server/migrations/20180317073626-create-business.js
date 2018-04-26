@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      Address: {
+      address: {
         type: Sequelize.STRING,
         allowNull: false
       },

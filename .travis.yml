@@ -1,11 +1,17 @@
+sudo: false
+dist: trusty
 language: node_js
 node_js:
-- "stable"
+  - "stable"
 env:
-global:
-- export NODE_ENV=test
+  global:
+  - export NODE_ENV=test
+services:
+  - postgresql
+before_script:
+  - npm install
+  - psql -c 'create database testDb;' -U postgres
 script:
-- npm test
-- npm run coverage
-- npm install
-after_success: 'npm run coveralls'
+  - npm run test
+after_success:
+  - npm run coverage

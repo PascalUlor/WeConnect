@@ -316,5 +316,4 @@ describe('All test cases for application without empty database', () => {
       });
     });
   });
-
   });// End of test cases without empty database
