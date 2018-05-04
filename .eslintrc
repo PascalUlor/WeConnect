@@ -30,6 +30,7 @@
         "one-var": 0,
         "semi": ["error", "always"],
         "eol-last": ["off", "always"],
+        "linebreak-style": ["error", "windows"],
         "indent": ["off", 4],
         "no-console": ["off", "always"],
         "max-len": [1, 200, 2],
