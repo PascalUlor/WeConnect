@@ -1,14 +1,19 @@
 import express from 'express';
+import webpack from 'webpack';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import path from 'path';
 
 import swaggerUi from 'swagger-ui-express';
 import cors from 'cors';
 import YAML from 'yamljs';
 
-import routes from './routes/routes';
+import routes from './server/routes/routes';
+import config from './webpack.config.dev';
 
 const app = express();
+const compiler = webpack(config);
 
 const swaggerDocument = YAML.load(`${process.cwd()}/swagger.yaml`);
 
@@ -21,6 +26,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
 
+app.use((webpackDevMiddleware)(compiler));
+app.use(require('webpack-hot-middleware')(compiler));
+
+app.use(express.static(path.join(__dirname, './client/src/app/public')));
+
+// React Render
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, './client/src/app/index.html'));
+});
 // Home page route
 app.get('/', (req, res) => {
     res.status(200);

@@ -2,12 +2,12 @@ const webpack = require('webpack');
 const path = require('path');
 
 const DIST_DIR = path.resolve(__dirname, 'dist');
-const SRC_DIR = path.resolve(__dirname, 'client/src');
+const SRC_DIR = path.resolve(__dirname, 'client/src/app');
 
 
 module.exports = {
     mode: 'development',
-    entry: `${SRC_DIR}/app/index.jsx`,
+    entry: `${SRC_DIR}/index.jsx`,
     output: {
         path: DIST_DIR,
         filename: 'bundle.js',
@@ -17,7 +17,13 @@ module.exports = {
         contentBase: SRC_DIR
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            Tether: 'tether'
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
         extensions: ['*', '.js', '.jsx']
