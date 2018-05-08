@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const DIST_DIR = path.resolve(__dirname, 'dist');
-const SRC_DIR = path.resolve(__dirname, 'client/src/app');
+const SRC_DIR = path.resolve(__dirname, 'client/src');
 
 
 module.exports = {

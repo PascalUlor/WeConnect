@@ -29,11 +29,11 @@ app.use(logger('dev'));
 app.use((webpackDevMiddleware)(compiler));
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.use(express.static(path.join(__dirname, './client/src/app/public')));
+app.use(express.static(path.join(__dirname, './client/src/public')));
 
 // React Render
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, './client/src/app/index.html'));
+    res.sendFile(path.join(__dirname, './client/src/index.html'));
 });
 // Home page route
 app.get('/', (req, res) => {
