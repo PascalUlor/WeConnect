@@ -17,13 +17,7 @@ module.exports = {
         contentBase: SRC_DIR
     },
     plugins: [
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery',
-            Tether: 'tether'
-        }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
     ],
     resolve: {
         extensions: ['*', '.js', '.jsx']
@@ -34,10 +28,12 @@ module.exports = {
                 test: /\.jsx?$/,
                 include: SRC_DIR,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['env', 'react', 'stage-2']
-                }
+                use: [{
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['env', 'react', 'stage-2']
+                        }
+                    }]
             },
             {
                 test: /\.css$/,
