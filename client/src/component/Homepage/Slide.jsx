@@ -36,7 +36,7 @@ export default class Slide extends React.Component {
                           <h4 className="card-title">IT Services</h4>
                           <h6 className="card-text">some text here</h6>
                         </div>
-                        <img className="card-img-top img-fluid" src="./public/images/tech.jpg" alt="me at work" />
+                        <img className="card-img-top img-fluid" src={require('../../public/images/tech.jpg')} alt="me at work" />
                         <div className="card-block">
                           <h4 className="card-title">Card title that wraps to a new line</h4>
                           <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
@@ -54,7 +54,7 @@ export default class Slide extends React.Component {
                           <h4 className="card-title">Finance Service</h4>
                           <h6 className="card-text">some text here</h6>
                         </div>
-                        <img className="card-img-top img-fluid" src="./public/images/finan.jpg" alt="me at work" />
+                        <img className="card-img-top img-fluid" src={require('../../public/images/finan.jpg')} alt="me at work" />
                         <div className="card-block">
                           <h4 className="card-title">Card title that wraps to a new line</h4>
                           <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
@@ -72,7 +72,7 @@ export default class Slide extends React.Component {
                           <h4 className="card-title">Hospitality</h4>
                           <h6 className="card-text">some text here</h6>
                         </div>
-                        <img className="card-img-top img-fluid" src="./public/images/hosp.jpg" alt="me at work" />
+                        <img className="card-img-top img-fluid" src={require('../../public/images/hosp.jpg')} alt="me at work" />
                         <div className="card-block">
                           <h4 className="card-title">Card title that wraps to a new line</h4>
                           <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
@@ -97,7 +97,7 @@ export default class Slide extends React.Component {
                           <h4 className="card-title">Engineering</h4>
                           <h6 className="card-text">some text here</h6>
                         </div>
-                        <img className="card-img-top img-fluid" src="./public/images/engineering.jpg" alt="me at work" />
+                        <img className="card-img-top img-fluid" src={require('../../public/images/engineering.jpg')} alt="me at work" />
                         <div className="card-block">
                           <h4 className="card-title">Card title that wraps to a new line</h4>
                           <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
@@ -115,7 +115,7 @@ export default class Slide extends React.Component {
                           <h4 className="card-title">Health Care</h4>
                           <h6 className="card-text">some text here</h6>
                         </div>
-                        <img className="card-img-top img-fluid" src="./public/images/health.jpg" alt="me at work" />
+                        <img className="card-img-top img-fluid" src={require('../../public/images/health.jpg')} alt="me at work" />
                         <div className="card-block">
                           <h4 className="card-title">Card title that wraps to a new line</h4>
                           <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
@@ -133,7 +133,7 @@ export default class Slide extends React.Component {
                           <h4 className="card-title">Education</h4>
                           <h6 className="card-text">some text here</h6>
                         </div>
-                        <img className="card-img-top img-fluid" src="./public/images/education.jpg" alt="me at work" />
+                        <img className="card-img-top img-fluid" src={require('../../public/images/education.jpg')} alt="me at work" />
                         <div className="card-block">
                           <h4 className="card-title">Card title that wraps to a new line</h4>
                           <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
@@ -158,7 +158,7 @@ export default class Slide extends React.Component {
                           <h4 className="card-title">Agriculture</h4>
                           <h6 className="card-text">some text here</h6>
                         </div>
-                        <img className="card-img-top img-fluid" src="./public/images/agric.jpg" alt="me at work" />
+                        <img className="card-img-top img-fluid" src={require('../../public/images/agric.jpg')} alt="me at work" />
                         <div className="card-block">
                           <h4 className="card-title">Card title that wraps to a new line</h4>
                           <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
@@ -176,7 +176,7 @@ export default class Slide extends React.Component {
                           <h4 className="card-title">Contruction</h4>
                           <h6 className="card-text">some text here</h6>
                         </div>
-                        <img className="card-img-top img-fluid" src="./public/images/construction.jpg" alt="me at work" />
+                        <img className="card-img-top img-fluid" src={require('../../public/images/construction.jpg')} alt="me at work" />
                         <div className="card-block">
                           <h4 className="card-title">Card title that wraps to a new line</h4>
                           <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
@@ -194,7 +194,7 @@ export default class Slide extends React.Component {
                           <h4 className="card-title">Aviation</h4>
                           <h6 className="card-text">some text here</h6>
                         </div>
-                        <img className="card-img-top img-fluid" src="./public/images/aviation.jpg" alt="me at work" />
+                        <img className="card-img-top img-fluid" src={require('../../public/images/aviation.jpg')} alt="me at work" />
                         <div className="card-block">
                           <h4 className="card-title">Card title that wraps to a new line</h4>
                           <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content

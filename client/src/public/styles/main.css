@@ -54,7 +54,7 @@ img{
 }
 
 #cover {
-    background: #222 url('../images/background.jpg') center center no-repeat;
+    background: #222 url("../images/background.jpg") center center no-repeat;
     background-size: cover;
     color: white;
     height: auto;
