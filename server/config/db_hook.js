@@ -4,7 +4,7 @@ dotenv.config();
 
 module.exports = {
   development: {
-    username: process.env.USERNAME,
+    username: process.env.PGUSER,
     password: process.env.PASSWORD,
     database: process.env.DATABASE_DEV,
     host: process.env.HOST,
